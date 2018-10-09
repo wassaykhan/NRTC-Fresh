@@ -500,6 +500,7 @@ est qui dolorem</string>
         <!--Navigation Controller-->
         <scene sceneID="l4z-zY-ie5">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t7j-hm-RTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="1Af-0m-Mm6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1hX-Lt-odj">
@@ -513,7 +514,6 @@ est qui dolorem</string>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EaE-aJ-7An"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t7j-hm-RTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="286" y="664"/>
         </scene>
@@ -1000,7 +1000,7 @@ est qui dolorem</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vU-PU-gZI">
-                                                    <rect key="frame" x="30" y="5" width="354" height="115"/>
+                                                    <rect key="frame" x="30" y="5" width="315" height="115"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image_chips" translatesAutoresizingMaskIntoConstraints="NO" id="mTW-jg-o1L">
                                                             <rect key="frame" x="8" y="21" width="74" height="74"/>
@@ -1021,13 +1021,13 @@ est qui dolorem</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="side_bg" translatesAutoresizingMaskIntoConstraints="NO" id="mo2-e2-gqk">
-                                                            <rect key="frame" x="306" y="0.0" width="48" height="119"/>
+                                                            <rect key="frame" x="267" y="0.0" width="48" height="119"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="48" id="hio-nb-9hO"/>
                                                             </constraints>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnF-3B-maj">
-                                                            <rect key="frame" x="306" y="8" width="48" height="36"/>
+                                                            <rect key="frame" x="267" y="8" width="48" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="XVl-NA-HsL"/>
                                                                 <constraint firstAttribute="width" constant="48" id="j2t-bA-eYc"/>
@@ -1035,7 +1035,7 @@ est qui dolorem</string>
                                                             <state key="normal" image="plus"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zT-WM-wfK">
-                                                            <rect key="frame" x="306" y="71" width="48" height="36"/>
+                                                            <rect key="frame" x="267" y="71" width="48" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="7HB-uL-aTh"/>
                                                                 <constraint firstAttribute="width" constant="48" id="oUh-SL-zWW"/>
@@ -1043,7 +1043,7 @@ est qui dolorem</string>
                                                             <state key="normal" image="minus"/>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rex-R2-7FM">
-                                                            <rect key="frame" x="326" y="49" width="8" height="21"/>
+                                                            <rect key="frame" x="287" y="49" width="8" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1817,61 +1817,77 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehx-oJ-nAF">
-                                                        <rect key="frame" x="29" y="70" width="61" height="15"/>
+                                                        <rect key="frame" x="29" y="60" width="61" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="tyx-kq-4yI"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.65490196079999996" green="0.81176470590000005" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uIf-ZB-XnU">
-                                                        <rect key="frame" x="29" y="106" width="257" height="18"/>
+                                                        <rect key="frame" x="29" y="93" width="257" height="25"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="eup-XB-j07"/>
+                                                        </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="Oxygen-Regular" family="Oxygen" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMW-Ul-Awt">
-                                                        <rect key="frame" x="29" y="154" width="55" height="15"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMW-Ul-Awt">
+                                                        <rect key="frame" x="29" y="159" width="55" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.65490196079999996" green="0.81176470590000005" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sRI-NC-QfN">
-                                                        <rect key="frame" x="29" y="190" width="257" height="18"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sRI-NC-QfN">
+                                                        <rect key="frame" x="29" y="189" width="257" height="34"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="Oxygen-Regular" family="Oxygen" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eoj-hP-p8h">
-                                                        <rect key="frame" x="242" y="233" width="65" height="66"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s78-HG-jiu" userLabel="usernameError">
+                                                        <rect key="frame" x="29" y="123" width="140" height="16"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="65" id="NT6-T9-uAa"/>
-                                                            <constraint firstAttribute="height" constant="66" id="NfU-bQ-lHZ"/>
+                                                            <constraint firstAttribute="height" constant="16" id="2cs-fp-YOr"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="hIn-Xa-IzI"/>
                                                         </constraints>
-                                                        <state key="normal" backgroundImage="tick-button">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <segue destination="BYZ-38-t0r" kind="push" id="L8z-vT-xS0"/>
-                                                        </connections>
-                                                    </button>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" red="1" green="0.1409202853" blue="0.087640391400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVU-8h-d7y" userLabel="passwordError">
+                                                        <rect key="frame" x="29" y="224" width="140" height="22"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="36d-Xk-tvp"/>
+                                                            <constraint firstAttribute="height" constant="22" id="S7Q-yf-h0F"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" red="1" green="0.1409202853" blue="0.087640391400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="CMW-Ul-Awt" firstAttribute="leading" secondItem="LNP-cC-bFU" secondAttribute="leading" constant="29" id="05w-rk-WBS"/>
+                                                    <constraint firstAttribute="bottom" secondItem="dVU-8h-d7y" secondAttribute="bottom" constant="16" id="09T-f3-fLh"/>
                                                     <constraint firstAttribute="trailing" secondItem="sRI-NC-QfN" secondAttribute="trailing" constant="29" id="2MR-Bk-JOC"/>
                                                     <constraint firstItem="1Tl-kD-pL0" firstAttribute="top" secondItem="LNP-cC-bFU" secondAttribute="top" constant="16" id="4Vl-xR-WHo"/>
+                                                    <constraint firstItem="CMW-Ul-Awt" firstAttribute="top" secondItem="s78-HG-jiu" secondAttribute="bottom" constant="20" id="5xE-5w-6tz"/>
+                                                    <constraint firstItem="s78-HG-jiu" firstAttribute="leading" secondItem="LNP-cC-bFU" secondAttribute="leading" constant="29" id="A1r-9X-o0q"/>
                                                     <constraint firstAttribute="height" constant="262" id="BC5-eG-fNZ"/>
-                                                    <constraint firstItem="Ehx-oJ-nAF" firstAttribute="leading" secondItem="LNP-cC-bFU" secondAttribute="leading" constant="29" id="Dc7-Wx-CgL"/>
-                                                    <constraint firstItem="Ehx-oJ-nAF" firstAttribute="top" secondItem="LNP-cC-bFU" secondAttribute="top" constant="70" id="Fdt-As-G23"/>
-                                                    <constraint firstItem="CMW-Ul-Awt" firstAttribute="top" secondItem="uIf-ZB-XnU" secondAttribute="bottom" constant="30" id="LyJ-Us-xRH"/>
-                                                    <constraint firstItem="Eoj-hP-p8h" firstAttribute="top" secondItem="sRI-NC-QfN" secondAttribute="bottom" constant="25" id="P7v-Vp-cVI"/>
+                                                    <constraint firstItem="Ehx-oJ-nAF" firstAttribute="top" secondItem="LNP-cC-bFU" secondAttribute="top" constant="60" id="Fdt-As-G23"/>
+                                                    <constraint firstItem="uIf-ZB-XnU" firstAttribute="top" secondItem="Ehx-oJ-nAF" secondAttribute="bottom" constant="8" id="LGg-ef-l9Z"/>
+                                                    <constraint firstItem="Ehx-oJ-nAF" firstAttribute="leading" secondItem="LNP-cC-bFU" secondAttribute="leading" constant="29" id="LM3-UK-fEI"/>
+                                                    <constraint firstItem="dVU-8h-d7y" firstAttribute="top" secondItem="sRI-NC-QfN" secondAttribute="bottom" constant="1" id="MEh-KY-0lT"/>
                                                     <constraint firstItem="sRI-NC-QfN" firstAttribute="leading" secondItem="LNP-cC-bFU" secondAttribute="leading" constant="29" id="acA-YP-rQH"/>
                                                     <constraint firstAttribute="trailing" secondItem="uIf-ZB-XnU" secondAttribute="trailing" constant="29" id="cE7-Dd-AoC"/>
-                                                    <constraint firstItem="sRI-NC-QfN" firstAttribute="top" secondItem="CMW-Ul-Awt" secondAttribute="bottom" constant="21" id="dnn-ZJ-ne6"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Eoj-hP-p8h" secondAttribute="trailing" constant="8" id="i6z-96-vJK"/>
-                                                    <constraint firstItem="uIf-ZB-XnU" firstAttribute="top" secondItem="Ehx-oJ-nAF" secondAttribute="bottom" constant="21" id="mtq-zB-2go"/>
+                                                    <constraint firstItem="sRI-NC-QfN" firstAttribute="top" secondItem="CMW-Ul-Awt" secondAttribute="bottom" constant="15" id="dnn-ZJ-ne6"/>
+                                                    <constraint firstItem="s78-HG-jiu" firstAttribute="top" secondItem="uIf-ZB-XnU" secondAttribute="bottom" constant="5" id="jp2-a1-rR2"/>
                                                     <constraint firstItem="uIf-ZB-XnU" firstAttribute="leading" secondItem="LNP-cC-bFU" secondAttribute="leading" constant="29" id="wzD-kc-UeV"/>
+                                                    <constraint firstItem="dVU-8h-d7y" firstAttribute="leading" secondItem="sRI-NC-QfN" secondAttribute="leading" id="x8a-yy-GNn"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1879,6 +1895,19 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eoj-hP-p8h">
+                                                <rect key="frame" x="263" y="554" width="65" height="66"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="65" id="NT6-T9-uAa"/>
+                                                    <constraint firstAttribute="height" constant="66" id="NfU-bQ-lHZ"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="tick-button">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="login:" destination="0e2-Eb-YBS" eventType="touchUpInside" id="zJf-RI-ORh"/>
+                                                </connections>
+                                            </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="BRK-fi-Q7S">
                                                 <rect key="frame" x="132.5" y="637" width="33" height="1"/>
                                                 <constraints>
@@ -1991,6 +2020,7 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
                                             <constraint firstItem="QzP-6a-MIX" firstAttribute="leading" secondItem="8FV-en-IPz" secondAttribute="trailing" constant="10" id="XlW-mn-b5b"/>
                                             <constraint firstItem="BRK-fi-Q7S" firstAttribute="centerY" secondItem="8FV-en-IPz" secondAttribute="centerY" id="Y1s-r9-dCt"/>
                                             <constraint firstItem="dLw-wz-cQE" firstAttribute="leading" secondItem="8Kk-Ii-ZIK" secondAttribute="trailing" constant="11" id="ZAD-xg-gPb"/>
+                                            <constraint firstItem="Eoj-hP-p8h" firstAttribute="top" secondItem="LNP-cC-bFU" secondAttribute="bottom" constant="-30" id="aNt-NG-u01"/>
                                             <constraint firstAttribute="trailing" secondItem="m6m-Xx-lfz" secondAttribute="trailing" id="c4n-ZT-7o9"/>
                                             <constraint firstItem="wUF-YZ-AKo" firstAttribute="top" secondItem="OaO-Gu-nCy" secondAttribute="bottom" constant="22" id="cHg-Fd-n4X"/>
                                             <constraint firstItem="KD5-y1-wnn" firstAttribute="centerY" secondItem="8Kk-Ii-ZIK" secondAttribute="centerY" id="dR8-7r-mSG"/>
@@ -2004,6 +2034,7 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
                                             <constraint firstItem="nea-s1-HYi" firstAttribute="centerX" secondItem="eY8-dJ-PJM" secondAttribute="centerX" id="nIW-6E-ZDO"/>
                                             <constraint firstItem="nea-s1-HYi" firstAttribute="top" secondItem="eY8-dJ-PJM" secondAttribute="top" constant="50" id="ncI-MQ-TAh"/>
                                             <constraint firstItem="pVZ-dI-KC7" firstAttribute="leading" secondItem="4UU-qE-G9f" secondAttribute="trailing" constant="13.5" id="nqI-Bj-0VW"/>
+                                            <constraint firstItem="Eoj-hP-p8h" firstAttribute="leading" secondItem="LNP-cC-bFU" secondAttribute="trailing" constant="-82" id="pIg-I4-Qtf"/>
                                             <constraint firstItem="m6m-Xx-lfz" firstAttribute="leading" secondItem="eY8-dJ-PJM" secondAttribute="leading" id="q95-eg-M92"/>
                                             <constraint firstItem="wUF-YZ-AKo" firstAttribute="leading" secondItem="eY8-dJ-PJM" secondAttribute="leading" constant="27.5" id="s4V-ao-IPy"/>
                                             <constraint firstItem="628-y5-vCo" firstAttribute="top" secondItem="OaO-Gu-nCy" secondAttribute="bottom" constant="22" id="sk7-Qm-tou"/>
@@ -2035,12 +2066,15 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
                     <size key="freeformSize" width="375" height="917"/>
                     <connections>
                         <outlet property="password" destination="sRI-NC-QfN" id="PzV-Lx-u5D"/>
+                        <outlet property="passwordError" destination="dVU-8h-d7y" id="tQp-1t-Ki5"/>
                         <outlet property="username" destination="uIf-ZB-XnU" id="O6u-Km-jaI"/>
+                        <outlet property="usernameError" destination="s78-HG-jiu" id="2d7-V7-iMo"/>
+                        <segue destination="BYZ-38-t0r" kind="push" identifier="loginButton" id="ADf-di-APW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="unx-HG-zqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3728.8000000000002" y="1119.4902548725638"/>
+            <point key="canvasLocation" x="3800.8000000000002" y="1191.4542728635683"/>
         </scene>
         <!--Billing View Controller-->
         <scene sceneID="lmK-9J-FYn">
@@ -2466,6 +2500,6 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
     <inferredMetricsTieBreakers>
         <segue reference="oCO-MQ-HBO"/>
         <segue reference="2NU-DU-AU0"/>
-        <segue reference="L8z-vT-xS0"/>
+        <segue reference="ADf-di-APW"/>
     </inferredMetricsTieBreakers>
 </document>

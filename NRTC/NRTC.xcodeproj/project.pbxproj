@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AEED0EA216CCCE200CA9154 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEED0E9216CCCE200CA9154 /* LoginModel.swift */; };
 		2FE9EDDF13C575F24EC5A9CC /* Pods_NRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9C2393E116305E42CC57F5F /* Pods_NRTC.framework */; };
 		7C3474022163574E00D2AD7F /* ProductCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3474012163574E00D2AD7F /* ProductCategoryViewController.swift */; };
 		7C347405216369CA00D2AD7F /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C347404216369CA00D2AD7F /* CategoryCollectionViewCell.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1AEED0E9216CCCE200CA9154 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = SOURCE_ROOT; };
 		6AFC247D801717CE015D612E /* Pods-NRTC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NRTC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NRTC/Pods-NRTC.debug.xcconfig"; sourceTree = "<group>"; };
 		7C3474012163574E00D2AD7F /* ProductCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategoryViewController.swift; sourceTree = "<group>"; };
 		7C347404216369CA00D2AD7F /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 		DAF8896C215CEC64006A39A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1AEED0E9216CCCE200CA9154 /* LoginModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NRTC/Pods-NRTC-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 			);
@@ -453,6 +457,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 			);
@@ -495,6 +500,7 @@
 				DAF8893D215CCFE5006A39A4 /* ViewController.swift in Sources */,
 				7C847D7D215E6E0A0012B7E3 /* NewProductTableViewCell.swift in Sources */,
 				7C4CADF121622C9E000CA36F /* ProductViewController.swift in Sources */,
+				1AEED0EA216CCCE200CA9154 /* LoginModel.swift in Sources */,
 				7CFA0AC12164D93900A6E6C5 /* OrderTableViewCell.swift in Sources */,
 				7CFA0AC42164E86300A6E6C5 /* BillingViewController.swift in Sources */,
 				7CFA0ACC2164EDF400A6E6C5 /* PaymentViewController.swift in Sources */,
