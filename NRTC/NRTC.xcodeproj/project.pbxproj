@@ -1,0 +1,855 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FE9EDDF13C575F24EC5A9CC /* Pods_NRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9C2393E116305E42CC57F5F /* Pods_NRTC.framework */; };
+		7C3474022163574E00D2AD7F /* ProductCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3474012163574E00D2AD7F /* ProductCategoryViewController.swift */; };
+		7C347405216369CA00D2AD7F /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C347404216369CA00D2AD7F /* CategoryCollectionViewCell.swift */; };
+		7C3474082163A15A00D2AD7F /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3474072163A15A00D2AD7F /* OrderViewController.swift */; };
+		7C4CADF121622C9E000CA36F /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CADF021622C9E000CA36F /* ProductViewController.swift */; };
+		7C847D7D215E6E0A0012B7E3 /* NewProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C847D7C215E6E0A0012B7E3 /* NewProductTableViewCell.swift */; };
+		7CFA0AC12164D93900A6E6C5 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFA0AC02164D93900A6E6C5 /* OrderTableViewCell.swift */; };
+		7CFA0AC42164E86300A6E6C5 /* BillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFA0AC32164E86300A6E6C5 /* BillingViewController.swift */; };
+		7CFA0AC72164E8C200A6E6C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFA0AC62164E8C200A6E6C5 /* LoginViewController.swift */; };
+		7CFA0AC92164E8FB00A6E6C5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFA0AC82164E8FB00A6E6C5 /* RegisterViewController.swift */; };
+		7CFA0ACC2164EDF400A6E6C5 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFA0ACB2164EDF400A6E6C5 /* PaymentViewController.swift */; };
+		DA0B7C64215D1127003B5479 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0B7C63215D1127003B5479 /* RootTableViewController.swift */; };
+		DAF8893B215CCFE5006A39A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8893A215CCFE5006A39A4 /* AppDelegate.swift */; };
+		DAF8893D215CCFE5006A39A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8893C215CCFE5006A39A4 /* ViewController.swift */; };
+		DAF88940215CCFE5006A39A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF8893E215CCFE5006A39A4 /* Main.storyboard */; };
+		DAF88943215CCFE5006A39A4 /* NRTC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF88941215CCFE5006A39A4 /* NRTC.xcdatamodeld */; };
+		DAF88945215CCFF3006A39A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF88944215CCFF3006A39A4 /* Assets.xcassets */; };
+		DAF88948215CCFF3006A39A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF88946215CCFF3006A39A4 /* LaunchScreen.storyboard */; };
+		DAF88953215CCFF4006A39A4 /* NRTCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF88952215CCFF4006A39A4 /* NRTCTests.swift */; };
+		DAF8895E215CCFF4006A39A4 /* NRTCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8895D215CCFF4006A39A4 /* NRTCUITests.swift */; };
+		DAF88973215CEF9F006A39A4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF88972215CEF9F006A39A4 /* HomeViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DAF8894F215CCFF4006A39A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DAF8892F215CCFE5006A39A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DAF88936215CCFE5006A39A4;
+			remoteInfo = NRTC;
+		};
+		DAF8895A215CCFF4006A39A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DAF8892F215CCFE5006A39A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DAF88936215CCFE5006A39A4;
+			remoteInfo = NRTC;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6AFC247D801717CE015D612E /* Pods-NRTC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NRTC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NRTC/Pods-NRTC.debug.xcconfig"; sourceTree = "<group>"; };
+		7C3474012163574E00D2AD7F /* ProductCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategoryViewController.swift; sourceTree = "<group>"; };
+		7C347404216369CA00D2AD7F /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		7C3474072163A15A00D2AD7F /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		7C4CADF021622C9E000CA36F /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		7C847D7C215E6E0A0012B7E3 /* NewProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductTableViewCell.swift; sourceTree = "<group>"; };
+		7CFA0AC02164D93900A6E6C5 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		7CFA0AC32164E86300A6E6C5 /* BillingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingViewController.swift; sourceTree = "<group>"; };
+		7CFA0AC62164E8C200A6E6C5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7CFA0AC82164E8FB00A6E6C5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		7CFA0ACB2164EDF400A6E6C5 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		BACFF8E82D2603D06860BD90 /* Pods-NRTC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NRTC.release.xcconfig"; path = "Pods/Target Support Files/Pods-NRTC/Pods-NRTC.release.xcconfig"; sourceTree = "<group>"; };
+		D9C2393E116305E42CC57F5F /* Pods_NRTC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NRTC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA0B7C63215D1127003B5479 /* RootTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
+		DAF88937215CCFE5006A39A4 /* NRTC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NRTC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAF8893A215CCFE5006A39A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DAF8893C215CCFE5006A39A4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DAF8893F215CCFE5006A39A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DAF88942215CCFE5006A39A4 /* NRTC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NRTC.xcdatamodel; sourceTree = "<group>"; };
+		DAF88944215CCFF3006A39A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DAF88947215CCFF3006A39A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DAF88949215CCFF3006A39A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAF8894E215CCFF4006A39A4 /* NRTCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NRTCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAF88952215CCFF4006A39A4 /* NRTCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRTCTests.swift; sourceTree = "<group>"; };
+		DAF88954215CCFF4006A39A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAF88959215CCFF4006A39A4 /* NRTCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NRTCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAF8895D215CCFF4006A39A4 /* NRTCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRTCUITests.swift; sourceTree = "<group>"; };
+		DAF8895F215CCFF4006A39A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAF88972215CEF9F006A39A4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAF88934215CCFE5006A39A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE9EDDF13C575F24EC5A9CC /* Pods_NRTC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF8894B215CCFF4006A39A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF88956215CCFF4006A39A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		326DBEC4AC6BC0A6FB9A489C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D9C2393E116305E42CC57F5F /* Pods_NRTC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7C3474002163572300D2AD7F /* Product Category */ = {
+			isa = PBXGroup;
+			children = (
+				7C3474032163650D00D2AD7F /* Category Collection Cell */,
+				7C3474012163574E00D2AD7F /* ProductCategoryViewController.swift */,
+			);
+			path = "Product Category";
+			sourceTree = "<group>";
+		};
+		7C3474032163650D00D2AD7F /* Category Collection Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7C347404216369CA00D2AD7F /* CategoryCollectionViewCell.swift */,
+			);
+			path = "Category Collection Cell";
+			sourceTree = "<group>";
+		};
+		7C3474062163A13F00D2AD7F /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				7CFA0ABF2164D90C00A6E6C5 /* Order Cell */,
+				7C3474072163A15A00D2AD7F /* OrderViewController.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		7C847D7B215E6DD30012B7E3 /* New Product Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7C847D7C215E6E0A0012B7E3 /* NewProductTableViewCell.swift */,
+			);
+			path = "New Product Cell";
+			sourceTree = "<group>";
+		};
+		7CFA0ABF2164D90C00A6E6C5 /* Order Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7CFA0AC02164D93900A6E6C5 /* OrderTableViewCell.swift */,
+			);
+			path = "Order Cell";
+			sourceTree = "<group>";
+		};
+		7CFA0AC22164E84300A6E6C5 /* Billing */ = {
+			isa = PBXGroup;
+			children = (
+				7CFA0AC32164E86300A6E6C5 /* BillingViewController.swift */,
+			);
+			path = Billing;
+			sourceTree = "<group>";
+		};
+		7CFA0ACA2164EDDD00A6E6C5 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				7CFA0ACB2164EDF400A6E6C5 /* PaymentViewController.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		C9FBF78BE07E48F7AA3721F4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6AFC247D801717CE015D612E /* Pods-NRTC.debug.xcconfig */,
+				BACFF8E82D2603D06860BD90 /* Pods-NRTC.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DA0B7C62215D10D5003B5479 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				DA0B7C63215D1127003B5479 /* RootTableViewController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		DAF8892E215CCFE5006A39A4 = {
+			isa = PBXGroup;
+			children = (
+				DAF88939215CCFE5006A39A4 /* NRTC */,
+				DAF88951215CCFF4006A39A4 /* NRTCTests */,
+				DAF8895C215CCFF4006A39A4 /* NRTCUITests */,
+				DAF88938215CCFE5006A39A4 /* Products */,
+				C9FBF78BE07E48F7AA3721F4 /* Pods */,
+				326DBEC4AC6BC0A6FB9A489C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DAF88938215CCFE5006A39A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAF88937215CCFE5006A39A4 /* NRTC.app */,
+				DAF8894E215CCFF4006A39A4 /* NRTCTests.xctest */,
+				DAF88959215CCFF4006A39A4 /* NRTCUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DAF88939215CCFE5006A39A4 /* NRTC */ = {
+			isa = PBXGroup;
+			children = (
+				DAF8896D215CEC6F006A39A4 /* App Delegate */,
+				DAF8896C215CEC64006A39A4 /* Model */,
+				DAF8896B215CEC5B006A39A4 /* Controllers */,
+				DAF8893C215CCFE5006A39A4 /* ViewController.swift */,
+				DAF8893E215CCFE5006A39A4 /* Main.storyboard */,
+				DAF88944215CCFF3006A39A4 /* Assets.xcassets */,
+				DAF88946215CCFF3006A39A4 /* LaunchScreen.storyboard */,
+				DAF88949215CCFF3006A39A4 /* Info.plist */,
+				DAF88941215CCFE5006A39A4 /* NRTC.xcdatamodeld */,
+			);
+			path = NRTC;
+			sourceTree = "<group>";
+		};
+		DAF88951215CCFF4006A39A4 /* NRTCTests */ = {
+			isa = PBXGroup;
+			children = (
+				DAF88952215CCFF4006A39A4 /* NRTCTests.swift */,
+				DAF88954215CCFF4006A39A4 /* Info.plist */,
+			);
+			path = NRTCTests;
+			sourceTree = "<group>";
+		};
+		DAF8895C215CCFF4006A39A4 /* NRTCUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DAF8895D215CCFF4006A39A4 /* NRTCUITests.swift */,
+				DAF8895F215CCFF4006A39A4 /* Info.plist */,
+			);
+			path = NRTCUITests;
+			sourceTree = "<group>";
+		};
+		DAF8896B215CEC5B006A39A4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7CFA0ACA2164EDDD00A6E6C5 /* Payment */,
+				7CFA0AC22164E84300A6E6C5 /* Billing */,
+				7C3474062163A13F00D2AD7F /* Orders */,
+				7C3474002163572300D2AD7F /* Product Category */,
+				DA0B7C62215D10D5003B5479 /* Menu */,
+				DAF88971215CEE45006A39A4 /* Product */,
+				DAF88970215CEE3E006A39A4 /* Register */,
+				DAF8896F215CEE2F006A39A4 /* Login */,
+				DAF8896E215CEC7E006A39A4 /* Home */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DAF8896C215CEC64006A39A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DAF8896D215CEC6F006A39A4 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				DAF8893A215CCFE5006A39A4 /* AppDelegate.swift */,
+			);
+			path = "App Delegate";
+			sourceTree = "<group>";
+		};
+		DAF8896E215CEC7E006A39A4 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7C847D7B215E6DD30012B7E3 /* New Product Cell */,
+				DAF88972215CEF9F006A39A4 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		DAF8896F215CEE2F006A39A4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7CFA0AC62164E8C200A6E6C5 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		DAF88970215CEE3E006A39A4 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				7CFA0AC82164E8FB00A6E6C5 /* RegisterViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		DAF88971215CEE45006A39A4 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				7C4CADF021622C9E000CA36F /* ProductViewController.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAF88936215CCFE5006A39A4 /* NRTC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAF88962215CCFF4006A39A4 /* Build configuration list for PBXNativeTarget "NRTC" */;
+			buildPhases = (
+				D541E0A94B9AC2EB7588EA56 /* [CP] Check Pods Manifest.lock */,
+				DAF88933215CCFE5006A39A4 /* Sources */,
+				DAF88934215CCFE5006A39A4 /* Frameworks */,
+				DAF88935215CCFE5006A39A4 /* Resources */,
+				A15C962B1DF4541281541A1C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NRTC;
+			productName = NRTC;
+			productReference = DAF88937215CCFE5006A39A4 /* NRTC.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DAF8894D215CCFF4006A39A4 /* NRTCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAF88965215CCFF4006A39A4 /* Build configuration list for PBXNativeTarget "NRTCTests" */;
+			buildPhases = (
+				DAF8894A215CCFF4006A39A4 /* Sources */,
+				DAF8894B215CCFF4006A39A4 /* Frameworks */,
+				DAF8894C215CCFF4006A39A4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DAF88950215CCFF4006A39A4 /* PBXTargetDependency */,
+			);
+			name = NRTCTests;
+			productName = NRTCTests;
+			productReference = DAF8894E215CCFF4006A39A4 /* NRTCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DAF88958215CCFF4006A39A4 /* NRTCUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAF88968215CCFF4006A39A4 /* Build configuration list for PBXNativeTarget "NRTCUITests" */;
+			buildPhases = (
+				DAF88955215CCFF4006A39A4 /* Sources */,
+				DAF88956215CCFF4006A39A4 /* Frameworks */,
+				DAF88957215CCFF4006A39A4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DAF8895B215CCFF4006A39A4 /* PBXTargetDependency */,
+			);
+			name = NRTCUITests;
+			productName = NRTCUITests;
+			productReference = DAF88959215CCFF4006A39A4 /* NRTCUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAF8892F215CCFE5006A39A4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = Netpace;
+				TargetAttributes = {
+					DAF88936215CCFE5006A39A4 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					DAF8894D215CCFF4006A39A4 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = DAF88936215CCFE5006A39A4;
+					};
+					DAF88958215CCFF4006A39A4 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = DAF88936215CCFE5006A39A4;
+					};
+				};
+			};
+			buildConfigurationList = DAF88932215CCFE5006A39A4 /* Build configuration list for PBXProject "NRTC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DAF8892E215CCFE5006A39A4;
+			productRefGroup = DAF88938215CCFE5006A39A4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAF88936215CCFE5006A39A4 /* NRTC */,
+				DAF8894D215CCFF4006A39A4 /* NRTCTests */,
+				DAF88958215CCFF4006A39A4 /* NRTCUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DAF88935215CCFE5006A39A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF88948215CCFF3006A39A4 /* LaunchScreen.storyboard in Resources */,
+				DAF88945215CCFF3006A39A4 /* Assets.xcassets in Resources */,
+				DAF88940215CCFE5006A39A4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF8894C215CCFF4006A39A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF88957215CCFF4006A39A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A15C962B1DF4541281541A1C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NRTC/Pods-NRTC-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NRTC/Pods-NRTC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D541E0A94B9AC2EB7588EA56 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NRTC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAF88933215CCFE5006A39A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF88943215CCFE5006A39A4 /* NRTC.xcdatamodeld in Sources */,
+				7C3474082163A15A00D2AD7F /* OrderViewController.swift in Sources */,
+				DAF8893D215CCFE5006A39A4 /* ViewController.swift in Sources */,
+				7C847D7D215E6E0A0012B7E3 /* NewProductTableViewCell.swift in Sources */,
+				7C4CADF121622C9E000CA36F /* ProductViewController.swift in Sources */,
+				7CFA0AC12164D93900A6E6C5 /* OrderTableViewCell.swift in Sources */,
+				7CFA0AC42164E86300A6E6C5 /* BillingViewController.swift in Sources */,
+				7CFA0ACC2164EDF400A6E6C5 /* PaymentViewController.swift in Sources */,
+				7C347405216369CA00D2AD7F /* CategoryCollectionViewCell.swift in Sources */,
+				7C3474022163574E00D2AD7F /* ProductCategoryViewController.swift in Sources */,
+				7CFA0AC92164E8FB00A6E6C5 /* RegisterViewController.swift in Sources */,
+				DA0B7C64215D1127003B5479 /* RootTableViewController.swift in Sources */,
+				DAF8893B215CCFE5006A39A4 /* AppDelegate.swift in Sources */,
+				7CFA0AC72164E8C200A6E6C5 /* LoginViewController.swift in Sources */,
+				DAF88973215CEF9F006A39A4 /* HomeViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF8894A215CCFF4006A39A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF88953215CCFF4006A39A4 /* NRTCTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF88955215CCFF4006A39A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF8895E215CCFF4006A39A4 /* NRTCUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DAF88950215CCFF4006A39A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DAF88936215CCFE5006A39A4 /* NRTC */;
+			targetProxy = DAF8894F215CCFF4006A39A4 /* PBXContainerItemProxy */;
+		};
+		DAF8895B215CCFF4006A39A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DAF88936215CCFE5006A39A4 /* NRTC */;
+			targetProxy = DAF8895A215CCFF4006A39A4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DAF8893E215CCFE5006A39A4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAF8893F215CCFE5006A39A4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DAF88946215CCFF3006A39A4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAF88947215CCFF3006A39A4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DAF88960215CCFF4006A39A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DAF88961215CCFF4006A39A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DAF88963215CCFF4006A39A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AFC247D801717CE015D612E /* Pods-NRTC.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3YP4TQ9R94;
+				INFOPLIST_FILE = NRTC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appfnh.NRTCFresh;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "NRTC Fresh";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DAF88964215CCFF4006A39A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BACFF8E82D2603D06860BD90 /* Pods-NRTC.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3YP4TQ9R94;
+				INFOPLIST_FILE = NRTC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appfnh.NRTCFresh;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "NRTC Fresh";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DAF88966215CCFF4006A39A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NRTCTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.netpace.NRTCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NRTC.app/NRTC";
+			};
+			name = Debug;
+		};
+		DAF88967215CCFF4006A39A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NRTCTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.netpace.NRTCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NRTC.app/NRTC";
+			};
+			name = Release;
+		};
+		DAF88969215CCFF4006A39A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NRTCUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.netpace.NRTCUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NRTC;
+			};
+			name = Debug;
+		};
+		DAF8896A215CCFF4006A39A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NRTCUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.netpace.NRTCUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NRTC;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAF88932215CCFE5006A39A4 /* Build configuration list for PBXProject "NRTC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAF88960215CCFF4006A39A4 /* Debug */,
+				DAF88961215CCFF4006A39A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAF88962215CCFF4006A39A4 /* Build configuration list for PBXNativeTarget "NRTC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAF88963215CCFF4006A39A4 /* Debug */,
+				DAF88964215CCFF4006A39A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAF88965215CCFF4006A39A4 /* Build configuration list for PBXNativeTarget "NRTCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAF88966215CCFF4006A39A4 /* Debug */,
+				DAF88967215CCFF4006A39A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAF88968215CCFF4006A39A4 /* Build configuration list for PBXNativeTarget "NRTCUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAF88969215CCFF4006A39A4 /* Debug */,
+				DAF8896A215CCFF4006A39A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DAF88941215CCFE5006A39A4 /* NRTC.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DAF88942215CCFE5006A39A4 /* NRTC.xcdatamodel */,
+			);
+			currentVersion = DAF88942215CCFE5006A39A4 /* NRTC.xcdatamodel */;
+			path = NRTC.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = DAF8892F215CCFE5006A39A4 /* Project object */;
+}
