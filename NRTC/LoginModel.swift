@@ -15,7 +15,11 @@ class LoginModel : NSObject {
     var address : NSDictionary?
     
     init(dictionary : NSDictionary) {
-        status = dictionary["status"] as? Bool
+        if let status = dictionary["status"] as? Bool
+        {
+            self.status = status
+        }
+//        status = dictionary["status"] as? Bool
           message = dictionary["message"] as? String
         code = dictionary["code"] as? String
         userID = dictionary["user_id"] as? String

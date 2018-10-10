@@ -25,6 +25,26 @@ class RegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 	
+//    func loginCall()
+//    {
+//        let newTodo: [String: Any] = ["email": "jyoti.shina@salsoft.net", "password": ""]
+//        
+//        Alamofire.request("https://dev17.onlinetestingserver.com/nrtc_beta/Api/Login/login",method:.post,parameters: newTodo, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+//            switch(response.result) {
+//            case .success(_):
+//                if response.result.value != nil{
+//                    let loginmodel = LoginModel(dictionary: response.result.value as! NSDictionary )
+//                    print("Model \(String(describing: loginmodel.code))")
+//                    print("response : \(response.result.value)")
+//                }
+//                
+//            case .failure(_):
+//                print("Failure : \(response.result.error)")
+//                
+//            }
+//        }
+//    }
+
 
 	
 	

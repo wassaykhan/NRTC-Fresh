@@ -51,18 +51,40 @@ class LoginViewController: UIViewController {
         }
         if usernameError.text == "" && passwordError.text == ""
         {
-            
-            self.performSegue(withIdentifier: "loginButton", sender: self)
+            loginCall()
+//            self.performSegue(withIdentifier: "loginButton", sender: self)
         }
         
     }
     
     func loginCall()
     {
-        let newTodo: [String: Any] = ["email": "jyoti.shina@salsoft.net", "password": "94Jyoti24"]
-       
+        let newTodo: [String: Any] = ["email": "jyoti.shina@salsoft.net", "password": ""]
+        
+        Alamofire.request("https://dev17.onlinetestingserver.com/nrtc_beta/Api/Login/login",method:.post,parameters: newTodo, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+            switch(response.result) {
+            case .success(_):
+                if let result = response.result.value as? NSDictionary {
+                    switch(result["code"] as? String)
+                    {
+                    case "404":
+                        print(result["message"])
+                    case "200":
+                        let loginmodel = LoginModel(dictionary: result as! NSDictionary )
+                        print("Model \(String(describing: loginmodel.code))")
+                    print("response : \(response.result.value)")
+                    default:
+                        print("Something went wrong")
+                    }
+//
+                }
+
+            case .failure(_):
+                print("Failure : \(response.result.error)")
+             
+            }
+        }
     }
-    
 
     
 //    // MARK: - Navigation
@@ -74,6 +96,7 @@ class LoginViewController: UIViewController {
 //
 //    }
 //
+
 
 }
 
