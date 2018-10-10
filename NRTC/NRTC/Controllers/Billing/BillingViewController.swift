@@ -24,17 +24,7 @@ class BillingViewController: UIViewController {
 		addborder(name: phone,label: "Phone *")
         // Do any additional setup after loading the view.
     }
-	func addborder(name : UITextField,label : String)
-	{
-		let border1 = CALayer()
-		let width = CGFloat(1.0)
-		border1.frame = CGRect(x: 0, y: name.frame.size.height - width, width: name.frame.size.width, height: name.frame.size.height)
-		
-		border1.borderWidth = 0.5
-		name.layer.addSublayer(border1)
-		name.layer.masksToBounds = true
-		name.placeholder = label
-	}
+
 
     /*
     // MARK: - Navigation

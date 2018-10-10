@@ -25,17 +25,27 @@ class RegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 	
-	func addborder(name : UITextField,label : String)
-	{
-		let border1 = CALayer()
-		let width = CGFloat(1.0)
-		border1.frame = CGRect(x: 0, y: name.frame.size.height - width, width: name.frame.size.width, height: name.frame.size.height)
-		
-		border1.borderWidth = 0.5
-		name.layer.addSublayer(border1)
-		name.layer.masksToBounds = true
-		name.placeholder = label
-	}
+//    func loginCall()
+//    {
+//        let newTodo: [String: Any] = ["email": "jyoti.shina@salsoft.net", "password": ""]
+//        
+//        Alamofire.request("https://dev17.onlinetestingserver.com/nrtc_beta/Api/Login/login",method:.post,parameters: newTodo, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+//            switch(response.result) {
+//            case .success(_):
+//                if response.result.value != nil{
+//                    let loginmodel = LoginModel(dictionary: response.result.value as! NSDictionary )
+//                    print("Model \(String(describing: loginmodel.code))")
+//                    print("response : \(response.result.value)")
+//                }
+//                
+//            case .failure(_):
+//                print("Failure : \(response.result.error)")
+//                
+//            }
+//        }
+//    }
+
+
 	
 	
     /*
