@@ -14,6 +14,9 @@
 		7C3474082163A15A00D2AD7F /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3474072163A15A00D2AD7F /* OrderViewController.swift */; };
 		7C4CADF121622C9E000CA36F /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CADF021622C9E000CA36F /* ProductViewController.swift */; };
 		7C847D7D215E6E0A0012B7E3 /* NewProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C847D7C215E6E0A0012B7E3 /* NewProductTableViewCell.swift */; };
+		7CCEE3C3216DF4EE00CF6A18 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEE3C2216DF4EE00CF6A18 /* Reachability.swift */; };
+		7CCEE3C7216DF56800CF6A18 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEE3C6216DF56800CF6A18 /* AppConstants.swift */; };
+		7CCEE3C9216DF58000CF6A18 /* RestAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEE3C8216DF58000CF6A18 /* RestAPIConstants.swift */; };
 		7CFA0AC12164D93900A6E6C5 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFA0AC02164D93900A6E6C5 /* OrderTableViewCell.swift */; };
 		7CFA0AC42164E86300A6E6C5 /* BillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFA0AC32164E86300A6E6C5 /* BillingViewController.swift */; };
 		7CFA0AC72164E8C200A6E6C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFA0AC62164E8C200A6E6C5 /* LoginViewController.swift */; };
@@ -55,6 +58,9 @@
 		7C3474072163A15A00D2AD7F /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		7C4CADF021622C9E000CA36F /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		7C847D7C215E6E0A0012B7E3 /* NewProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductTableViewCell.swift; sourceTree = "<group>"; };
+		7CCEE3C2216DF4EE00CF6A18 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		7CCEE3C6216DF56800CF6A18 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		7CCEE3C8216DF58000CF6A18 /* RestAPIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIConstants.swift; sourceTree = "<group>"; };
 		7CFA0AC02164D93900A6E6C5 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		7CFA0AC32164E86300A6E6C5 /* BillingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingViewController.swift; sourceTree = "<group>"; };
 		7CFA0AC62164E8C200A6E6C5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +153,32 @@
 			path = "New Product Cell";
 			sourceTree = "<group>";
 		};
+		7CCEE3C0216DF48A00CF6A18 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7CCEE3C4216DF51800CF6A18 /* Constants */,
+				7CCEE3C1216DF4BC00CF6A18 /* Reachability */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7CCEE3C1216DF4BC00CF6A18 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				7CCEE3C2216DF4EE00CF6A18 /* Reachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		7CCEE3C4216DF51800CF6A18 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				7CCEE3C6216DF56800CF6A18 /* AppConstants.swift */,
+				7CCEE3C8216DF58000CF6A18 /* RestAPIConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		7CFA0ABF2164D90C00A6E6C5 /* Order Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +245,7 @@
 		DAF88939215CCFE5006A39A4 /* NRTC */ = {
 			isa = PBXGroup;
 			children = (
+				7CCEE3C0216DF48A00CF6A18 /* Utils */,
 				DAF8896D215CEC6F006A39A4 /* App Delegate */,
 				DAF8896C215CEC64006A39A4 /* Model */,
 				DAF8896B215CEC5B006A39A4 /* Controllers */,
@@ -493,10 +526,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF88943215CCFE5006A39A4 /* NRTC.xcdatamodeld in Sources */,
+				7CCEE3C7216DF56800CF6A18 /* AppConstants.swift in Sources */,
 				7C3474082163A15A00D2AD7F /* OrderViewController.swift in Sources */,
 				7C847D7D215E6E0A0012B7E3 /* NewProductTableViewCell.swift in Sources */,
 				7C4CADF121622C9E000CA36F /* ProductViewController.swift in Sources */,
+<<<<<<< HEAD
 				1ABE05BD216DEDF5007FD8FC /* LoginModel.swift in Sources */,
+=======
+				1AEED0EA216CCCE200CA9154 /* LoginModel.swift in Sources */,
+				7CCEE3C3216DF4EE00CF6A18 /* Reachability.swift in Sources */,
+>>>>>>> master
 				7CFA0AC12164D93900A6E6C5 /* OrderTableViewCell.swift in Sources */,
 				7CFA0AC42164E86300A6E6C5 /* BillingViewController.swift in Sources */,
 				7CFA0ACC2164EDF400A6E6C5 /* PaymentViewController.swift in Sources */,
@@ -507,6 +546,7 @@
 				DAF8893B215CCFE5006A39A4 /* AppDelegate.swift in Sources */,
 				7CFA0AC72164E8C200A6E6C5 /* LoginViewController.swift in Sources */,
 				DAF88973215CEF9F006A39A4 /* HomeViewController.swift in Sources */,
+				7CCEE3C9216DF58000CF6A18 /* RestAPIConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
