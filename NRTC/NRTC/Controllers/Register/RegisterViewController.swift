@@ -14,7 +14,7 @@ class RegisterViewController: UIViewController {
 	@IBOutlet weak var username: UITextField!
 	@IBOutlet weak var lastname: UITextField!
 	@IBOutlet weak var firstName: UITextField!
-	
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 		addborder(name: firstName , label :"First Name")
@@ -22,6 +22,7 @@ class RegisterViewController: UIViewController {
 		addborder(name: username,label: "Username")
 		addborder(name: emailadd,label: "Email Address")
 		addborder(name: password,label: "Password")
+    
         // Do any additional setup after loading the view.
     }
 	

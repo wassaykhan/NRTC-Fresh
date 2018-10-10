@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
 	@IBOutlet weak var username: UITextField!
 	
     @IBOutlet weak var usernameError: UILabel!
-    
+    var loginmodel : LoginModel?
     @IBOutlet weak var passwordError: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +24,13 @@ class LoginViewController: UIViewController {
         self.hideKeyboard()
     }
    
+    @IBAction func signup(_ sender: Any) {
+  self.performSegue(withIdentifier: "register", sender: self)
+    }
     @IBAction func login(_ sender: Any) {
         if username.text != ""  {
-            if !isValidUsername(Input: username.text ?? "") {
-                usernameError.text = "Must contain atleast 7 characters"
+            if !isValidEmail(Input: username.text ?? "") {
+                usernameError.text = kValidEmail
             }
             else {
                 usernameError.text = ""
@@ -36,43 +39,42 @@ class LoginViewController: UIViewController {
         }
         else
         {
-            usernameError.text = "Please Enter Username"
+            usernameError.text = kNotEmpty
         }
         if password.text != "" {
             if !isValidPassword(Input: password.text ?? "") {
-                passwordError.text = "Must contain an uppercase and number"
+                passwordError.text = kValidPass
             }
             else {
                 passwordError.text = ""
             }
         }
         else {
-            passwordError.text = "Please Enter Password"
+            passwordError.text = kNotEmpty
         }
         if usernameError.text == "" && passwordError.text == ""
         {
-            loginCall()
-//            self.performSegue(withIdentifier: "loginButton", sender: self)
+            loginCall(username: username.text!, password: password.text!)
+          
         }
         
     }
     
-    func loginCall()
+    func loginCall(username:String,password:String)
     {
-        let newTodo: [String: Any] = ["email": "jyoti.shina@salsoft.net", "password": ""]
-        
-        Alamofire.request("https://dev17.onlinetestingserver.com/nrtc_beta/Api/Login/login",method:.post,parameters: newTodo, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+        let params: [String: Any] = ["email": username, "password": password]
+        if Reachability.isConnectedToInternet(){
+        Alamofire.request(KBaseUrl + KLogin,method:.post,parameters: params, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
             switch(response.result) {
             case .success(_):
                 if let result = response.result.value as? NSDictionary {
                     switch(result["code"] as? String)
                     {
                     case "404":
-						print(result["message"]!)
+						self.alerts(title: "Internet", message: "Please check your connection")
                     case "200":
-						let loginmodel = LoginModel(dictionary: result )
-                        print("Model \(String(describing: loginmodel.code))")
-						print("response : \(String(describing: response.result.value))")
+                          self.loginmodel = LoginModel(dictionary: result )
+                        self.performSegue(withIdentifier: "loginButton", sender: self)
                     default:
                         print("Something went wrong")
                     }
@@ -85,18 +87,23 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    }
 
     
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destination.
-//        // Pass the selected object to the new view controller.
-//
-//    }
-//
+    // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+ 
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if (segue.identifier == "loginButton") {
+               // let vc = segue.destination as! RegisterViewController
+            //    vc.model = self.loginmodel
+            }
+        }
+
+    
+
+  
 
 }
 
@@ -128,8 +135,8 @@ extension UIViewController
         view.endEditing(true)
     }
     
-    func isValidUsername(Input:String) -> Bool {
-        let RegEx = "\\w{7,18}"
+    func isValidEmail(Input:String) -> Bool {
+        let RegEx =  "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
         return Test.evaluate(with: Input)
     }
@@ -137,6 +144,12 @@ extension UIViewController
     public func isValidPassword(Input : String) -> Bool {
         let passwordRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: Input)
+    }
+    func alerts(title:String,message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

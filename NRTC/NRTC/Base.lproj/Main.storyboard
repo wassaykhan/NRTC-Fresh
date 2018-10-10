@@ -1916,7 +1916,7 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="login:" destination="0e2-Eb-YBS" eventType="touchUpInside" id="zJf-RI-ORh"/>
+                                                    <action selector="login:" destination="0e2-Eb-YBS" eventType="touchUpInside" id="7d4-fG-Oex"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="BRK-fi-Q7S">
@@ -1957,7 +1957,7 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="Y8y-m8-RG2" kind="push" id="ysk-7s-ayn"/>
+                                                    <action selector="signup:" destination="0e2-Eb-YBS" eventType="touchUpInside" id="MgA-Qm-xFr"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="readyImage" translatesAutoresizingMaskIntoConstraints="NO" id="4UU-qE-G9f">
@@ -2081,11 +2081,12 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
                         <outlet property="username" destination="uIf-ZB-XnU" id="O6u-Km-jaI"/>
                         <outlet property="usernameError" destination="s78-HG-jiu" id="2d7-V7-iMo"/>
                         <segue destination="BYZ-38-t0r" kind="push" identifier="loginButton" id="ADf-di-APW"/>
+                        <segue destination="Y8y-m8-RG2" kind="push" identifier="register" id="tmX-lR-pev"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="unx-HG-zqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3800.8000000000002" y="1191.4542728635683"/>
+            <point key="canvasLocation" x="3754" y="1207"/>
         </scene>
         <!--Billing View Controller-->
         <scene sceneID="lmK-9J-FYn">
@@ -2465,7 +2466,7 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DOC-fP-5dZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4468" y="1074.5127436281859"/>
+            <point key="canvasLocation" x="4577" y="1072"/>
         </scene>
     </scenes>
     <resources>

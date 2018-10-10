@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+let kValidEmail :String = "Please enter valid email"
+let kNotEmpty : String = "Field cannot be empty"
+let kValidPass :String = "Must contain an uppercase and digit"

@@ -9,7 +9,10 @@
 import Foundation
 
 // Base Url
-let KBaseUrl:String = "http://dev17.onlinetestingserver.com/nrtc_beta"
+let KBaseUrl:String = "https://dev17.onlinetestingserver.com/nrtc_beta"
 
 //All Product
 let KAllProduct:String = "/Api/Products/all/en"
+
+//Login
+let KLogin : String = "/Api/Login/login"

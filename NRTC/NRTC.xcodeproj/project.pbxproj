@@ -530,12 +530,8 @@
 				7C3474082163A15A00D2AD7F /* OrderViewController.swift in Sources */,
 				7C847D7D215E6E0A0012B7E3 /* NewProductTableViewCell.swift in Sources */,
 				7C4CADF121622C9E000CA36F /* ProductViewController.swift in Sources */,
-<<<<<<< HEAD
 				1ABE05BD216DEDF5007FD8FC /* LoginModel.swift in Sources */,
-=======
-				1AEED0EA216CCCE200CA9154 /* LoginModel.swift in Sources */,
 				7CCEE3C3216DF4EE00CF6A18 /* Reachability.swift in Sources */,
->>>>>>> master
 				7CFA0AC12164D93900A6E6C5 /* OrderTableViewCell.swift in Sources */,
 				7CFA0AC42164E86300A6E6C5 /* BillingViewController.swift in Sources */,
 				7CFA0ACC2164EDF400A6E6C5 /* PaymentViewController.swift in Sources */,
