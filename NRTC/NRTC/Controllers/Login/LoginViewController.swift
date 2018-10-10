@@ -68,11 +68,11 @@ class LoginViewController: UIViewController {
                     switch(result["code"] as? String)
                     {
                     case "404":
-                        print(result["message"])
+						print(result["message"]!)
                     case "200":
-                        let loginmodel = LoginModel(dictionary: result as! NSDictionary )
+						let loginmodel = LoginModel(dictionary: result )
                         print("Model \(String(describing: loginmodel.code))")
-                    print("response : \(response.result.value)")
+						print("response : \(String(describing: response.result.value))")
                     default:
                         print("Something went wrong")
                     }

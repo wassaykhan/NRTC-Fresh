@@ -9,13 +9,47 @@
 import UIKit
 
 class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+	@IBOutlet weak var orderTableView: UITableView!
+	var source = ["1","2","3","4","5","6","7","8"]
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		orderTableView.delegate = self
+		orderTableView.dataSource = self
+		// Do any additional setup after loading the view.
+	}
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 8
 	}
 	
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		let cellNewProduct:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "orderCellIdentifier", for: indexPath)
+		let cellNewProduct:OrderTableViewCell = self.orderTableView.dequeueReusableCell(withIdentifier: "orderCellIdentifier") as! OrderTableViewCell
+		
+//		let celll = self.orderTableView.cellForRow(at: indexPath)
+		cellNewProduct.lbQuantity.text = source[indexPath.row]
+		cellNewProduct.onAddTapped = {
+			let quantity:NSString = cellNewProduct.lbQuantity!.text! as NSString
+			
+			let value = quantity.intValue + 1
+			
+			//cellNewProduct.lbQuantity.text = String(value)
+			
+			print("Update value")
+			print("index path")
+			print(indexPath.row)
+			self.source[indexPath.row] = String(value)
+			
+			let cell = tableView.cellForRow(at: indexPath) as! OrderTableViewCell
+			cell.lbQuantity.text = String(value)
+			//Do whatever you want to do when the button is tapped here
+		}
+		
 		return cellNewProduct
 	}
 	
@@ -24,11 +58,7 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 	}
 	
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+	
     
 
 	@IBAction func btnBackAction(_ sender: Any) {

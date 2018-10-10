@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -500,7 +501,6 @@ est qui dolorem</string>
         <!--Navigation Controller-->
         <scene sceneID="l4z-zY-ie5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t7j-hm-RTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="1Af-0m-Mm6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1hX-Lt-odj">
@@ -514,6 +514,7 @@ est qui dolorem</string>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EaE-aJ-7An"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t7j-hm-RTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="286" y="664"/>
         </scene>
@@ -988,7 +989,7 @@ est qui dolorem</string>
                                     <constraint firstAttribute="trailing" secondItem="bwa-uh-V6W" secondAttribute="trailing" constant="45" id="yc3-8J-tb6"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L2x-mT-6Kj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L2x-mT-6Kj">
                                 <rect key="frame" x="0.0" y="84" width="375" height="429"/>
                                 <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -1033,6 +1034,9 @@ est qui dolorem</string>
                                                                 <constraint firstAttribute="width" constant="48" id="j2t-bA-eYc"/>
                                                             </constraints>
                                                             <state key="normal" image="plus"/>
+                                                            <connections>
+                                                                <action selector="btnAddAction:" destination="O7a-OQ-KTB" eventType="touchUpInside" id="X0n-HX-obN"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zT-WM-wfK">
                                                             <rect key="frame" x="267" y="71" width="48" height="36"/>
@@ -1041,8 +1045,11 @@ est qui dolorem</string>
                                                                 <constraint firstAttribute="width" constant="48" id="oUh-SL-zWW"/>
                                                             </constraints>
                                                             <state key="normal" image="minus"/>
+                                                            <connections>
+                                                                <action selector="btnSubtractAction:" destination="O7a-OQ-KTB" eventType="touchUpInside" id="4HS-qc-Gky"/>
+                                                            </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rex-R2-7FM">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rex-R2-7FM" userLabel="quantity">
                                                             <rect key="frame" x="287" y="49" width="8" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -1087,6 +1094,7 @@ est qui dolorem</string>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="lbQuantity" destination="Rex-R2-7FM" id="7oX-En-v5K"/>
                                             <outlet property="orderView" destination="2vU-PU-gZI" id="pzb-5I-BuA"/>
                                         </connections>
                                     </tableViewCell>
@@ -1120,6 +1128,9 @@ est qui dolorem</string>
                         <viewLayoutGuide key="safeArea" id="MaN-0q-I3B"/>
                     </view>
                     <navigationItem key="navigationItem" id="2fb-pD-c7r"/>
+                    <connections>
+                        <outlet property="orderTableView" destination="L2x-mT-6Kj" id="NXg-4Q-PIE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="le8-Xt-j91" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
