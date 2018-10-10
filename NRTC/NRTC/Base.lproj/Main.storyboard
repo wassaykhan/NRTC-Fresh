@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -500,7 +501,6 @@ est qui dolorem</string>
         <!--Navigation Controller-->
         <scene sceneID="l4z-zY-ie5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t7j-hm-RTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="1Af-0m-Mm6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1hX-Lt-odj">
@@ -514,6 +514,7 @@ est qui dolorem</string>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EaE-aJ-7An"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t7j-hm-RTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="286" y="664"/>
         </scene>
@@ -1026,11 +1027,7 @@ est qui dolorem</string>
                                                                 <constraint firstAttribute="width" constant="48" id="hio-nb-9hO"/>
                                                             </constraints>
                                                         </imageView>
-<<<<<<< HEAD
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnF-3B-maj" userLabel="add">
-=======
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnF-3B-maj">
->>>>>>> 30b5ffefa2726f8374fb0d7fcd6c80c826770da3
                                                             <rect key="frame" x="267" y="8" width="48" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="XVl-NA-HsL"/>
@@ -1041,11 +1038,7 @@ est qui dolorem</string>
                                                                 <action selector="btnAddAction:" destination="O7a-OQ-KTB" eventType="touchUpInside" id="X0n-HX-obN"/>
                                                             </connections>
                                                         </button>
-<<<<<<< HEAD
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zT-WM-wfK" userLabel="subtract">
-=======
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zT-WM-wfK">
->>>>>>> 30b5ffefa2726f8374fb0d7fcd6c80c826770da3
                                                             <rect key="frame" x="267" y="71" width="48" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="7HB-uL-aTh"/>
@@ -1056,11 +1049,7 @@ est qui dolorem</string>
                                                                 <action selector="btnSubtractAction:" destination="O7a-OQ-KTB" eventType="touchUpInside" id="4HS-qc-Gky"/>
                                                             </connections>
                                                         </button>
-<<<<<<< HEAD
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rex-R2-7FM" userLabel="quantity">
-=======
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rex-R2-7FM">
->>>>>>> 30b5ffefa2726f8374fb0d7fcd6c80c826770da3
                                                             <rect key="frame" x="287" y="49" width="8" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -2520,7 +2509,6 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
         <image name="vegetables" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dd5-3l-6DH"/>
         <segue reference="oCO-MQ-HBO"/>
         <segue reference="2NU-DU-AU0"/>
         <segue reference="ADf-di-APW"/>
