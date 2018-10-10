@@ -80,7 +80,7 @@ class LoginViewController: UIViewController {
                 }
 
             case .failure(_):
-                print("Failure : \(response.result.error)")
+				print("Failure : \(String(describing: response.result.error))")
              
             }
         }

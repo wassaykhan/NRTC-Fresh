@@ -9,9 +9,12 @@
 import UIKit
 
 class OrderTableViewCell: UITableViewCell {
+	
 	@IBOutlet weak var orderView: UIView!
-	var onAddTapped : (() -> Void)? = nil
 	@IBOutlet weak var lbQuantity: UILabel!
+	
+	var onAddTapped : (() -> Void)? = nil
+	
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

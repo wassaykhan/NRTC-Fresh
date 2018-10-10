@@ -38,8 +38,6 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 			
 			let value = quantity.intValue + 1
 			
-			//cellNewProduct.lbQuantity.text = String(value)
-			
 			print("Update value")
 			print("index path")
 			print(indexPath.row)
