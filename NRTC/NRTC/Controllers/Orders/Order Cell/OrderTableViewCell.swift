@@ -10,14 +10,24 @@ import UIKit
 
 class OrderTableViewCell: UITableViewCell {
 	@IBOutlet weak var orderView: UIView!
-	
-    override func awakeFromNib() {
+	var onAddTapped : (() -> Void)? = nil
+	@IBOutlet weak var lbQuantity: UILabel!
+	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
 		self.orderView.layer.cornerRadius = 10
 		self.orderView.clipsToBounds = true
     }
-
+	@IBAction func btnAddAction(_ sender: Any) {
+		
+		if let onAddTapped = self.onAddTapped {
+			onAddTapped()
+		}		
+		//print(quantity)
+	}
+	@IBAction func btnSubtractAction(_ sender: Any) {
+	}
+	
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

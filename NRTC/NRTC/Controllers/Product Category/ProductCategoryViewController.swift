@@ -23,10 +23,10 @@ class ProductCategoryViewController: UIViewController,UICollectionViewDelegate,U
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		if UIScreen.main.nativeBounds.height == 1136{
-			return CGSize(width: 140, height: 216)
-		}
-		return CGSize(width: 165, height: 236)
+//		if UIScreen.main.nativeBounds.height == 1136{
+//			return CGSize(width: UIScreen.main.bounds.width/2 - 20, height: 216)
+//		}
+		return CGSize(width: UIScreen.main.bounds.width/2 - 20, height: UIScreen.main.bounds.height/3 + 20)
 	}
 	
     override func viewDidLoad() {

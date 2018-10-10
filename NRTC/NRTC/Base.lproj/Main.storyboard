@@ -988,7 +988,7 @@ est qui dolorem</string>
                                     <constraint firstAttribute="trailing" secondItem="bwa-uh-V6W" secondAttribute="trailing" constant="45" id="yc3-8J-tb6"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L2x-mT-6Kj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L2x-mT-6Kj">
                                 <rect key="frame" x="0.0" y="84" width="375" height="429"/>
                                 <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -1000,7 +1000,7 @@ est qui dolorem</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vU-PU-gZI">
-                                                    <rect key="frame" x="30" y="5" width="354" height="115"/>
+                                                    <rect key="frame" x="30" y="5" width="315" height="115"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image_chips" translatesAutoresizingMaskIntoConstraints="NO" id="mTW-jg-o1L">
                                                             <rect key="frame" x="8" y="21" width="74" height="74"/>
@@ -1021,29 +1021,35 @@ est qui dolorem</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="side_bg" translatesAutoresizingMaskIntoConstraints="NO" id="mo2-e2-gqk">
-                                                            <rect key="frame" x="306" y="0.0" width="48" height="119"/>
+                                                            <rect key="frame" x="267" y="0.0" width="48" height="119"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="48" id="hio-nb-9hO"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnF-3B-maj">
-                                                            <rect key="frame" x="306" y="8" width="48" height="36"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnF-3B-maj" userLabel="add">
+                                                            <rect key="frame" x="267" y="8" width="48" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="XVl-NA-HsL"/>
                                                                 <constraint firstAttribute="width" constant="48" id="j2t-bA-eYc"/>
                                                             </constraints>
                                                             <state key="normal" image="plus"/>
+                                                            <connections>
+                                                                <action selector="btnAddAction:" destination="O7a-OQ-KTB" eventType="touchUpInside" id="X0n-HX-obN"/>
+                                                            </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zT-WM-wfK">
-                                                            <rect key="frame" x="306" y="71" width="48" height="36"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zT-WM-wfK" userLabel="subtract">
+                                                            <rect key="frame" x="267" y="71" width="48" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="7HB-uL-aTh"/>
                                                                 <constraint firstAttribute="width" constant="48" id="oUh-SL-zWW"/>
                                                             </constraints>
                                                             <state key="normal" image="minus"/>
+                                                            <connections>
+                                                                <action selector="btnSubtractAction:" destination="O7a-OQ-KTB" eventType="touchUpInside" id="4HS-qc-Gky"/>
+                                                            </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rex-R2-7FM">
-                                                            <rect key="frame" x="326" y="49" width="8" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rex-R2-7FM" userLabel="quantity">
+                                                            <rect key="frame" x="287" y="49" width="8" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1087,6 +1093,7 @@ est qui dolorem</string>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="lbQuantity" destination="Rex-R2-7FM" id="7oX-En-v5K"/>
                                             <outlet property="orderView" destination="2vU-PU-gZI" id="pzb-5I-BuA"/>
                                         </connections>
                                     </tableViewCell>
@@ -1120,6 +1127,9 @@ est qui dolorem</string>
                         <viewLayoutGuide key="safeArea" id="MaN-0q-I3B"/>
                     </view>
                     <navigationItem key="navigationItem" id="2fb-pD-c7r"/>
+                    <connections>
+                        <outlet property="orderTableView" destination="L2x-mT-6Kj" id="NXg-4Q-PIE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="le8-Xt-j91" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2464,6 +2474,7 @@ Idaho potatoes are loaded with important vitamins and nutrients that help keep y
         <image name="vegetables" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="dd5-3l-6DH"/>
         <segue reference="oCO-MQ-HBO"/>
         <segue reference="2NU-DU-AU0"/>
         <segue reference="L8z-vT-xS0"/>

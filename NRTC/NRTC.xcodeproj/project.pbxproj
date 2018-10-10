@@ -591,7 +591,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Paul (75VMN6UMN5)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -652,7 +652,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Paul (75VMN6UMN5)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -680,20 +680,20 @@
 			baseConfigurationReference = 6AFC247D801717CE015D612E /* Pods-NRTC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Paul (75VMN6UMN5)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3YP4TQ9R94;
+				DEVELOPMENT_TEAM = GKPFHC7844;
 				INFOPLIST_FILE = NRTC/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appfnh.NRTCFresh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quotient.Quotient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "NRTC Fresh";
+				PROVISIONING_PROFILE_SPECIFIER = QuotientProvisionProfileDevelopment;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -702,20 +702,20 @@
 			baseConfigurationReference = BACFF8E82D2603D06860BD90 /* Pods-NRTC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Paul (75VMN6UMN5)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3YP4TQ9R94;
+				DEVELOPMENT_TEAM = GKPFHC7844;
 				INFOPLIST_FILE = NRTC/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appfnh.NRTCFresh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quotient.Quotient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "NRTC Fresh";
+				PROVISIONING_PROFILE_SPECIFIER = QuotientProvisionProfileDevelopment;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
