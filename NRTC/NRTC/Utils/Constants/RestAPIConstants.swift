@@ -16,3 +16,6 @@ let KAllProduct:String = "/Api/Products/all/en"
 
 //Login
 let KLogin : String = "/Api/Login/login"
+
+//Signup
+let kSignup : String = "/Api/User/registeruser"

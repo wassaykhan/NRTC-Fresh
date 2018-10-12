@@ -28,31 +28,9 @@ class LoginViewController: UIViewController {
   self.performSegue(withIdentifier: "register", sender: self)
     }
     @IBAction func login(_ sender: Any) {
-        if username.text != ""  {
-            if !isValidEmail(Input: username.text ?? "") {
-                usernameError.text = kValidEmail
-            }
-            else {
-                usernameError.text = ""
-                
-            }
-        }
-        else
-        {
-            usernameError.text = kNotEmpty
-        }
-        if password.text != "" {
-            if !isValidPassword(Input: password.text ?? "") {
-                passwordError.text = kValidPass
-            }
-            else {
-                passwordError.text = ""
-            }
-        }
-        else {
-            passwordError.text = kNotEmpty
-        }
-        if usernameError.text == "" && passwordError.text == ""
+        let emailError : String = validation(textField: username, labelError: usernameError, funct: isValidEmail, validEmailorPass: kValidEmail)
+          let passError : String = validation(textField: password, labelError: passwordError, funct: isValidPassword, validEmailorPass: kValidPass)
+        if emailError == "" && passError == ""
         {
             loginCall(username: username.text!, password: password.text!)
           
@@ -64,29 +42,33 @@ class LoginViewController: UIViewController {
     {
         let params: [String: Any] = ["email": username, "password": password]
         if Reachability.isConnectedToInternet(){
-        Alamofire.request(KBaseUrl + KLogin,method:.post,parameters: params, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
-            switch(response.result) {
-            case .success(_):
-                if let result = response.result.value as? NSDictionary {
-                    switch(result["code"] as? String)
-                    {
-                    case "404":
-						self.alerts(title: "Internet", message: "Please check your connection")
-                    case "200":
-                          self.loginmodel = LoginModel(dictionary: result )
-                        self.performSegue(withIdentifier: "loginButton", sender: self)
-                    default:
-                        print("Something went wrong")
+            Alamofire.request(KBaseUrl + KLogin,method:.post,parameters: params, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+                switch(response.result) {
+                case .success(_):
+                    if let result = response.result.value as? NSDictionary {
+                        switch(result["code"] as? String)
+                        {
+                        case "404":
+                            self.alerts(title: kError, message: kEmailPassValid)
+                        case "200":
+                            self.loginmodel = LoginModel(dictionary: result )
+                            self.performSegue(withIdentifier: "loginButton", sender: self)
+                        default:
+                            self.alerts(title: kError, message:kSwr )
+                        }
+                        //
                     }
-//
+                    
+                case .failure(_):
+                    print("Failure : \(String(describing: response.result.error))")
+                    
                 }
-
-            case .failure(_):
-				print("Failure : \(String(describing: response.result.error))")
-             
             }
         }
-    }
+        else
+        {
+              self.alerts(title: kInternet, message: kCheckInternet)
+        }
     }
 
     
@@ -109,6 +91,35 @@ class LoginViewController: UIViewController {
 
 extension UIViewController
 {
+    func validation(textField : UITextField , labelError : UILabel , funct : (String) -> Bool, validEmailorPass : String) -> String
+    {
+        if textField.text != ""  {
+            if !funct(textField.text ?? "") {
+               labelError.text = validEmailorPass
+                return labelError.text!
+            }
+            else {
+                labelError.text = ""
+                return labelError.text!
+                
+            }
+        }
+        else
+        {
+         labelError.text = kNotEmpty as String
+            return labelError.text!
+        }
+    }
+    func checkTextfield(textfield : UITextField,textfieldError : UILabel) -> String{
+        if textfield.text == "" {
+            textfieldError.text = kNotEmpty
+            return textfieldError.text!
+        }
+        else {
+            textfieldError.text = ""
+            return textfieldError.text!
+        }
+    }
     func addborder(name : UITextField,label : String)
     {
         let border1 = CALayer()
@@ -142,7 +153,7 @@ extension UIViewController
     }
     
     public func isValidPassword(Input : String) -> Bool {
-        let passwordRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$"
+        let passwordRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{6,}$"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: Input)
     }
     func alerts(title:String,message:String){
