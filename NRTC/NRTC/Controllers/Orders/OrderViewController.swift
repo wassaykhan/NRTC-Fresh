@@ -10,17 +10,42 @@ import UIKit
 
 class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 	@IBOutlet weak var orderTableView: UITableView!
-	var source = ["1","2","3","4","5","6","7","8"]
+	@IBOutlet weak var lbSubTotal: UILabel!
+	@IBOutlet weak var lbTotal: UILabel!
+	
+	
+//	var source = ["1","2","3","4","5","6","7","8"]
+	var arrProduct:Array<Product>?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		orderTableView.delegate = self
 		orderTableView.dataSource = self
+		
+		self.lbSubTotal.text = "$" + String(self.calculateTotalAmount(products: self.arrProduct!))
+		self.lbTotal.text = "$" + String(self.calculateTotalAmount(products: self.arrProduct!))
+		
 		// Do any additional setup after loading the view.
 	}
 	
+	func calculateTotalAmount(products:Array<Product>) -> Float {
+		
+		var total:Float = 0
+		for item:Product in products{
+			
+			let price:NSString = item.oldPrice! as NSString
+			let quantity:NSString = item.productQuantity! as NSString
+			
+			total +=  price.floatValue * quantity.floatValue
+			
+		}
+		return total
+	}
+	
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 8
+		return self.arrProduct?.count ?? 0
 	}
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
@@ -31,8 +56,10 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 		
 		let cellNewProduct:OrderTableViewCell = self.orderTableView.dequeueReusableCell(withIdentifier: "orderCellIdentifier") as! OrderTableViewCell
 		
-//		let celll = self.orderTableView.cellForRow(at: indexPath)
-		cellNewProduct.lbQuantity.text = source[indexPath.row]
+		cellNewProduct.lbQuantity.text = self.arrProduct?[indexPath.row].productQuantity
+		cellNewProduct.lbTitle.text = self.arrProduct?[indexPath.row].title
+		cellNewProduct.lbPrice.text = "AED " + (self.arrProduct?[indexPath.row].oldPrice)!
+		cellNewProduct.imgProduct.sd_setImage(with: URL(string: (self.arrProduct?[indexPath.row].productImage)!), placeholderImage: UIImage(named: ""))
 		cellNewProduct.onAddTapped = {
 			let quantity:NSString = cellNewProduct.lbQuantity!.text! as NSString
 			
@@ -41,7 +68,7 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 			print("Update value")
 			print("index path")
 			print(indexPath.row)
-			self.source[indexPath.row] = String(value)
+			self.arrProduct?[indexPath.row].oldPrice = String(value)
 			
 			let cell = tableView.cellForRow(at: indexPath) as! OrderTableViewCell
 			cell.lbQuantity.text = String(value)

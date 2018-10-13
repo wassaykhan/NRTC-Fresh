@@ -10,6 +10,19 @@ import UIKit
 
 class NewProductTableViewCell: UITableViewCell {
 	@IBOutlet weak var newProductView: UIView!
+	@IBOutlet weak var lbProductType: UILabel!
+	@IBOutlet weak var lbFirstTitle: UILabel!
+	@IBOutlet weak var lbFisrtPrice: UILabel!
+	@IBOutlet weak var lbSecondTitle: UILabel!
+	@IBOutlet weak var lbSecondPrice: UILabel!
+	@IBOutlet weak var lbThirdTitle: UILabel!
+	@IBOutlet weak var lbThirdPrice: UILabel!
+	@IBOutlet weak var lbFourthTitle: UILabel!
+	@IBOutlet weak var lbFourthPrice: UILabel!
+	@IBOutlet weak var btnfirstProduct: UIButton!
+	@IBOutlet weak var btnSecondProduct: UIButton!
+	@IBOutlet weak var btnThirdProduct: UIButton!
+	@IBOutlet weak var btnFourthProduct: UIButton!
 	
     override func awakeFromNib() {
         super.awakeFromNib()

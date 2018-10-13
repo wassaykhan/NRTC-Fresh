@@ -7,16 +7,31 @@
 //
 
 import UIKit
+import Alamofire
+import SDWebImage
 
 class ProductCategoryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 	@IBOutlet weak var categoryCollectionView: UICollectionView!
+	var categoryType:NSNumber?
+	var categoryData:CategoryProduct?
+	var arrCategoryProduct:Array<CategoryProduct> = []
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		self.getProductCategory()
+		// Do any additional setup after loading the view.
+	}
+	
+	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 8
+		return arrCategoryProduct.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		//categoryCellIdentifier
-		let cellCategory:UICollectionViewCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCellIdentifier", for: indexPath)
+		let cellCategory:CategoryCollectionViewCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCellIdentifier", for: indexPath) as! CategoryCollectionViewCell
+		cellCategory.lbTitle.text =  self.arrCategoryProduct[indexPath.row].title!
+		cellCategory.lbPrice.text = "AED " + self.arrCategoryProduct[indexPath.row].price!
+		cellCategory.imgProduct.sd_setImage(with: URL(string: self.arrCategoryProduct[indexPath.row].image!), placeholderImage: UIImage(named: ""))
 		//newProductCellIdentifier
 		return cellCategory
 
@@ -29,11 +44,70 @@ class ProductCategoryViewController: UIViewController,UICollectionViewDelegate,U
 		return CGSize(width: UIScreen.main.bounds.width/2 - 20, height: UIScreen.main.bounds.height/3 + 20)
 	}
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		
+		let productID = self.arrCategoryProduct[indexPath.item].id
+		
+		let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "productID") as! ProductViewController
+		nextViewController.productID = NSNumber(value: Int(productID!)!)
+		self.navigationController?.pushViewController(nextViewController, animated: true)
+		
+	}
+	
+	fileprivate func getProductCategory() {
+		
+		if Reachability.isConnectedToInternet() {
+			print("Yes! internet is available.")
+//			SVProgressHUD.show(withStatus: "Loading Request")
+			
+			let urlString = KBaseUrl + KCategoryProduct + (categoryType?.stringValue)!
+			Alamofire.request(urlString, method: .get, parameters: nil, encoding: JSONEncoding.default)
+				.downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+					print("Progress: \(progress.fractionCompleted)")
+				}
+				.validate { request, response, data in
+					return .success
+				}
+				.responseJSON { response in
+					debugPrint(response)
+					
+//					SVProgressHUD.dismiss()
+					if	response.result.value == nil {
+						
+//						self.alerts(title: "Alert", message: "Response time out")
+						return
+					}
+					
+					if response.response!.statusCode == 200 {
+						
+						let JSON:NSDictionary = (response.result.value as! NSDictionary?)!
+						self.arrCategoryProduct = []
+						for dictionary in JSON["data"] as! NSArray{
+							let product:CategoryProduct = CategoryProduct(dictionary: dictionary as! NSDictionary)
+							self.arrCategoryProduct.append(product)
+						}
+						print(self.arrCategoryProduct)
+						self.categoryCollectionView.reloadData()
+						
+						
+					}else if response.response!.statusCode == 401{
+						
+//						self.alerts(title: "Alert", message: KInvalidKey)
+						
+					}else if response.response!.statusCode == 400{
+//						self.alerts(title: "Alert", message: KNoResourceFound)
+						
+					}else{
+//						self.alerts(title: "Alert", message: KUnknown)
+					}
+					
+			}
+		}else{
+//			alerts(title: "Network", message: KNoNetwork)
+		}
+		
+	}
+	
     
 	@IBAction func btnBackAction(_ sender: Any) {
 		self.navigationController?.popViewController(animated: true)
@@ -49,4 +123,18 @@ class ProductCategoryViewController: UIViewController,UICollectionViewDelegate,U
     }
     */
 
+}
+
+extension UIImage {
+	convenience init?(url: URL?) {
+		guard let url = url else { return nil }
+		
+		do {
+			let data = try Data(contentsOf: url)
+			self.init(data: data)
+		} catch {
+			print("Cannot load image from url: \(url) with error: \(error)")
+			return nil
+		}
+	}
 }
