@@ -9,53 +9,80 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
-	@IBOutlet weak var password: UITextField!
-	@IBOutlet weak var emailadd: UITextField!
-	@IBOutlet weak var username: UITextField!
+	
+	
 	@IBOutlet weak var lastname: UITextField!
 	@IBOutlet weak var firstName: UITextField!
-	
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var confirmpass: UITextField!
+    @IBOutlet weak var email: UITextField!
+    
+    @IBOutlet weak var firstnameError: UILabel!
+    @IBOutlet weak var passwordError: UILabel!
+    @IBOutlet weak var confirmpassError: UILabel!
+    @IBOutlet weak var emailError: UILabel!
+    @IBOutlet weak var lastnameError: UILabel!
+    
+    var params : [String:Any] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
 		addborder(name: firstName , label :"First Name")
 		addborder(name: lastname, label: "Last Name")
-		addborder(name: username,label: "Username")
-		addborder(name: emailadd,label: "Email Address")
 		addborder(name: password,label: "Password")
+		addborder(name: confirmpass,label: "Confirm Password")
+		addborder(name: email,label: "Email")
+    
         // Do any additional setup after loading the view.
     }
 	
-//    func loginCall()
-//    {
-//        let newTodo: [String: Any] = ["email": "jyoti.shina@salsoft.net", "password": ""]
-//        
-//        Alamofire.request("https://dev17.onlinetestingserver.com/nrtc_beta/Api/Login/login",method:.post,parameters: newTodo, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
-//            switch(response.result) {
-//            case .success(_):
-//                if response.result.value != nil{
-//                    let loginmodel = LoginModel(dictionary: response.result.value as! NSDictionary )
-//                    print("Model \(String(describing: loginmodel.code))")
-//                    print("response : \(response.result.value)")
-//                }
-//                
-//            case .failure(_):
-//                print("Failure : \(response.result.error)")
-//                
-//            }
-//        }
-//    }
+    @IBAction func signup(_ sender: Any) {
+       
+        let firstnameError = checkTextfield(textfield: firstName, textfieldError: self.firstnameError)
+       
+        let lastnameError = checkTextfield(textfield: lastname, textfieldError: self.lastnameError)
+        
+        let passError = validation(textField: password, labelError: passwordError, funct: isValidPassword, validEmailorPass: kValidPass)
+       
+       
+            let cnfrmpassError = validation(textField: confirmpass, labelError: confirmpassError, funct: isValidPassword, validEmailorPass: kValidPass)
+            if(cnfrmpassError == "")
+            {
+                if confirmpass.text != password.text {
+                    confirmpassError.text = kPasswordMatch
+                }
+                else{
+                    confirmpassError.text = ""
+                }
+            }
+    
+        let emailError = validation(textField: email, labelError: self.emailError, funct: isValidEmail, validEmailorPass: kValidEmail)
+        
+        if firstnameError == "" && lastnameError == "" && passError == "" && confirmpassError.text == "" && emailError == "" {
+             params = [
+                "first_name":firstName.text!,
+            "last_name":lastname.text!,
+            "password": password.text!,
+            "re_confrim_pass": confirmpass.text!,
+            "email": email.text!]
+             self.performSegue(withIdentifier: "signup", sender: self)
+        }
+        
+    }
+   
 
 
 	
 	
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "signup") {
+             let vc = segue.destination as! BillingViewController
+               vc.params = self.params
+        }
     }
-    */
+ 
 
 }

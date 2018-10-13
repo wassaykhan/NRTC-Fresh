@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1AEED0EA216CCCE200CA9154 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEED0E9216CCCE200CA9154 /* LoginModel.swift */; };
+		1ABE05BD216DEDF5007FD8FC /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE05BC216DEDF5007FD8FC /* LoginModel.swift */; };
 		2FE9EDDF13C575F24EC5A9CC /* Pods_NRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9C2393E116305E42CC57F5F /* Pods_NRTC.framework */; };
 		7C1D7D15216F631500B40DD1 /* CategoryProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1D7D14216F631500B40DD1 /* CategoryProduct.swift */; };
 		7C312B3821708DEE00009001 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C312B3721708DEE00009001 /* Product.swift */; };
@@ -26,7 +26,6 @@
 		7CFA0ACC2164EDF400A6E6C5 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFA0ACB2164EDF400A6E6C5 /* PaymentViewController.swift */; };
 		DA0B7C64215D1127003B5479 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0B7C63215D1127003B5479 /* RootTableViewController.swift */; };
 		DAF8893B215CCFE5006A39A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8893A215CCFE5006A39A4 /* AppDelegate.swift */; };
-		DAF8893D215CCFE5006A39A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8893C215CCFE5006A39A4 /* ViewController.swift */; };
 		DAF88940215CCFE5006A39A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF8893E215CCFE5006A39A4 /* Main.storyboard */; };
 		DAF88943215CCFE5006A39A4 /* NRTC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF88941215CCFE5006A39A4 /* NRTC.xcdatamodeld */; };
 		DAF88945215CCFF3006A39A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF88944215CCFF3006A39A4 /* Assets.xcassets */; };
@@ -54,7 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1AEED0E9216CCCE200CA9154 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = SOURCE_ROOT; };
+		1ABE05BC216DEDF5007FD8FC /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		6AFC247D801717CE015D612E /* Pods-NRTC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NRTC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NRTC/Pods-NRTC.debug.xcconfig"; sourceTree = "<group>"; };
 		7C1D7D14216F631500B40DD1 /* CategoryProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProduct.swift; sourceTree = "<group>"; };
 		7C312B3721708DEE00009001 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -76,7 +75,6 @@
 		DA0B7C63215D1127003B5479 /* RootTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
 		DAF88937215CCFE5006A39A4 /* NRTC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NRTC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF8893A215CCFE5006A39A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DAF8893C215CCFE5006A39A4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DAF8893F215CCFE5006A39A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DAF88942215CCFE5006A39A4 /* NRTC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NRTC.xcdatamodel; sourceTree = "<group>"; };
 		DAF88944215CCFF3006A39A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -255,7 +253,6 @@
 				DAF8896D215CEC6F006A39A4 /* App Delegate */,
 				DAF8896C215CEC64006A39A4 /* Model */,
 				DAF8896B215CEC5B006A39A4 /* Controllers */,
-				DAF8893C215CCFE5006A39A4 /* ViewController.swift */,
 				DAF8893E215CCFE5006A39A4 /* Main.storyboard */,
 				DAF88944215CCFF3006A39A4 /* Assets.xcassets */,
 				DAF88946215CCFF3006A39A4 /* LaunchScreen.storyboard */,
@@ -302,9 +299,13 @@
 		DAF8896C215CEC64006A39A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				1AEED0E9216CCCE200CA9154 /* LoginModel.swift */,
 				7C1D7D14216F631500B40DD1 /* CategoryProduct.swift */,
 				7C312B3721708DEE00009001 /* Product.swift */,
+=======
+				1ABE05BC216DEDF5007FD8FC /* LoginModel.swift */,
+>>>>>>> a5414b69dba616342984c4a4f482faf670e85d8e
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -539,10 +540,9 @@
 				DAF88943215CCFE5006A39A4 /* NRTC.xcdatamodeld in Sources */,
 				7CCEE3C7216DF56800CF6A18 /* AppConstants.swift in Sources */,
 				7C3474082163A15A00D2AD7F /* OrderViewController.swift in Sources */,
-				DAF8893D215CCFE5006A39A4 /* ViewController.swift in Sources */,
 				7C847D7D215E6E0A0012B7E3 /* NewProductTableViewCell.swift in Sources */,
 				7C4CADF121622C9E000CA36F /* ProductViewController.swift in Sources */,
-				1AEED0EA216CCCE200CA9154 /* LoginModel.swift in Sources */,
+				1ABE05BD216DEDF5007FD8FC /* LoginModel.swift in Sources */,
 				7CCEE3C3216DF4EE00CF6A18 /* Reachability.swift in Sources */,
 				7CFA0AC12164D93900A6E6C5 /* OrderTableViewCell.swift in Sources */,
 				7CFA0AC42164E86300A6E6C5 /* BillingViewController.swift in Sources */,

@@ -18,16 +18,16 @@ class LoginModel : NSObject {
         if let status = dictionary["status"] as? Bool{
             self.status = status
         }
-//        status = dictionary["status"] as? Bool
-          message = dictionary["message"] as? String
+        //        status = dictionary["status"] as? Bool
+        message = dictionary["message"] as? String
         code = dictionary["code"] as? String
         userID = dictionary["user_id"] as? String
         firstName = dictionary["first_name"] as? String
         lastName = dictionary["last_name"] as? String
-    email = dictionary["email"] as? String
+        email = dictionary["email"] as? String
         address = dictionary["addresses"] as? NSDictionary
     }
     
- 
-   
+    
+    
 }

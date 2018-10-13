@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
 	@IBOutlet weak var username: UITextField!
 	
     @IBOutlet weak var usernameError: UILabel!
-    
+    var loginmodel : LoginModel?
     @IBOutlet weak var passwordError: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,84 +24,102 @@ class LoginViewController: UIViewController {
         self.hideKeyboard()
     }
    
+    @IBAction func signup(_ sender: Any) {
+  self.performSegue(withIdentifier: "register", sender: self)
+    }
     @IBAction func login(_ sender: Any) {
-        if username.text != ""  {
-            if !isValidUsername(Input: username.text ?? "") {
-                usernameError.text = "Must contain atleast 7 characters"
-            }
-            else {
-                usernameError.text = ""
-                
+        let emailError : String = validation(textField: username, labelError: usernameError, funct: isValidEmail, validEmailorPass: kValidEmail)
+          let passError : String = validation(textField: password, labelError: passwordError, funct: isValidPassword, validEmailorPass: kValidPass)
+        if emailError == "" && passError == ""
+        {
+            loginCall(username: username.text!, password: password.text!)
+          
+        }
+        
+    }
+    
+    func loginCall(username:String,password:String)
+    {
+        let params: [String: Any] = ["email": username, "password": password]
+        if Reachability.isConnectedToInternet(){
+            Alamofire.request(KBaseUrl + KLogin,method:.post,parameters: params, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+                switch(response.result) {
+                case .success(_):
+                    if let result = response.result.value as? NSDictionary {
+                        switch(result["code"] as? String)
+                        {
+                        case "404":
+                            self.alerts(title: kError, message: kEmailPassValid)
+                        case "200":
+                            self.loginmodel = LoginModel(dictionary: result )
+                            self.performSegue(withIdentifier: "loginButton", sender: self)
+                        default:
+                            self.alerts(title: kError, message:kSwr )
+                        }
+                        //
+                    }
+                    
+                case .failure(_):
+                    print("Failure : \(String(describing: response.result.error))")
+                    
+                }
             }
         }
         else
         {
-            usernameError.text = "Please Enter Username"
-        }
-        if password.text != "" {
-            if !isValidPassword(Input: password.text ?? "") {
-                passwordError.text = "Must contain an uppercase and number"
-            }
-            else {
-                passwordError.text = ""
-            }
-        }
-        else {
-            passwordError.text = "Please Enter Password"
-        }
-        if usernameError.text == "" && passwordError.text == ""
-        {
-            loginCall()
-//            self.performSegue(withIdentifier: "loginButton", sender: self)
-        }
-        
-    }
-    
-    func loginCall()
-    {
-        let newTodo: [String: Any] = ["email": "jyoti.shina@salsoft.net", "password": ""]
-        
-        Alamofire.request("https://dev17.onlinetestingserver.com/nrtc_beta/Api/Login/login",method:.post,parameters: newTodo, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
-            switch(response.result) {
-            case .success(_):
-                if let result = response.result.value as? NSDictionary {
-                    switch(result["code"] as? String)
-                    {
-                    case "404":
-						print(result["message"]!)
-                    case "200":
-						let loginmodel = LoginModel(dictionary: result )
-                        print("Model \(String(describing: loginmodel.code))")
-						print("response : \(String(describing: response.result.value))")
-                    default:
-                        print("Something went wrong")
-                    }
-//
-                }
-
-            case .failure(_):
-				print("Failure : \(String(describing: response.result.error))")
-             
-            }
+              self.alerts(title: kInternet, message: kCheckInternet)
         }
     }
 
     
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destination.
-//        // Pass the selected object to the new view controller.
-//
-//    }
-//
+    // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+ 
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if (segue.identifier == "loginButton") {
+               // let vc = segue.destination as! RegisterViewController
+            //    vc.model = self.loginmodel
+            }
+        }
+
+    
+
+  
 
 }
 
 extension UIViewController
 {
+    func validation(textField : UITextField , labelError : UILabel , funct : (String) -> Bool, validEmailorPass : String) -> String
+    {
+        if textField.text != ""  {
+            if !funct(textField.text ?? "") {
+               labelError.text = validEmailorPass
+                return labelError.text!
+            }
+            else {
+                labelError.text = ""
+                return labelError.text!
+                
+            }
+        }
+        else
+        {
+         labelError.text = kNotEmpty as String
+            return labelError.text!
+        }
+    }
+    func checkTextfield(textfield : UITextField,textfieldError : UILabel) -> String{
+        if textfield.text == "" {
+            textfieldError.text = kNotEmpty
+            return textfieldError.text!
+        }
+        else {
+            textfieldError.text = ""
+            return textfieldError.text!
+        }
+    }
     func addborder(name : UITextField,label : String)
     {
         let border1 = CALayer()
@@ -128,15 +146,21 @@ extension UIViewController
         view.endEditing(true)
     }
     
-    func isValidUsername(Input:String) -> Bool {
-        let RegEx = "\\w{7,18}"
+    func isValidEmail(Input:String) -> Bool {
+        let RegEx =  "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
         return Test.evaluate(with: Input)
     }
     
     public func isValidPassword(Input : String) -> Bool {
-        let passwordRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$"
+        let passwordRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{6,}$"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: Input)
+    }
+    func alerts(title:String,message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
