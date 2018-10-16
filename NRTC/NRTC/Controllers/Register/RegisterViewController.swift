@@ -31,9 +31,12 @@ class RegisterViewController: UIViewController {
 		addborder(name: password,label: "Password")
 		addborder(name: confirmpass,label: "Confirm Password")
 		addborder(name: email,label: "Email")
-    
+    	self.hideKeyboard()
         // Do any additional setup after loading the view.
     }
+	@IBAction func btnBackAction(_ sender: Any) {
+		self.navigationController?.popViewController(animated: true)
+	}
 	
     @IBAction func signup(_ sender: Any) {
        

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.7.3)
+  - BadgeSwift (6.0.0)
   - ImageSlideshow (1.7.0):
     - ImageSlideshow/Core (= 1.7.0)
   - ImageSlideshow/Core (1.7.0)
@@ -7,26 +8,33 @@ PODS:
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
   - SideMenu (4.0.0)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - BadgeSwift (~> 6.0)
   - ImageSlideshow (~> 1.6)
   - SDWebImage (~> 4.0)
   - SideMenu (~> 4.0.0)
+  - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - BadgeSwift
     - ImageSlideshow
     - SDWebImage
     - SideMenu
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  BadgeSwift: 69080f6776cb812b905d46effe8263600da1bdbd
   ImageSlideshow: f8eec5e37a980f60923b585ff23b0e140fd24018
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: b97fddaf7e9a241b93108e0da2d24cb15444f4bb
+PODFILE CHECKSUM: 98b43ae47b9d9d8d2f7611d1aca74bfc72a925bd
 
 COCOAPODS: 1.5.3

@@ -10,12 +10,20 @@
 		1ABE05BD216DEDF5007FD8FC /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE05BC216DEDF5007FD8FC /* LoginModel.swift */; };
 		2FE9EDDF13C575F24EC5A9CC /* Pods_NRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9C2393E116305E42CC57F5F /* Pods_NRTC.framework */; };
 		7C1D7D15216F631500B40DD1 /* CategoryProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1D7D14216F631500B40DD1 /* CategoryProduct.swift */; };
+		7C2F094E217371A3000229E9 /* ViewMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2F094D217371A3000229E9 /* ViewMoreViewController.swift */; };
+		7C2F09522173BA3D000229E9 /* ShippingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2F09512173BA3D000229E9 /* ShippingViewController.swift */; };
 		7C312B3821708DEE00009001 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C312B3721708DEE00009001 /* Product.swift */; };
 		7C3474022163574E00D2AD7F /* ProductCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3474012163574E00D2AD7F /* ProductCategoryViewController.swift */; };
 		7C347405216369CA00D2AD7F /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C347404216369CA00D2AD7F /* CategoryCollectionViewCell.swift */; };
 		7C3474082163A15A00D2AD7F /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3474072163A15A00D2AD7F /* OrderViewController.swift */; };
+		7C37114C2172732600ABFFC7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C37114B2172732600ABFFC7 /* SearchViewController.swift */; };
 		7C4CADF121622C9E000CA36F /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CADF021622C9E000CA36F /* ProductViewController.swift */; };
+		7C6DE3BA2174E474004232DC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6DE3B92174E474004232DC /* User.swift */; };
 		7C847D7D215E6E0A0012B7E3 /* NewProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C847D7C215E6E0A0012B7E3 /* NewProductTableViewCell.swift */; };
+		7C849F252172BFDB00496504 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C849F242172BFDB00496504 /* MenuTableViewCell.swift */; };
+		7CB91F032173FF0600874CB1 /* MyOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB91F022173FF0600874CB1 /* MyOrderViewController.swift */; };
+		7CB91F06217405B500874CB1 /* MyOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB91F05217405B500874CB1 /* MyOrderTableViewCell.swift */; };
+		7CB91F09217407A500874CB1 /* ItemOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB91F08217407A500874CB1 /* ItemOrderTableViewCell.swift */; };
 		7CCEE3C3216DF4EE00CF6A18 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEE3C2216DF4EE00CF6A18 /* Reachability.swift */; };
 		7CCEE3C7216DF56800CF6A18 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEE3C6216DF56800CF6A18 /* AppConstants.swift */; };
 		7CCEE3C9216DF58000CF6A18 /* RestAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEE3C8216DF58000CF6A18 /* RestAPIConstants.swift */; };
@@ -56,12 +64,20 @@
 		1ABE05BC216DEDF5007FD8FC /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		6AFC247D801717CE015D612E /* Pods-NRTC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NRTC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NRTC/Pods-NRTC.debug.xcconfig"; sourceTree = "<group>"; };
 		7C1D7D14216F631500B40DD1 /* CategoryProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProduct.swift; sourceTree = "<group>"; };
+		7C2F094D217371A3000229E9 /* ViewMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMoreViewController.swift; sourceTree = "<group>"; };
+		7C2F09512173BA3D000229E9 /* ShippingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingViewController.swift; sourceTree = "<group>"; };
 		7C312B3721708DEE00009001 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		7C3474012163574E00D2AD7F /* ProductCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategoryViewController.swift; sourceTree = "<group>"; };
 		7C347404216369CA00D2AD7F /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		7C3474072163A15A00D2AD7F /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		7C37114B2172732600ABFFC7 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7C4CADF021622C9E000CA36F /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		7C6DE3B92174E474004232DC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7C847D7C215E6E0A0012B7E3 /* NewProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductTableViewCell.swift; sourceTree = "<group>"; };
+		7C849F242172BFDB00496504 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		7CB91F022173FF0600874CB1 /* MyOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderViewController.swift; sourceTree = "<group>"; };
+		7CB91F05217405B500874CB1 /* MyOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderTableViewCell.swift; sourceTree = "<group>"; };
+		7CB91F08217407A500874CB1 /* ItemOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOrderTableViewCell.swift; sourceTree = "<group>"; };
 		7CCEE3C2216DF4EE00CF6A18 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		7CCEE3C6216DF56800CF6A18 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		7CCEE3C8216DF58000CF6A18 /* RestAPIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIConstants.swift; sourceTree = "<group>"; };
@@ -123,6 +139,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7C2F094C2173716F000229E9 /* View More */ = {
+			isa = PBXGroup;
+			children = (
+				7C2F094D217371A3000229E9 /* ViewMoreViewController.swift */,
+			);
+			path = "View More";
+			sourceTree = "<group>";
+		};
+		7C2F09502173B9DF000229E9 /* Shipping Detail */ = {
+			isa = PBXGroup;
+			children = (
+				7C2F09512173BA3D000229E9 /* ShippingViewController.swift */,
+			);
+			path = "Shipping Detail";
+			sourceTree = "<group>";
+		};
 		7C3474002163572300D2AD7F /* Product Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,12 +181,54 @@
 			path = Orders;
 			sourceTree = "<group>";
 		};
+		7C37114A217272FF00ABFFC7 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7C37114B2172732600ABFFC7 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		7C847D7B215E6DD30012B7E3 /* New Product Cell */ = {
 			isa = PBXGroup;
 			children = (
 				7C847D7C215E6E0A0012B7E3 /* NewProductTableViewCell.swift */,
 			);
 			path = "New Product Cell";
+			sourceTree = "<group>";
+		};
+		7C849F232172BFB200496504 /* Menu Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7C849F242172BFDB00496504 /* MenuTableViewCell.swift */,
+			);
+			path = "Menu Cells";
+			sourceTree = "<group>";
+		};
+		7CB91F012173FEC300874CB1 /* My Orders */ = {
+			isa = PBXGroup;
+			children = (
+				7CB91F042174057F00874CB1 /* My Order Cells */,
+				7CB91F022173FF0600874CB1 /* MyOrderViewController.swift */,
+			);
+			path = "My Orders";
+			sourceTree = "<group>";
+		};
+		7CB91F042174057F00874CB1 /* My Order Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7CB91F072174078000874CB1 /* Item Cells */,
+				7CB91F05217405B500874CB1 /* MyOrderTableViewCell.swift */,
+			);
+			path = "My Order Cells";
+			sourceTree = "<group>";
+		};
+		7CB91F072174078000874CB1 /* Item Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7CB91F08217407A500874CB1 /* ItemOrderTableViewCell.swift */,
+			);
+			path = "Item Cells";
 			sourceTree = "<group>";
 		};
 		7CCEE3C0216DF48A00CF6A18 /* Utils */ = {
@@ -219,6 +293,7 @@
 		DA0B7C62215D10D5003B5479 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				7C849F232172BFB200496504 /* Menu Cells */,
 				DA0B7C63215D1127003B5479 /* RootTableViewController.swift */,
 			);
 			path = Menu;
@@ -283,6 +358,10 @@
 		DAF8896B215CEC5B006A39A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7CB91F012173FEC300874CB1 /* My Orders */,
+				7C2F09502173B9DF000229E9 /* Shipping Detail */,
+				7C2F094C2173716F000229E9 /* View More */,
+				7C37114A217272FF00ABFFC7 /* Search */,
 				7CFA0ACA2164EDDD00A6E6C5 /* Payment */,
 				7CFA0AC22164E84300A6E6C5 /* Billing */,
 				7C3474062163A13F00D2AD7F /* Orders */,
@@ -299,13 +378,10 @@
 		DAF8896C215CEC64006A39A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				1AEED0E9216CCCE200CA9154 /* LoginModel.swift */,
 				7C1D7D14216F631500B40DD1 /* CategoryProduct.swift */,
 				7C312B3721708DEE00009001 /* Product.swift */,
-=======
 				1ABE05BC216DEDF5007FD8FC /* LoginModel.swift */,
->>>>>>> a5414b69dba616342984c4a4f482faf670e85d8e
+				7C6DE3B92174E474004232DC /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -490,8 +566,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NRTC/Pods-NRTC-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BadgeSwift/BadgeSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -499,8 +577,10 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BadgeSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -539,19 +619,27 @@
 			files = (
 				DAF88943215CCFE5006A39A4 /* NRTC.xcdatamodeld in Sources */,
 				7CCEE3C7216DF56800CF6A18 /* AppConstants.swift in Sources */,
+				7CB91F09217407A500874CB1 /* ItemOrderTableViewCell.swift in Sources */,
+				7CB91F06217405B500874CB1 /* MyOrderTableViewCell.swift in Sources */,
 				7C3474082163A15A00D2AD7F /* OrderViewController.swift in Sources */,
 				7C847D7D215E6E0A0012B7E3 /* NewProductTableViewCell.swift in Sources */,
 				7C4CADF121622C9E000CA36F /* ProductViewController.swift in Sources */,
 				1ABE05BD216DEDF5007FD8FC /* LoginModel.swift in Sources */,
 				7CCEE3C3216DF4EE00CF6A18 /* Reachability.swift in Sources */,
 				7CFA0AC12164D93900A6E6C5 /* OrderTableViewCell.swift in Sources */,
+				7C2F094E217371A3000229E9 /* ViewMoreViewController.swift in Sources */,
 				7CFA0AC42164E86300A6E6C5 /* BillingViewController.swift in Sources */,
 				7CFA0ACC2164EDF400A6E6C5 /* PaymentViewController.swift in Sources */,
+				7C849F252172BFDB00496504 /* MenuTableViewCell.swift in Sources */,
 				7C347405216369CA00D2AD7F /* CategoryCollectionViewCell.swift in Sources */,
 				7C3474022163574E00D2AD7F /* ProductCategoryViewController.swift in Sources */,
 				7CFA0AC92164E8FB00A6E6C5 /* RegisterViewController.swift in Sources */,
 				DA0B7C64215D1127003B5479 /* RootTableViewController.swift in Sources */,
+				7C2F09522173BA3D000229E9 /* ShippingViewController.swift in Sources */,
 				7C1D7D15216F631500B40DD1 /* CategoryProduct.swift in Sources */,
+				7C6DE3BA2174E474004232DC /* User.swift in Sources */,
+				7CB91F032173FF0600874CB1 /* MyOrderViewController.swift in Sources */,
+				7C37114C2172732600ABFFC7 /* SearchViewController.swift in Sources */,
 				DAF8893B215CCFE5006A39A4 /* AppDelegate.swift in Sources */,
 				7CFA0AC72164E8C200A6E6C5 /* LoginViewController.swift in Sources */,
 				DAF88973215CEF9F006A39A4 /* HomeViewController.swift in Sources */,
@@ -643,7 +731,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Paul (75VMN6UMN5)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -704,7 +792,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Paul (75VMN6UMN5)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -732,18 +820,18 @@
 			baseConfigurationReference = 6AFC247D801717CE015D612E /* Pods-NRTC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Paul (75VMN6UMN5)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = GKPFHC7844;
+				DEVELOPMENT_TEAM = 3YP4TQ9R94;
 				INFOPLIST_FILE = NRTC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.quotient.Quotient;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appfnh.NRTCFresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = QuotientProvisionProfileDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = "NRTC Fresh";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -754,18 +842,18 @@
 			baseConfigurationReference = BACFF8E82D2603D06860BD90 /* Pods-NRTC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Paul (75VMN6UMN5)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Omair Siddiqui (3YP4TQ9R94)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = GKPFHC7844;
+				DEVELOPMENT_TEAM = 3YP4TQ9R94;
 				INFOPLIST_FILE = NRTC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.quotient.Quotient;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appfnh.NRTCFresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = QuotientProvisionProfileDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = "NRTC Fresh";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

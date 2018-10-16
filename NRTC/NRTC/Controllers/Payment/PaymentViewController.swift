@@ -20,7 +20,10 @@ class PaymentViewController: UIViewController {
 		self.navigationController?.popViewController(animated: true)
 	}
 	
-    /*
+	@IBAction func btnContactAction(_ sender: Any) {
+		self.callUs()
+	}
+	/*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

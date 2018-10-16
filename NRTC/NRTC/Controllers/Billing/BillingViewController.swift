@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SVProgressHUD
 
 class BillingViewController: UIViewController {
     var params : [String:Any] = [:]
@@ -31,6 +32,7 @@ class BillingViewController: UIViewController {
 		addborder(name: address2,label: "Address 2 *")
 		addborder(name: zip,label: "ZIP *")
 		addborder(name: phone,label: "Phone *")
+		hideKeyboard()
         // Do any additional setup after loading the view.
     }
     
@@ -54,10 +56,12 @@ class BillingViewController: UIViewController {
     func registerCall(paramsAll : [String:Any])
     {
         if Reachability.isConnectedToInternet(){
+			SVProgressHUD.show(withStatus: "Loading Request")
             Alamofire.request(KBaseUrl + kSignup,method:.post,parameters: paramsAll, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
                 
                 switch(response.result) {
                 case .success(_):
+					SVProgressHUD.dismiss()
                     if let result = response.result.value as? NSDictionary {
                         switch(result["code"] as? String)
                         {
@@ -65,20 +69,36 @@ class BillingViewController: UIViewController {
                             self.alerts(title: kError, message: kEmailAlreadyExist)
                         case "200":
                            
-                            let register = LoginModel(dictionary: result)
+                            let register = LoginModel(dictionarys: result)
                             print("\(String(describing: register.code)) \(String(describing: register.message))")
                             self.performSegue(withIdentifier: "register", sender: self)
+							
+							UserDefaults.standard.set(paramsAll["first_name"], forKey: "first_name")
+							UserDefaults.standard.set(paramsAll["last_name"], forKey: "last_name")
+							UserDefaults.standard.set(paramsAll["password"], forKey: "password")
+							UserDefaults.standard.set(paramsAll["re_confrim_pass"], forKey: "re_confrim_pass")
+							UserDefaults.standard.set(paramsAll["email"], forKey: "email")
+							UserDefaults.standard.set(register.userID, forKey: "user_id")
+							UserDefaults.standard.set(paramsAll["billing_address_line_1"], forKey: "billing_address_line_1")
+							UserDefaults.standard.set(paramsAll["billing_address_line_2"], forKey: "billing_address_line_2")
+							UserDefaults.standard.set(paramsAll["billing_city"], forKey: "billing_city")
+							UserDefaults.standard.set(paramsAll["billing_zip_code"], forKey: "billing_zip_code")
+							UserDefaults.standard.set(paramsAll["billing_phone"], forKey: "billing_phone")
+							
+							
                         default:
                             self.alerts(title: kError, message:kSwr )
                         }
                         //
                     }
                     else{
+						SVProgressHUD.dismiss()
                          let arrays = response.result.value as! [String]
                        self.alerts(title: kError, message: arrays[0])
                     }
                     
                 case .failure(_):
+					SVProgressHUD.dismiss()
                     print("Failure : \(String(describing: response.result.error))")
                     
                 }
@@ -90,7 +110,10 @@ class BillingViewController: UIViewController {
         }
     }
 
-
+	@IBAction func btnBackAction(_ sender: Any) {
+		self.navigationController?.popViewController(animated: true)
+	}
+	
     /*
     // MARK: - Navigation
 
@@ -101,4 +124,12 @@ class BillingViewController: UIViewController {
     }
     */
 
+}
+
+extension UIViewController {
+	func getDefaults() -> NSDictionary{
+		print("Setting Defaults")
+		let credentials:NSDictionary = ["first_name": UserDefaults.standard.string(forKey: "first_name")!, "last_name": UserDefaults.standard.string(forKey: "last_name")!,"user_id": UserDefaults.standard.integer(forKey: "user_id"),"email": UserDefaults.standard.string(forKey: "email")!,"billing_address_line_1": UserDefaults.standard.string(forKey: "billing_address_line_1")!,"billing_address_line_2": UserDefaults.standard.string(forKey: "billing_address_line_2")!,"billing_city": UserDefaults.standard.string(forKey: "billing_city")!,"billing_zip_code": UserDefaults.standard.string(forKey: "billing_zip_code")!,"billing_phone": UserDefaults.standard.string(forKey: "billing_phone")!,"sub_total": UserDefaults.standard.string(forKey: "sub_total")!,"grand_total": UserDefaults.standard.string(forKey: "grand_total")!,"value_added_tax": UserDefaults.standard.string(forKey: "value_added_tax")!]
+		return credentials
+	}
 }

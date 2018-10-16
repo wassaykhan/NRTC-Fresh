@@ -10,8 +10,11 @@ import UIKit
 import ImageSlideshow
 import Alamofire
 import SDWebImage
+import SVProgressHUD
+import BadgeSwift
+import MessageUI
 
-class ProductViewController: UIViewController {
+class ProductViewController: UIViewController,MFMailComposeViewControllerDelegate {
 
 	@IBOutlet weak var bgStockView: UIView!
 	@IBOutlet weak var slideShowView: ImageSlideshow!
@@ -20,12 +23,18 @@ class ProductViewController: UIViewController {
 	@IBOutlet weak var lbQuantity: UILabel!
 	@IBOutlet weak var lbDescription: UILabel!
 	@IBOutlet weak var imgProduct: UIImageView!
+	@IBOutlet weak var lbProductDetailHeading: UILabel!
+	@IBOutlet weak var lbBadgeCount: BadgeSwift!
+	@IBOutlet weak var lbProductColor: UILabel!
+	@IBOutlet weak var lbNotes: UILabel!
+	@IBOutlet weak var lbColorL: UILabel!
 	
 //	var productID:Int?
 	
 	var productID:NSNumber?
 	var product:Product?
 	var arrProducts:Array<Product>?
+	var arrProductCart:Array<Product> = []
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +64,28 @@ class ProductViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 	
+	override func viewWillAppear(_ animated: Bool) {
+		print("view will appear")
+		let userDefaults = UserDefaults.standard
+		self.arrProductCart = []
+		let decoded  = userDefaults.object(forKey: "Products") as? Data
+		//		let decodedTeams?
+		if decoded != nil {
+			let selectedProducts = NSKeyedUnarchiver.unarchiveObject(with: decoded!) as! [Product]
+			print(selectedProducts)
+			
+			for prod:Product in selectedProducts{
+				self.arrProductCart.append(prod)
+			}
+			
+			self.lbBadgeCount.isHidden = false
+			self.lbBadgeCount.text = String(selectedProducts.count)
+		}else{
+			self.lbBadgeCount.isHidden = true
+		}
+	}
+	
+	
 	@objc func didTap() {
 		let fullScreenController = slideShowView.presentFullScreenController(from: self)
 		// set the activity indicator for full screen controller (skipping the line will show no activity indicator)
@@ -65,10 +96,35 @@ class ProductViewController: UIViewController {
 		self.navigationController?.popViewController(animated: true)
 	}
 	
+	@IBAction func btnEmailAction(_ sender: Any) {
+		let composeVC = MFMailComposeViewController()
+		composeVC.mailComposeDelegate = self
+		
+		// Configure the fields of the interface.
+		composeVC.setToRecipients(["customercare@nrtcfresh.com"])
+		composeVC.setSubject("Message Subject")
+		composeVC.setMessageBody("Message content.", isHTML: false)
+		
+		// Present the view controller modally.
+		self.present(composeVC, animated: true, completion: nil)
+	}
+	
+	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+		controller.dismiss(animated: true, completion: nil)
+	}
+	
+	@IBAction func btnCartAction(_ sender: Any) {
+		let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "orderIdentifier") as! OrderViewController
+		nextViewController.arrProduct = self.arrProductCart
+		//		nextViewController.productID = NSNumber(value: Int(productID!)!)
+		self.navigationController?.pushViewController(nextViewController, animated: true)
+	}
+	
+	
 	fileprivate func getProductDetail() {
 		if Reachability.isConnectedToInternet() {
 			print("Yes! internet is available.")
-			//			SVProgressHUD.show(withStatus: "Loading Request")
+			SVProgressHUD.show(withStatus: "Loading Request")
 			
 			let urlString = KBaseUrl + KProductDetail + (productID!.stringValue)
 			Alamofire.request(urlString, method: .get, parameters: nil, encoding: JSONEncoding.default)
@@ -81,10 +137,10 @@ class ProductViewController: UIViewController {
 				.responseJSON { response in
 					debugPrint(response)
 					
-					//SVProgressHUD.dismiss()
+					SVProgressHUD.dismiss()
 					if	response.result.value == nil {
 						
-					//self.alerts(title: "Alert", message: "Response time out")
+					self.alerts(title: "Alert", message: "Response time out")
 						return
 					}
 					
@@ -95,27 +151,71 @@ class ProductViewController: UIViewController {
 						self.product = Product(dictionary: JSON["data"] as! NSDictionary)
 						print(self.product!)
 						
-						self.lbTitle.text = self.product?.title
+						if self.product?.packaging == "Precut" || self.product?.packaging == "Pack" || self.product?.packaging == "pack" {
+							
+							let str:NSString = self.product!.weight! as NSString
+							
+							
+							let weight:Float = str.floatValue * 1000
+							
+							if	self.product?.notes == ""{
+								self.lbNotes.text = "Size: " + String(weight) + " grams"
+							}else{
+								
+								let s = "( " + (self.product?.notes)! + ")"
+								let  r = String(s.filter { !"\r\n".contains($0) })
+								self.lbNotes.text = "Size: " + String(weight) + " grams" + (r as String)
+							}
+
+							
+						}else{
+							
+							
+							
+							if	self.product?.notes == ""{
+								self.lbNotes.text = "Size: 1" + (self.product?.packaging)!
+							}else{
+								
+								let s = "( " + (self.product?.notes)! + ")"
+								let r = String(s.filter { !"\r\n".contains($0) })
+								
+//								String(text.filter { !" \n\t\r".contains($0) })
+								
+								self.lbNotes.text = "Size: 1" + (self.product?.packaging)! + (r as String)
+//								self.lbNotes.text = "Size: " + String(weight) + " grams" + (s as String)
+							}
+							
+							
+						}
+						
+						self.lbTitle.text = (self.product?.title)! + " (" + (self.product?.origin)! + ")"
 						self.lbPrice.text = "AED " + (self.product?.oldPrice)!
 						self.lbDescription.text = self.product?.productDescription?.html2String
 						self.lbQuantity.text = "1"
+						self.lbProductDetailHeading.text = self.product?.title
+						self.lbProductColor.text = self.product?.productColor
+						
+						if self.lbProductColor.text == ""{
+							self.lbColorL.isHidden = true
+						}
+						
 						self.imgProduct.sd_setImage(with: URL(string: (self.product?.productImage!)!), placeholderImage: UIImage(named: ""))
 						
 						
 					}else if response.response!.statusCode == 401{
 						
-						//						self.alerts(title: "Alert", message: KInvalidKey)
+						self.alerts(title: "Alert", message: "KInvalidKey")
 						
 					}else if response.response!.statusCode == 400{
-						//						self.alerts(title: "Alert", message: KNoResourceFound)
+						self.alerts(title: "Alert", message: "KNoResourceFound")
 						
 					}else{
-						//						self.alerts(title: "Alert", message: KUnknown)
+						self.alerts(title: "Alert", message: "KUnknown")
 					}
 					
 			}
 		}else{
-			//			alerts(title: "Network", message: KNoNetwork)
+			alerts(title: "Network", message: KNoNetwork)
 		}
 	}
 	
@@ -161,8 +261,6 @@ class ProductViewController: UIViewController {
 					}else{
 						self.arrProducts?.append(product)
 					}
-					
-					
 				}
 			}
 		}

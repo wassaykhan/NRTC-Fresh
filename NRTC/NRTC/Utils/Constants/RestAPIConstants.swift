@@ -14,7 +14,7 @@ let KBaseUrl:String = "https://dev17.onlinetestingserver.com/nrtc_beta"
 //All Product
 let KAllProduct:String = "/Api/Products/all/en"
 
-<<<<<<< HEAD
+
 //Category Product
 let KCategoryProduct:String = "/Api/Products/getcategoryproducts/"
 
@@ -23,10 +23,22 @@ let KProductDetail:String = "/Api/Products/one/en/"
 
 //Recommended Product
 let KRecommendedProduct:String = "/Api/Products/getproducts"
-=======
+
 //Login
 let KLogin : String = "/Api/Login/login"
 
 //Signup
 let kSignup : String = "/Api/User/registeruser"
->>>>>>> a5414b69dba616342984c4a4f482faf670e85d8e
+
+//No network
+let KNoNetwork : String = "Please Check your Internet Connection"
+
+//Search
+let KSearchQuery : String = "/Api/Products/searchproducts/"
+
+//Order Checkout
+let KOrderCheckout:String = "/Api/User/checkoutuser"
+
+//Get Orders
+let KGetOrders:String = "/Api/Order/orders/"
+

@@ -6,5 +6,7 @@ target 'NRTC' do
 	pod 'ImageSlideshow', '~> 1.6'
         pod 'Alamofire', '~> 4.7'
 	pod 'SDWebImage', '~> 4.0'
+	pod 'SVProgressHUD'
+	pod 'BadgeSwift', '~> 6.0'
 
 end

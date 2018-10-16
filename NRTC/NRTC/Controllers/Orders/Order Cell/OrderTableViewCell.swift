@@ -17,6 +17,7 @@ class OrderTableViewCell: UITableViewCell {
 	@IBOutlet weak var lbPrice: UILabel!
 	
 	var onAddTapped : (() -> Void)? = nil
+	var onSubTapped : (() -> Void)? = nil
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +33,11 @@ class OrderTableViewCell: UITableViewCell {
 		//print(quantity)
 	}
 	@IBAction func btnSubtractAction(_ sender: Any) {
+		
+		if let onSubTapped = self.onSubTapped {
+			onSubTapped()
+		}
+		
 	}
 	
     override func setSelected(_ selected: Bool, animated: Bool) {

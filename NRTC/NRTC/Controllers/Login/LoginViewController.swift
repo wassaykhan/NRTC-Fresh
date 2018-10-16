@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SVProgressHUD
 
 class LoginViewController: UIViewController {
 
@@ -24,13 +25,16 @@ class LoginViewController: UIViewController {
         self.hideKeyboard()
     }
    
-    @IBAction func signup(_ sender: Any) {
+	@IBAction func btnBackAction(_ sender: Any) {
+		self.navigationController?.popViewController(animated: true)
+	}
+	@IBAction func signup(_ sender: Any) {
   self.performSegue(withIdentifier: "register", sender: self)
     }
     @IBAction func login(_ sender: Any) {
         let emailError : String = validation(textField: username, labelError: usernameError, funct: isValidEmail, validEmailorPass: kValidEmail)
-          let passError : String = validation(textField: password, labelError: passwordError, funct: isValidPassword, validEmailorPass: kValidPass)
-        if emailError == "" && passError == ""
+		let passError : String = self.password.text ?? ""//validation(textField: password, labelError: passwordError, funct: isValidPassword, validEmailorPass: kValidPass)
+        if emailError == ""
         {
             loginCall(username: username.text!, password: password.text!)
           
@@ -42,9 +46,11 @@ class LoginViewController: UIViewController {
     {
         let params: [String: Any] = ["email": username, "password": password]
         if Reachability.isConnectedToInternet(){
+			SVProgressHUD.show(withStatus: "Loading Request")
             Alamofire.request(KBaseUrl + KLogin,method:.post,parameters: params, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
                 switch(response.result) {
                 case .success(_):
+					SVProgressHUD.dismiss()
                     if let result = response.result.value as? NSDictionary {
                         switch(result["code"] as? String)
                         {
@@ -52,6 +58,19 @@ class LoginViewController: UIViewController {
                             self.alerts(title: kError, message: kEmailPassValid)
                         case "200":
                             self.loginmodel = LoginModel(dictionary: result )
+							
+							UserDefaults.standard.set(self.loginmodel?.firstName, forKey: "first_name")
+							UserDefaults.standard.set(self.loginmodel?.lastName, forKey: "last_name")
+//							UserDefaults.standard.set(, forKey: "password")
+//							UserDefaults.standard.set(self.password, forKey: "re_confrim_pass")
+							UserDefaults.standard.set(self.loginmodel?.email, forKey: "email")
+							UserDefaults.standard.set(self.loginmodel?.userID, forKey: "user_id")
+							UserDefaults.standard.set(self.loginmodel?.billingAddressLine1, forKey: "billing_address_line_1")
+							UserDefaults.standard.set(self.loginmodel?.billingAddressLine2, forKey: "billing_address_line_2")
+							UserDefaults.standard.set(self.loginmodel?.billingCity, forKey: "billing_city")
+							UserDefaults.standard.set(self.loginmodel?.billingZipCode, forKey: "billing_zip_code")
+							UserDefaults.standard.set(self.loginmodel?.billingPhone, forKey: "billing_phone")
+							
                             self.performSegue(withIdentifier: "loginButton", sender: self)
                         default:
                             self.alerts(title: kError, message:kSwr )
@@ -60,6 +79,7 @@ class LoginViewController: UIViewController {
                     }
                     
                 case .failure(_):
+					SVProgressHUD.dismiss()
                     print("Failure : \(String(describing: response.result.error))")
                     
                 }
@@ -156,6 +176,7 @@ extension UIViewController
         let passwordRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{6,}$"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: Input)
     }
+	
     func alerts(title:String,message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)

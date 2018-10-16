@@ -7,15 +7,27 @@
 //
 
 import UIKit
+import Alamofire
+import SDWebImage
+import SVProgressHUD
+import MessageUI
 
-class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,MFMailComposeViewControllerDelegate {
+	
 	@IBOutlet weak var orderTableView: UITableView!
 	@IBOutlet weak var lbSubTotal: UILabel!
 	@IBOutlet weak var lbTotal: UILabel!
+	@IBOutlet weak var lbTaxAmount: UILabel!
 	
-	
-//	var source = ["1","2","3","4","5","6","7","8"]
 	var arrProduct:Array<Product>?
+	var currQuantity:Int?
+	var currTitle:String?
+	var reload:Bool = false
+	var saveTotal:Float?
+	var saveSubTotal:Float?
+	var saveTax:Float?
+	
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -23,11 +35,51 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 		orderTableView.delegate = self
 		orderTableView.dataSource = self
 		
-		self.lbSubTotal.text = "$" + String(self.calculateTotalAmount(products: self.arrProduct!))
-		self.lbTotal.text = "$" + String(self.calculateTotalAmount(products: self.arrProduct!))
 		
-		// Do any additional setup after loading the view.
+		if (self.arrProduct?.count)! > 0 {
+//			self.lbSubTotal.text = "$" + String(self.calculateTotalAmount(products: self.arrProduct!))
+			
+			var subTotal = self.calculateTotalAmount(products: self.arrProduct!)
+			
+			let tax = subTotal * 0.05
+			
+			subTotal = subTotal - tax
+			
+			self.saveTotal = self.calculateTotalAmount(products: self.arrProduct!)
+			self.saveTax = tax
+			self.saveSubTotal = subTotal
+			
+			self.lbSubTotal.text = "AED " + String(format: "%.2f", subTotal)//String(subTotal)
+			self.lbTaxAmount.text = "AED " + String(format: "%.2f", tax)//String(tax)
+			self.lbTotal.text = "AED " + String(format: "%.2f", self.calculateTotalAmount(products: self.arrProduct!))//String(self.calculateTotalAmount(products: self.arrProduct!))
+		}
+//		else{
+//			self.lbSubTotal.text = "AED 0.0"
+//			self.lbTaxAmount.text = "AED 0.0"
+//			self.lbTotal.text = "AED 0.0"
+//		}
+		
+		
+		
+
 	}
+	@IBAction func btnEmailAction(_ sender: Any) {
+		let composeVC = MFMailComposeViewController()
+		composeVC.mailComposeDelegate = self
+		
+		// Configure the fields of the interface.
+		composeVC.setToRecipients(["customercare@nrtcfresh.com"])
+		composeVC.setSubject("Message Subject")
+		composeVC.setMessageBody("Message content.", isHTML: false)
+		
+		// Present the view controller modally.
+		self.present(composeVC, animated: true, completion: nil)
+	}
+	
+	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+		controller.dismiss(animated: true, completion: nil)
+	}
+	
 	
 	func calculateTotalAmount(products:Array<Product>) -> Float {
 		
@@ -36,7 +88,6 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 			
 			let price:NSString = item.oldPrice! as NSString
 			let quantity:NSString = item.productQuantity! as NSString
-			
 			total +=  price.floatValue * quantity.floatValue
 			
 		}
@@ -61,9 +112,37 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 		cellNewProduct.lbPrice.text = "AED " + (self.arrProduct?[indexPath.row].oldPrice)!
 		cellNewProduct.imgProduct.sd_setImage(with: URL(string: (self.arrProduct?[indexPath.row].productImage)!), placeholderImage: UIImage(named: ""))
 		cellNewProduct.onAddTapped = {
+			self.currTitle = cellNewProduct.lbTitle.text
+//			self.currIndex = indexPath.row
+//			self.currTitle = cellNewProduct.lbQuantity.text
 			let quantity:NSString = cellNewProduct.lbQuantity!.text! as NSString
 			
 			let value = quantity.intValue + 1
+			
+			self.currQuantity = Int(value)
+			self.updateCart()
+			print("Update value")
+			print("index path")
+			print(indexPath.row)
+//			self.arrProduct?[indexPath.row].oldPrice = String(value)
+			
+			let cell = tableView.cellForRow(at: indexPath) as! OrderTableViewCell
+			cell.lbQuantity.text = String(value)
+			
+			
+			//Do whatever you want to do when the button is tapped here
+		}
+		
+		cellNewProduct.onSubTapped = {
+			
+			self.currTitle = cellNewProduct.lbTitle.text
+			//			self.currIndex = indexPath.row
+			//			self.currTitle = cellNewProduct.lbQuantity.text
+			let quantity:NSString = cellNewProduct.lbQuantity!.text! as NSString
+			
+			let value = quantity.intValue - 1
+			
+			self.currQuantity = Int(value)
 			
 			print("Update value")
 			print("index path")
@@ -72,8 +151,9 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 			
 			let cell = tableView.cellForRow(at: indexPath) as! OrderTableViewCell
 			cell.lbQuantity.text = String(value)
-			//Do whatever you want to do when the button is tapped here
+			self.updateCart()
 		}
+		
 		
 		return cellNewProduct
 	}
@@ -82,7 +162,71 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 		return 130
 	}
 	
+	
+	
+	func updateCart(){
+		
+		let userDefaults = UserDefaults.standard
+		self.arrProduct = []
+		let decoded  = userDefaults.object(forKey: "Products") as? Data
+		//		let decodedTeams?
+		if decoded != nil {
+			let selectedProducts = NSKeyedUnarchiver.unarchiveObject(with: decoded!) as! [Product]
+			print(selectedProducts)
+//			selectedProducts[currIndex]
+			if selectedProducts.count > 0 {
+				for product:Product in selectedProducts{
+					
+					if self.currTitle == product.title{
+						
+						if	self.currQuantity! < 1 {
+							print("Dont Add")
+							self.reload = true
+						}else{
+							product.productQuantity = String(self.currQuantity!)
+							self.arrProduct?.append(product)
+						}
+						
+					}else{
+						self.arrProduct?.append(product)
+					}
+					
+					
 
+				}
+			}
+		}
+		
+		
+		
+		
+//		self.arrProducts?.append(self.product!)
+	
+		let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: arrProduct!)
+		userDefaults.set(encodedData, forKey: "Products")
+		userDefaults.synchronize()
+		
+//		if reload {
+			self.orderTableView.reloadData()
+//		self.lbSubTotal.text = String(self.calculateTotalAmount(products: self.arrProduct!))
+//		self.lbTotal.text = String(self.calculateTotalAmount(products: self.arrProduct!))
+//		}
+		
+		var subTotal = self.calculateTotalAmount(products: self.arrProduct!)
+		
+		let tax = subTotal * 0.05
+		
+		subTotal = subTotal - tax
+		
+		self.saveTotal = self.calculateTotalAmount(products: self.arrProduct!)
+		self.saveTax = tax
+		self.saveSubTotal = subTotal
+		
+		self.lbSubTotal.text = "AED " + String(format: "%.2f", subTotal)//String(subTotal)
+		self.lbTaxAmount.text = "AED " + String(format: "%.2f", tax)//String(tax)
+		self.lbTotal.text = "AED " + String(format: "%.2f", self.calculateTotalAmount(products: self.arrProduct!))//String(self.calculateTotalAmount(products: self.arrProduct!))
+		
+	}
 	
     
 
@@ -98,5 +242,107 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         // Pass the selected object to the new view controller.
     }
     */
+	@IBAction func btnContactAction(_ sender: Any) {
+		self.callUs()
+	}
+	@IBAction func btnCheckoutAction(_ sender: Any) {
+		
+		let quantity = self.calculateTotalAmount(products: self.arrProduct!)
+//		let value = quantity.intValue
+		if quantity < 80 {
+			self.alerts(title: "Sorry", message: "The minimum ammount to fullfil your order is AED 80. Please add more item/s to Cart")
+			return
+		}
+		
+		if (self.arrProduct?.count)! < 1 {
+			self.alerts(title: "No Products", message: "Please select products for Checkout")
+			return
+		}
+		
+		if UserDefaults.standard.string(forKey: "first_name") == nil {
+			let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginID") as! LoginViewController
+			self.navigationController?.pushViewController(nextViewController, animated: true)
+			return
+		}
+		
+		UserDefaults.standard.set(self.saveSubTotal, forKey: "sub_total")
+		UserDefaults.standard.set(self.saveTotal, forKey: "grand_total")//value_added_tax
+		UserDefaults.standard.set(self.saveTax, forKey: "value_added_tax")
+		let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "shippingID") as! ShippingViewController
+		nextViewController.arrProduct = self.arrProduct
+		self.navigationController?.pushViewController(nextViewController, animated: true)
+		
+		return
+		
+		
+		var finalProd = [[String: String]]()
+		
+		for products:Product in arrProduct! {
+			let dictionary1: [String: String] = ["product_id":products.productId!,"quantity":products.productQuantity!,"prod_price":products.oldPrice!]
+			finalProd.append(dictionary1)
+		}
+		
+		
+		let credentials = getDefaults()
+		
+		let urlString = KBaseUrl + KOrderCheckout
+		
+		
+		
+		
+		let parameters:[String:AnyObject] = ["first_name":credentials["first_name"] as AnyObject,"last_name":credentials["last_name"] as AnyObject,"email":"jyotirajwani@hotmail.com" as AnyObject, "billing_address":credentials["billing_address_line_1"] as AnyObject,"billing_address_line_1":credentials["billing_address_line_1"] as AnyObject,"billing_address_line_2":credentials["billing_address_line_2"] as AnyObject,"billing_city":credentials["billing_city"] as AnyObject,"billing_zip_code":credentials["billing_zip_code"] as AnyObject,"billing_phone":credentials["billing_phone"] as AnyObject,"password_register":credentials["billing_phone"] as AnyObject,"re_password_register":"" as AnyObject,"shipping_first_name":"jhkjkjk" as AnyObject,"shipping_last_name":"jkljljlk" as AnyObject,"shipping_address":"ghfhtyjt" as AnyObject,"shipping_address_line_1":"ghfhtyjt" as AnyObject,"shipping_address_line_2":"" as AnyObject,"shipping_city":"DUBAI" as AnyObject,"shipping_zip_code":"54165456" as AnyObject,"shipping_phone":"0653656" as AnyObject,"preferred_date_of_delivery":"09 October 2018" as AnyObject,
+			"product_items": finalProd as AnyObject,
+			
+			"payment_type":"cod" as AnyObject,"sub_total":"19.0476190476" as AnyObject,"value_added_tax":"0.952380952381" as AnyObject,"grand_total":"20.00" as AnyObject,
+			"amount_currency":"AED" as AnyObject,"checkout_type":"guest" as AnyObject,"referrer":"" as AnyObject,"clean_referrer":"" as AnyObject,"user_id":credentials["user_id"]  as AnyObject]
 
+		if Reachability.isConnectedToInternet(){
+			
+			SVProgressHUD.show(withStatus: "Loading Request")
+			
+			Alamofire.request(urlString,method:.post,parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+				
+				switch(response.result) {
+				case .success(_):
+					
+					SVProgressHUD.dismiss()
+					
+					if let result = response.result.value as? NSDictionary {
+						switch(result["success"] as? Int)
+						{
+						case 404:
+							self.alerts(title: kError, message: "kEmailAlreadyExist")
+						case 200:
+							
+							let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "homeID") as! HomeViewController
+							self.navigationController?.pushViewController(nextViewController, animated: true)
+							
+							self.alerts(title: "Order Placed", message: "Thanks for shopping at NRTC Fresh")
+							
+							
+							
+						default:
+							self.alerts(title: kError, message:kSwr )
+						}
+						//
+					}
+					else{
+						let arrays = response.result.value as! [String]
+						self.alerts(title: kError, message: arrays[0])
+					}
+					
+				case .failure(_):
+					SVProgressHUD.dismiss()
+					print("Failure : \(String(describing: response.result.error))")
+					
+				}
+			}
+		}
+		else
+		{
+//			SVProgressHUD.dismiss()
+			self.alerts(title: kInternet, message: kCheckInternet)
+		}
+		
+	}
 }

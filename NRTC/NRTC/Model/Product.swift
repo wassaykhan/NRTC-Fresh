@@ -25,6 +25,12 @@ class Product: NSObject, NSCoding {
 	var productVisibility:String?
 	var productCategory:String?
 	var productQuantity:String?
+	var weight:String?
+	var packaging:String?
+	var origin:String?
+	var notes:String?
+	var productColor:String?
+	
 	
 	init(dictionary : NSDictionary){
 		self.productId = dictionary["product_id"] as? String
@@ -41,6 +47,13 @@ class Product: NSObject, NSCoding {
 		self.basicDescription = dictionary["basic_description"] as? String
 		self.productVisibility = dictionary["product_visibility"] as? String
 		self.productCategory = dictionary["product_category"] as? String
+		
+		self.weight = dictionary["weight"] as? String
+		self.productColor = dictionary["color"] as? String
+		self.packaging = dictionary["packaging"] as? String
+		self.origin = dictionary["origin"] as? String
+		self.notes = dictionary["notes"] as? String
+		
 	}
 	
 	func encode(with aCoder: NSCoder) {
@@ -62,6 +75,7 @@ class Product: NSObject, NSCoding {
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
+		
 		self.productId = aDecoder.decodeObject(forKey: "productId") as? String
 		self.productImage = aDecoder.decodeObject(forKey: "productImage") as? String
 		self.productQuantityAvailable = aDecoder.decodeObject(forKey: "productQuantityAvailable") as? String
