@@ -24,6 +24,7 @@
 		7CB91F032173FF0600874CB1 /* MyOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB91F022173FF0600874CB1 /* MyOrderViewController.swift */; };
 		7CB91F06217405B500874CB1 /* MyOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB91F05217405B500874CB1 /* MyOrderTableViewCell.swift */; };
 		7CB91F09217407A500874CB1 /* ItemOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB91F08217407A500874CB1 /* ItemOrderTableViewCell.swift */; };
+		7CC9D38321778D8000D19BAD /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC9D38221778D8000D19BAD /* Orders.swift */; };
 		7CCEE3C3216DF4EE00CF6A18 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEE3C2216DF4EE00CF6A18 /* Reachability.swift */; };
 		7CCEE3C7216DF56800CF6A18 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEE3C6216DF56800CF6A18 /* AppConstants.swift */; };
 		7CCEE3C9216DF58000CF6A18 /* RestAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEE3C8216DF58000CF6A18 /* RestAPIConstants.swift */; };
@@ -78,6 +79,7 @@
 		7CB91F022173FF0600874CB1 /* MyOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderViewController.swift; sourceTree = "<group>"; };
 		7CB91F05217405B500874CB1 /* MyOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderTableViewCell.swift; sourceTree = "<group>"; };
 		7CB91F08217407A500874CB1 /* ItemOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOrderTableViewCell.swift; sourceTree = "<group>"; };
+		7CC9D38221778D8000D19BAD /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
 		7CCEE3C2216DF4EE00CF6A18 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		7CCEE3C6216DF56800CF6A18 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		7CCEE3C8216DF58000CF6A18 /* RestAPIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIConstants.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 				7C312B3721708DEE00009001 /* Product.swift */,
 				1ABE05BC216DEDF5007FD8FC /* LoginModel.swift */,
 				7C6DE3B92174E474004232DC /* User.swift */,
+				7CC9D38221778D8000D19BAD /* Orders.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				7C3474022163574E00D2AD7F /* ProductCategoryViewController.swift in Sources */,
 				7CFA0AC92164E8FB00A6E6C5 /* RegisterViewController.swift in Sources */,
 				DA0B7C64215D1127003B5479 /* RootTableViewController.swift in Sources */,
+				7CC9D38321778D8000D19BAD /* Orders.swift in Sources */,
 				7C2F09522173BA3D000229E9 /* ShippingViewController.swift in Sources */,
 				7C1D7D15216F631500B40DD1 /* CategoryProduct.swift in Sources */,
 				7C6DE3BA2174E474004232DC /* User.swift in Sources */,

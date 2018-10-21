@@ -20,7 +20,11 @@ class MyOrderViewController: UIViewController,UITableViewDelegate,UITableViewDat
 	@IBOutlet weak var mainTableView: UITableView!
 	
 	var orderData:User?
-	var allOrders:Array<User> = []
+	var allOrders:Array<Orders> = []
+	
+	var numOfViews:Int = 0
+	
+	//for Cart
 	var arrProducts:Array<Product> = []
 	
 	
@@ -35,7 +39,6 @@ class MyOrderViewController: UIViewController,UITableViewDelegate,UITableViewDat
 		let userDefaults = UserDefaults.standard
 		self.arrProducts = []
 		let decoded  = userDefaults.object(forKey: "Products") as? Data
-		//		let decodedTeams?
 		if decoded != nil {
 			let selectedProducts = NSKeyedUnarchiver.unarchiveObject(with: decoded!) as! [Product]
 			print(selectedProducts)
@@ -90,19 +93,15 @@ class MyOrderViewController: UIViewController,UITableViewDelegate,UITableViewDat
 						case "404":
 							self.alerts(title: kError, message: "No Order Found")
 						case "200":
-							
 							let JSON:NSDictionary = (response.result.value as! NSDictionary?)!
 							self.allOrders = []
 							for dictionary in JSON["data"] as! NSArray{
-								let order:User = User(orderDictinary: dictionary as! NSDictionary)
-								self.allOrders.append(order)
+								let product:Orders = Orders(orderDictinary: dictionary as! NSDictionary)
+								print(product)
+								self.allOrders.append(product)
 							}
 							print(self.allOrders)
 							self.mainTableView.reloadData()
-							
-//							self.loginmodel = LoginModel(dictionary: result )
-							
-//							self.performSegue(withIdentifier: "loginButton", sender: self)
 						default:
 							self.alerts(title: kError, message: "No Order Found")
 						}
@@ -130,29 +129,105 @@ class MyOrderViewController: UIViewController,UITableViewDelegate,UITableViewDat
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//		return 300
-		return 130
+//		return 130
+		return (CGFloat(83 + (100*self.allOrders[indexPath.row].productArr.count)))
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
 		//myOrderCellIdentifier
 		let cellOrder:MyOrderTableViewCell = tableView.dequeueReusableCell(withIdentifier: "mainOrderCellIdentifier", for: indexPath) as! MyOrderTableViewCell
+		
+		
+		
+//		cellOrder.clearsContextBeforeDrawing = true
+		
+//		cellOrder.contentView.willRemoveSubview(<#T##subview: UIView##UIView#>)
+		
 		cellOrder.lbOrderID.text =  "Order # " + (self.allOrders[indexPath.row].orderID ?? "Checking...")
 		cellOrder.lbTotal.text = "Total: AED " + (self.allOrders[indexPath.row].grandTotal  ?? "0.0")
 		cellOrder.lbStatus.text  = "Status: " + (self.allOrders[indexPath.row].orderStatus ?? "UNKNOWN")
 		cellOrder.lbDeliveredOn.text = "Preferred delivery date: " + (self.allOrders[indexPath.row].preferredDateOfDelivery ?? "None")
-		return cellOrder
+		cellOrder.lbItems.text = String(self.allOrders[indexPath.row].productArr.count) + " items"
+		var myView = UIView(frame: CGRect(x: 0, y: cellOrder.lbStatus.bounds.height + cellOrder.lbStatus.frame.origin.y, width: cellOrder.viewBackground.bounds.width - 10, height: 80))
 		
+		numOfViews = self.allOrders[indexPath.row].productArr.count
+		
+		for n in 0..<numOfViews {
+			print(n)
+			
+			if n == 0 {
+				// Product Image
+				let imgItem = UIImageView(frame: CGRect(x: 20, y: 10, width: 50, height: 50))
+				imgItem.sd_setImage(with: URL(string: (self.allOrders[indexPath.row].productArr[n].productOrderImage)!), placeholderImage: UIImage(named: ""))
+				myView.addSubview(imgItem)
+				//Product Title
+				let lbTitle = UILabel(frame: CGRect(x: imgItem.frame.origin.x + 70, y: imgItem.frame.origin.y + 5, width: 300, height: 20))
+				lbTitle.text = self.allOrders[indexPath.row].productArr[n].title
+				lbTitle.tag = 100
+				lbTitle.textColor = UIColor.gray
+				lbTitle.font = UIFont.boldSystemFont(ofSize: 13)
+				myView.addSubview(lbTitle)
+				
+//				lbTitle.text = ""
+				//Product Price and Quantity
+				let lbPriceQuantity = UILabel(frame: CGRect(x: imgItem.frame.origin.x + 70, y: lbTitle.frame.origin.y + 15, width: 300, height: 20))
+				lbPriceQuantity.text = self.allOrders[indexPath.row].productArr[n].oldPrice! + " x " + self.allOrders[indexPath.row].productArr[n].productOrderQuantity!
+				lbPriceQuantity.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0) 
+				lbPriceQuantity.font = UIFont.systemFont(ofSize: 12)
+				myView.addSubview(lbPriceQuantity)
+				//Product Total
+				let lbTotal = UILabel(frame: CGRect(x: imgItem.frame.origin.x + 70, y: lbPriceQuantity.frame.origin.y + 15, width: 300, height: 20))
+				let price = self.allOrders[indexPath.row].productArr[n].oldPrice! as NSString
+				let quantity = self.allOrders[indexPath.row].productArr[n].productOrderQuantity! as NSString
+				let total = price.intValue * quantity.intValue
+				lbTotal.text = "Total: " + String(total)
+				lbTotal.textColor = UIColor(red: 0.31, green: 0.72, blue: 0.41, alpha: 1)
+				lbTotal.font = UIFont.boldSystemFont(ofSize: 13)
+				myView.addSubview(lbTotal)
+				
+				cellOrder.viewBackground.addSubview(myView)
+				
+				
+				
+			}else{
+				
+				let imgItems = UIImageView(frame: CGRect(x: 20, y: 10, width: 50, height: 50))
+				imgItems.sd_setImage(with: URL(string: (self.allOrders[indexPath.row].productArr[n].productOrderImage)!), placeholderImage: UIImage(named: ""))
+				let nextView = UIView(frame: CGRect(x: 0, y: myView.frame.origin.y + 100, width: cellOrder.viewBackground.bounds.width - 10, height: 80))
+				nextView.addSubview(imgItems)
+				//Product Title
+				let lbTitle = UILabel(frame: CGRect(x: imgItems.frame.origin.x + 70, y: imgItems.frame.origin.y + 5, width: 300, height: 20))
+				lbTitle.text = self.allOrders[indexPath.row].productArr[n].title
+				lbTitle.textColor = UIColor.gray
+				lbTitle.font = UIFont.boldSystemFont(ofSize: 13)
+				nextView.addSubview(lbTitle)
+				//Product Price and Quantity
+				let lbPriceQuantity = UILabel(frame: CGRect(x: imgItems.frame.origin.x + 70, y: lbTitle.frame.origin.y + 15, width: 300, height: 20))
+				lbPriceQuantity.text = self.allOrders[indexPath.row].productArr[n].oldPrice! + " x " + self.allOrders[indexPath.row].productArr[n].productOrderQuantity!
+				lbPriceQuantity.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
+				lbPriceQuantity.font = UIFont.systemFont(ofSize: 12)
+				nextView.addSubview(lbPriceQuantity)
+				//Product Total
+				let lbTotal = UILabel(frame: CGRect(x: imgItems.frame.origin.x + 70, y: lbPriceQuantity.frame.origin.y + 15, width: 300, height: 20))
+				let price = self.allOrders[indexPath.row].productArr[n].oldPrice! as NSString
+				let quantity = self.allOrders[indexPath.row].productArr[n].productOrderQuantity! as NSString
+				let total = price.intValue * quantity.intValue
+				lbTotal.text = "Total: " + String(total)
+				lbTotal.textColor = UIColor(red: 0.31, green: 0.72, blue: 0.41, alpha: 1)
+				lbTotal.font = UIFont.boldSystemFont(ofSize: 13)
+				nextView.addSubview(lbTotal)
+				
+				
+				cellOrder.viewBackground.addSubview(nextView)
+				myView = UIView(frame: CGRect(x: 0, y: nextView.frame.origin.y, width: cellOrder.viewBackground.bounds.width - 10, height: 80))
+			}
+		}
+		
+//		cellOrder.clipsToBounds = true
+//		cellOrder.clearsContextBeforeDrawing = true
+		
+		return cellOrder
 	}
-	
-	/*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

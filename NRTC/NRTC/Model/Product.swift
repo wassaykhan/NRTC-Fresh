@@ -31,6 +31,11 @@ class Product: NSObject, NSCoding {
 	var notes:String?
 	var productColor:String?
 	
+	//For Orders
+	var productOrderQuantity:String?
+	var sumPrice:Int?
+	var productOrderImage:String?
+	
 	
 	init(dictionary : NSDictionary){
 		self.productId = dictionary["product_id"] as? String
@@ -47,12 +52,16 @@ class Product: NSObject, NSCoding {
 		self.basicDescription = dictionary["basic_description"] as? String
 		self.productVisibility = dictionary["product_visibility"] as? String
 		self.productCategory = dictionary["product_category"] as? String
-		
 		self.weight = dictionary["weight"] as? String
 		self.productColor = dictionary["color"] as? String
 		self.packaging = dictionary["packaging"] as? String
 		self.origin = dictionary["origin"] as? String
 		self.notes = dictionary["notes"] as? String
+		
+		//additional for Order Items
+		self.productOrderQuantity = dictionary["quantity"] as? String
+		self.sumPrice = dictionary["sum_price"] as? Int
+		self.productOrderImage = dictionary["image"] as? String
 		
 	}
 	
@@ -72,6 +81,7 @@ class Product: NSObject, NSCoding {
 		aCoder.encode(self.productVisibility, forKey: "productVisibility")
 		aCoder.encode(self.productCategory, forKey: "productCategory")
 		aCoder.encode(self.productQuantity,forKey: "productQuantity")
+		aCoder.encode(self.packaging,forKey: "packaging")
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -91,6 +101,7 @@ class Product: NSObject, NSCoding {
 		self.productVisibility = aDecoder.decodeObject(forKey: "productVisibility") as? String
 		self.productCategory = aDecoder.decodeObject(forKey: "productCategory") as? String
 		self.productQuantity = aDecoder.decodeObject(forKey: "productQuantity") as? String
+		self.packaging = aDecoder.decodeObject(forKey: "packaging") as? String
 	}
 	
 	

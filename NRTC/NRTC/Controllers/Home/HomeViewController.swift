@@ -121,7 +121,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 			cellNewProduct.lbProductType.text = "New Products"
 			cellNewProduct.btnViewMore.tag = 23
 			
-			if (self.newProduct.count >= 3){
+			if (self.newProduct.count > 3){
 				let newProd1:CategoryProduct = self.newProduct[0]
 				let newProd2:CategoryProduct = self.newProduct[1]
 				let newProd3:CategoryProduct = self.newProduct[2]

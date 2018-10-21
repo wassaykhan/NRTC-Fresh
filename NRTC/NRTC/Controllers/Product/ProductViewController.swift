@@ -36,6 +36,9 @@ class ProductViewController: UIViewController,MFMailComposeViewControllerDelegat
 	var arrProducts:Array<Product>?
 	var arrProductCart:Array<Product> = []
 	
+	var quantityLB:Int = 1
+	
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		self.getProductDetail()
@@ -151,6 +154,24 @@ class ProductViewController: UIViewController,MFMailComposeViewControllerDelegat
 						self.product = Product(dictionary: JSON["data"] as! NSDictionary)
 						print(self.product!)
 						
+						if self.product?.notes != ""{
+							let s = "(" + (self.product?.notes)! + ")"
+							let  r = String(s.filter { !"\r\n".contains($0) })
+							self.lbNotes.text = r
+						}else{
+							self.lbNotes.text = ""
+						}
+						
+						
+						
+						var str = ""
+						if self.product?.packaging == "Precut" || self.product?.packaging == "Pack" || self.product?.packaging == "pack" {
+							str = "/Pack"
+						}else{
+							str = "/" + (self.product?.packaging)!
+						}
+						
+						/*
 						if self.product?.packaging == "Precut" || self.product?.packaging == "Pack" || self.product?.packaging == "pack" {
 							
 							let str:NSString = self.product!.weight! as NSString
@@ -170,28 +191,42 @@ class ProductViewController: UIViewController,MFMailComposeViewControllerDelegat
 							
 						}else{
 							
-							
-							
 							if	self.product?.notes == ""{
 								self.lbNotes.text = "Size: 1" + (self.product?.packaging)!
 							}else{
 								
 								let s = "( " + (self.product?.notes)! + ")"
 								let r = String(s.filter { !"\r\n".contains($0) })
-								
-//								String(text.filter { !" \n\t\r".contains($0) })
-								
 								self.lbNotes.text = "Size: 1" + (self.product?.packaging)! + (r as String)
-//								self.lbNotes.text = "Size: " + String(weight) + " grams" + (s as String)
 							}
-							
-							
+	
+						}
+						*/
+						self.lbTitle.text = (self.product?.title)! + " (" + (self.product?.origin)! + ")"
+//						let newPrice:Float = 0
+						if self.product?.packaging == "KG" || self.product?.packaging == "kg"{
+							let price = self.product!.oldPrice! as NSString
+							let newPrice = price.floatValue * 4
+							self.lbPrice.text = "AED " + String(newPrice) + str
+						}else{
+							self.lbPrice.text = "AED " + (self.product?.oldPrice)! + str
 						}
 						
-						self.lbTitle.text = (self.product?.title)! + " (" + (self.product?.origin)! + ")"
-						self.lbPrice.text = "AED " + (self.product?.oldPrice)!
+						
 						self.lbDescription.text = self.product?.productDescription?.html2String
-						self.lbQuantity.text = "1"
+						
+						if self.product?.packaging == "KG" || self.product?.packaging == "kg"{
+							
+							let weight:Float = 0.25
+//							weight = weight*Float(quantityLB)
+							self.lbQuantity.text = String(weight)
+							
+							
+						}else{
+							self.lbQuantity.text = "1"
+						}
+						
+						
 						self.lbProductDetailHeading.text = self.product?.title
 						self.lbProductColor.text = self.product?.productColor
 						
@@ -221,21 +256,59 @@ class ProductViewController: UIViewController,MFMailComposeViewControllerDelegat
 	
 	@IBAction func btnDeleteAction(_ sender: Any) {
 		
+		if self.product?.packaging == "KG" || self.product?.packaging == "kg"{
+			
+			var weight:Float = 0.25
+			if self.quantityLB > 1 {
+				self.quantityLB = self.quantityLB - 1
+				weight = weight*Float(quantityLB)
+				self.lbQuantity.text = String(weight)
+			}
+			
+		}else{
+			if self.quantityLB > 1 {
+				self.quantityLB = self.quantityLB - 1
+				
+				self.lbQuantity.text = String(self.quantityLB)
+			}
+		}
+		
+		
+		
+		
+		/*
 		let quantity:NSString = self.lbQuantity.text! as NSString
 		if quantity.intValue > 1 {
 			let value = quantity.intValue - 1
 			self.lbQuantity.text = String(value)
 		}
-		
+		*/
 	}
 	
 	@IBAction func btnAddAction(_ sender: Any) {
-
 		
+		if self.product?.packaging == "KG" || self.product?.packaging == "kg"{
+			
+			var weight:Float = 0.25
+			
+			self.quantityLB += 1
+			weight = weight*Float(quantityLB)
+			self.lbQuantity.text = String(weight)
+			
+			
+		}else{
+			
+			self.quantityLB += 1
+			self.lbQuantity.text = String(self.quantityLB)
+		}
+		
+		
+		
+		/*
 		let quantity:NSString = self.lbQuantity.text! as NSString
 		let value = quantity.intValue + 1
 		self.lbQuantity.text = String(value)
-		
+		*/
 	}
 	
 	
@@ -243,7 +316,9 @@ class ProductViewController: UIViewController,MFMailComposeViewControllerDelegat
 	
 	@IBAction func btnAddToCartAction(_ sender: Any) {
 		
-		self.product?.productQuantity = self.lbQuantity.text
+//		self.product?.productQuantity = self.lbQuantity.text
+		
+		self.product?.productQuantity = String(self.quantityLB)
 		
 		let userDefaults = UserDefaults.standard
 		self.arrProducts = []
@@ -255,7 +330,7 @@ class ProductViewController: UIViewController,MFMailComposeViewControllerDelegat
 			
 			if selectedProducts.count > 0 {
 				for product:Product in selectedProducts{
-					
+					print(product)
 					if	product.title == self.product?.title{
 						print("Already Exists")
 					}else{

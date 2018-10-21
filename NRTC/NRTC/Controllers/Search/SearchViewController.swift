@@ -28,6 +28,7 @@ class SearchViewController: UIViewController,UICollectionViewDelegate,UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.getProductCategory()
+		self.lbCategoryHeading.text = self.searchText
         // Do any additional setup after loading the view.
     }
 	

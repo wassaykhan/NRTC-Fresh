@@ -15,6 +15,7 @@ class OrderTableViewCell: UITableViewCell {
 	@IBOutlet weak var imgProduct: UIImageView!
 	@IBOutlet weak var lbTitle: UILabel!
 	@IBOutlet weak var lbPrice: UILabel!
+	@IBOutlet weak var lbUnitPrice: UILabel!
 	
 	var onAddTapped : (() -> Void)? = nil
 	var onSubTapped : (() -> Void)? = nil

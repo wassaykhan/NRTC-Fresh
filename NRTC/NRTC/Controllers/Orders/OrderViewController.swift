@@ -22,6 +22,7 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 	var arrProduct:Array<Product>?
 	var currQuantity:Int?
 	var currTitle:String?
+	var productID:String?
 	var reload:Bool = false
 	var saveTotal:Float?
 	var saveSubTotal:Float?
@@ -107,51 +108,125 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 		
 		let cellNewProduct:OrderTableViewCell = self.orderTableView.dequeueReusableCell(withIdentifier: "orderCellIdentifier") as! OrderTableViewCell
 		
-		cellNewProduct.lbQuantity.text = self.arrProduct?[indexPath.row].productQuantity
+		if self.arrProduct?[indexPath.row].packaging == "KG" || self.arrProduct?[indexPath.row].packaging == "kg"{
+			
+			var weight:Float = 0.25
+			let quantity:NSString = self.arrProduct![indexPath.row].productQuantity! as NSString
+			self.currQuantity = Int(quantity as String)
+			weight = weight*quantity.floatValue
+			cellNewProduct.lbQuantity.text = String(weight)
+			
+			//for Unit Price
+			let quarterPrice = self.arrProduct![indexPath.row].oldPrice! as NSString
+			let kgPrice = quarterPrice.intValue * 4
+			cellNewProduct.lbUnitPrice.text = "Price: AED " + String(kgPrice) + "/KG"
+			//for Total Price
+			let totalP = quarterPrice.floatValue * Float(self.currQuantity!)
+			cellNewProduct.lbPrice.text = "Total: AED " + String(totalP)
+			
+			
+			
+		}else{
+			cellNewProduct.lbQuantity.text = self.arrProduct?[indexPath.row].productQuantity
+			let price = self.arrProduct![indexPath.row].oldPrice! as NSString
+			let quantity:NSString = self.arrProduct![indexPath.row].productQuantity! as NSString
+			//for Unit Price
+			cellNewProduct.lbUnitPrice.text = "Price: AED " + (self.arrProduct?[indexPath.row].oldPrice)! + "/Pack"
+			//For Total
+			let totalP = quantity.floatValue * price.floatValue
+			cellNewProduct.lbPrice.text = "Total: AED " + String(totalP)
+			
+		}
+		print("hoja")
+		//print(self.arrProduct?[indexPath.row].packaging!)
 		cellNewProduct.lbTitle.text = self.arrProduct?[indexPath.row].title
-		cellNewProduct.lbPrice.text = "AED " + (self.arrProduct?[indexPath.row].oldPrice)!
+//		cellNewProduct.lbPrice.text = "Total: AED " + (self.arrProduct?[indexPath.row].oldPrice)!
 		cellNewProduct.imgProduct.sd_setImage(with: URL(string: (self.arrProduct?[indexPath.row].productImage)!), placeholderImage: UIImage(named: ""))
+		
+		
+		
+		
 		cellNewProduct.onAddTapped = {
+			self.productID = self.arrProduct?[indexPath.row].productId
 			self.currTitle = cellNewProduct.lbTitle.text
 //			self.currIndex = indexPath.row
 //			self.currTitle = cellNewProduct.lbQuantity.text
-			let quantity:NSString = cellNewProduct.lbQuantity!.text! as NSString
+			self.currQuantity = 0
+			if self.arrProduct?[indexPath.row].packaging == "KG" || self.arrProduct?[indexPath.row].packaging == "kg"{
+				
+				var weight:Float = 0.25
+				
+				let quantity:NSString = self.arrProduct![indexPath.row].productQuantity! as NSString
+				let newQuantity = 	quantity.intValue + 1
+				self.currQuantity = Int(newQuantity)
+				print(newQuantity)
+				weight = weight*Float(newQuantity)
+				print(weight)
+				self.updateCart()
+//				var weight:Float = 0.25
+//				weight = weight*Float(self.currQuantity)
+//				let cell = tableView.cellForRow(at: indexPath) as! OrderTableViewCell
+//				cell.lbQuantity.text = String(weight)
+				cellNewProduct.lbQuantity.text = String(weight)
+				print(weight)
+				
+			}else{
+//				self.lbQuantity.text = "1"
+				let quantity:NSString = cellNewProduct.lbQuantity!.text! as NSString
+				let value = quantity.intValue + 1
+				self.currQuantity = Int(value)
+				self.updateCart()
+//				let cell = tableView.cellForRow(at: indexPath) as! OrderTableViewCell
+//				cell.lbQuantity.text = String(value)
+				cellNewProduct.lbQuantity.text = String(value)
+
+			}
 			
-			let value = quantity.intValue + 1
-			
-			self.currQuantity = Int(value)
-			self.updateCart()
-			print("Update value")
-			print("index path")
+//			print("index path ", indexPath.row)
 			print(indexPath.row)
 //			self.arrProduct?[indexPath.row].oldPrice = String(value)
 			
-			let cell = tableView.cellForRow(at: indexPath) as! OrderTableViewCell
-			cell.lbQuantity.text = String(value)
 			
 			
 			//Do whatever you want to do when the button is tapped here
 		}
 		
 		cellNewProduct.onSubTapped = {
-			
+			self.productID = self.arrProduct?[indexPath.row].productId
 			self.currTitle = cellNewProduct.lbTitle.text
-			//			self.currIndex = indexPath.row
-			//			self.currTitle = cellNewProduct.lbQuantity.text
-			let quantity:NSString = cellNewProduct.lbQuantity!.text! as NSString
+
+			if self.arrProduct?[indexPath.row].packaging == "KG" || self.arrProduct?[indexPath.row].packaging == "kg"{
+				
+				var weight:Float = 0.25
+				
+				let quantity:NSString = self.arrProduct![indexPath.row].productQuantity! as NSString
+				let newQuantity = 	quantity.floatValue - 1
+				self.currQuantity = Int(newQuantity)
+				weight = weight*newQuantity
+				
+				//				var weight:Float = 0.25
+				//				weight = weight*Float(self.currQuantity)
+				let cell = tableView.cellForRow(at: indexPath) as! OrderTableViewCell
+				cell.lbQuantity.text = String(weight)
+				//				cellNewProduct.lbQuantity.text = String(weight)
+				self.updateCart()
+				
+			}else{
+				//				self.lbQuantity.text = "1"
+				let quantity:NSString = cellNewProduct.lbQuantity!.text! as NSString
+				let value = quantity.intValue - 1
+				self.currQuantity = Int(value)
+				
+				let cell = tableView.cellForRow(at: indexPath) as! OrderTableViewCell
+				cell.lbQuantity.text = String(value)
+				self.updateCart()
+				
+			}
 			
-			let value = quantity.intValue - 1
 			
-			self.currQuantity = Int(value)
 			
-			print("Update value")
-			print("index path")
-			print(indexPath.row)
-			self.arrProduct?[indexPath.row].oldPrice = String(value)
 			
-			let cell = tableView.cellForRow(at: indexPath) as! OrderTableViewCell
-			cell.lbQuantity.text = String(value)
-			self.updateCart()
+			
 		}
 		
 		
@@ -177,8 +252,8 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 			if selectedProducts.count > 0 {
 				for product:Product in selectedProducts{
 					
-					if self.currTitle == product.title{
-						
+//					if self.currTitle == product.title{
+					if self.productID == product.productId{
 						if	self.currQuantity! < 1 {
 							print("Dont Add")
 							self.reload = true
