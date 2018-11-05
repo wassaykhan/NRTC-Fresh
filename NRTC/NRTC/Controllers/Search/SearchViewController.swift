@@ -37,7 +37,6 @@ class SearchViewController: UIViewController,UICollectionViewDelegate,UICollecti
 		let userDefaults = UserDefaults.standard
 		self.arrProducts = []
 		let decoded  = userDefaults.object(forKey: "Products") as? Data
-		//		let decodedTeams?
 		if decoded != nil {
 			let selectedProducts = NSKeyedUnarchiver.unarchiveObject(with: decoded!) as! [Product]
 			print(selectedProducts)
@@ -70,7 +69,7 @@ class SearchViewController: UIViewController,UICollectionViewDelegate,UICollecti
 		//categoryCellIdentifier
 		let cellCategory:CategoryCollectionViewCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCellIdentifier", for: indexPath) as! CategoryCollectionViewCell
 		cellCategory.lbTitle.text =  self.arrCategoryProduct[indexPath.row].title!
-		cellCategory.lbPrice.text = "AED " + self.arrCategoryProduct[indexPath.row].oldPrice!
+		cellCategory.lbPrice.text = getPrice(prod: (self.arrCategoryProduct[indexPath.row]))
 		cellCategory.imgProduct.sd_setImage(with: URL(string: self.arrCategoryProduct[indexPath.row].image!), placeholderImage: UIImage(named: ""))
 		//newProductCellIdentifier
 		return cellCategory

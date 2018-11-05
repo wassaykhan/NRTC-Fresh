@@ -82,7 +82,7 @@ class ProductCategoryViewController: UIViewController,UICollectionViewDelegate,U
 		//categoryCellIdentifier
 		let cellCategory:CategoryCollectionViewCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCellIdentifier", for: indexPath) as! CategoryCollectionViewCell
 		cellCategory.lbTitle.text =  self.arrCategoryProduct[indexPath.row].title!
-		cellCategory.lbPrice.text = "AED " + self.arrCategoryProduct[indexPath.row].oldPrice!
+		cellCategory.lbPrice.text = getPrice(prod: (self.arrCategoryProduct[indexPath.row]))
 		cellCategory.imgProduct.sd_setImage(with: URL(string: self.arrCategoryProduct[indexPath.row].image!), placeholderImage: UIImage(named: ""))
 		//newProductCellIdentifier
 		return cellCategory

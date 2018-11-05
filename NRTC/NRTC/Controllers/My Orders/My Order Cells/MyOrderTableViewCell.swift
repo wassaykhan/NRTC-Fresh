@@ -15,6 +15,8 @@ class MyOrderTableViewCell: UITableViewCell {
 	@IBOutlet weak var lbOrderID: UILabel!
 	@IBOutlet weak var lbStatus: UILabel!
 	@IBOutlet weak var lbDeliveredOn: UILabel!
+	@IBOutlet weak var lbDeliveryTime: UILabel!
+	
 	@IBOutlet weak var itemTableView: UITableView!
 	@IBOutlet weak var lbTotal: UILabel!
 	@IBOutlet weak var lbItems: UILabel!

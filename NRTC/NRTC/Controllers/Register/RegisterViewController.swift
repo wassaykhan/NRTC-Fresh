@@ -40,27 +40,27 @@ class RegisterViewController: UIViewController {
 	
     @IBAction func signup(_ sender: Any) {
        
-        let firstnameError = checkTextfield(textfield: firstName, textfieldError: self.firstnameError)
+//        let firstnameError = checkTextfield(textfield: firstName, textfieldError: self.firstnameError)
+		
+//        let lastnameError = checkTextfield(textfield: lastname, textfieldError: self.lastnameError)
+		
+//        let passError = validation(textField: password, labelError: passwordError, funct: isValidPassword, validEmailorPass: kValidPass)
+		
        
-        let lastnameError = checkTextfield(textfield: lastname, textfieldError: self.lastnameError)
-        
-        let passError = validation(textField: password, labelError: passwordError, funct: isValidPassword, validEmailorPass: kValidPass)
-       
-       
-            let cnfrmpassError = validation(textField: confirmpass, labelError: confirmpassError, funct: isValidPassword, validEmailorPass: kValidPass)
-            if(cnfrmpassError == "")
-            {
-                if confirmpass.text != password.text {
-                    confirmpassError.text = kPasswordMatch
-                }
-                else{
-                    confirmpassError.text = ""
-                }
-            }
-    
-        let emailError = validation(textField: email, labelError: self.emailError, funct: isValidEmail, validEmailorPass: kValidEmail)
-        
-        if firstnameError == "" && lastnameError == "" && passError == "" && confirmpassError.text == "" && emailError == "" {
+//            let cnfrmpassError = validation(textField: confirmpass, labelError: confirmpassError, funct: isValidPassword, validEmailorPass: kValidPass)
+//            if(cnfrmpassError == "")
+//            {
+//                if confirmpass.text != password.text {
+//                    confirmpassError.text = kPasswordMatch
+//                }
+//                else{
+//                    confirmpassError.text = ""
+//                }
+//            }
+		
+//        let emailError = validation(textField: email, labelError: self.emailError, funct: isValidEmail, validEmailorPass: kValidEmail)
+		
+        if firstName.text != "" && lastname.text != "" && password.text != "" && confirmpass.text != "" && email.text != "" {
              params = [
                 "first_name":firstName.text!,
             "last_name":lastname.text!,
@@ -68,7 +68,9 @@ class RegisterViewController: UIViewController {
             "re_confrim_pass": confirmpass.text!,
             "email": email.text!]
              self.performSegue(withIdentifier: "signup", sender: self)
-        }
+		}else{
+			alerts(title: "Required", message: "Please fill all the fields")
+		}
         
     }
    

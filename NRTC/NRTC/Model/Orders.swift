@@ -16,6 +16,7 @@ class Orders: NSObject {
 	var preferredDateOfDelivery:String?
 	var orderStatus:String?
 	var grandTotal:String?
+	var deliveryTime:String?
 	var productArr: Array<Product> = []
 	
 	init(orderDictinary : NSDictionary) {
@@ -24,7 +25,7 @@ class Orders: NSObject {
 		preferredDateOfDelivery = orderDictinary["preferred_date_of_delivery"] as? String
 		orderStatus = orderDictinary["order_status"] as? String
 		grandTotal = orderDictinary["grand_total"] as? String
-		
+		deliveryTime = orderDictinary["preferred_delivery_time"] as? String
 		//Getting all the items from Order
 		self.productArr = []
 		for dict in orderDictinary["items"] as! NSArray{

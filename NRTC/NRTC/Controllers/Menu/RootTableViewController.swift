@@ -11,20 +11,23 @@ import UIKit
 class RootTableViewController: UITableViewController {
 
 	var arrProducts:Array<Product> = []
+//	var userState = 0
+	
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
-//		self.tableView.contentInset = UIEdgeInsets(top: -36, left: 0, bottom: 0, right: 0);
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
 		print("view will appear")
+		self.tableView.reloadData()
+//		if UserDefaults.standard.string(forKey: "first_name") == nil {
+//			userState = 1
+//		}else{
+//			userState = 0
+//		}
+		
 		let userDefaults = UserDefaults.standard
 		self.arrProducts = []
 		let decoded  = userDefaults.object(forKey: "Products") as? Data
@@ -49,11 +52,11 @@ class RootTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
-		if UserDefaults.standard.string(forKey: "first_name") == nil {
-			return 3
-		}
+//		if UserDefaults.standard.string(forKey: "first_name") == nil {
+//			return 2
+//		}
 		
-        return 4
+        return 3
     }
 
 	override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -61,7 +64,7 @@ class RootTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if indexPath.row == 1 {
+		if indexPath.row == 0 {
 			
 			if UserDefaults.standard.string(forKey: "first_name") == nil {
 				let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginID") as! LoginViewController
@@ -76,22 +79,26 @@ class RootTableViewController: UITableViewController {
 			
 			
 			
-		}else if indexPath.row == 3 {
-			
-			self.alerts(title: "Logout", message: "User is logged out")
-			
-			let prefs = UserDefaults.standard
-			prefs.removeObject(forKey:"Products")
-			prefs.removeObject(forKey:"first_name")
-			
-//			let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "homeID") as! HomeViewController
-////			nextViewController.arrProduct = self.arrProducts
-//			//		nextViewController.productID = NSNumber(value: Int(productID!)!)
-//			self.navigationController?.pushViewController(nextViewController, animated: true)
-			
-//			self.performSegue(withIdentifier: "loginButton", sender: self)
-			
 		}else if indexPath.row == 2 {
+
+			
+			if UserDefaults.standard.string(forKey: "first_name") == nil {
+				let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginID") as! LoginViewController
+				////			nextViewController.searchText = sender.text
+				self.navigationController?.pushViewController(nextViewController, animated: true)
+			}else{
+				let prefs = UserDefaults.standard
+				prefs.removeObject(forKey:"Products")
+				prefs.removeObject(forKey:"first_name")
+				dismiss(animated: true, completion: nil)
+				self.alerts(title: "Logout", message: "User is logged out")
+			}
+			
+			
+			
+			
+			
+		}else if indexPath.row == 1 {
 			
 			
 			let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "orderIdentifier") as! OrderViewController
@@ -106,22 +113,29 @@ class RootTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
 		if indexPath.row == 0 {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "logoCellIdentifier", for: indexPath)
-			return cell
-		}else if indexPath.row == 1{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "menuItemCellIdentifier", for: indexPath) as! MenuTableViewCell
-			cell.lbMenuItem.text = "My Orders"
-			cell.imgMenuItem.image = UIImage(named: "MyOrder")
+//			cell.lbMenuItem.text = "My Orders"
+			
+			
+			cell.lbMenu.text = "My Orders"
+			cell.imgMenuItem.image = UIImage(named: "my-order")
 			return cell
-		}else if indexPath.row == 2{
+		}else if indexPath.row == 1 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "menuItemCellIdentifier", for: indexPath) as! MenuTableViewCell
-			cell.lbMenuItem.text = "View My Cart"
-			cell.imgMenuItem.image = UIImage(named: "ViewCart")
+			cell.lbMenu.text = "My Cart"
+			cell.imgMenuItem.image = UIImage(named: "my-cart")
 			return cell
 		}else{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "menuItemCellIdentifier", for: indexPath) as! MenuTableViewCell
-			cell.lbMenuItem.text = "Logout"
-			cell.imgMenuItem.image = UIImage(named: "Logout")
+			
+			if UserDefaults.standard.string(forKey: "first_name") == nil {
+				cell.lbMenu.text = "Login"
+			}else{
+				cell.lbMenu.text = "Logout"
+			}
+			
+//			cell.lbMenu.text = "Logout"
+			cell.imgMenuItem.image = UIImage(named: "my-logout")
 			return cell
 		}
 		
@@ -130,11 +144,9 @@ class RootTableViewController: UITableViewController {
 	
 
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		if indexPath.row == 0 {
-			return 112
-		}else{
-			return 47
-		}
+		
+		return 112
+		
 	}
 	
     /*

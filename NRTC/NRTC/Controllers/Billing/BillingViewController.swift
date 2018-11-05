@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SVProgressHUD
 
-class BillingViewController: UIViewController {
+class BillingViewController: UIViewController,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
     var params : [String:Any] = [:]
 	@IBOutlet weak var phone: UITextField!
 	@IBOutlet weak var zip: UITextField!
@@ -23,30 +23,63 @@ class BillingViewController: UIViewController {
     @IBOutlet weak var cityError: UILabel!
     @IBOutlet weak var zipError: UILabel!
     @IBOutlet weak var phoneError: UILabel!
-    
+	@IBOutlet weak var pickerCity: UIPickerView!
+	var cities = ["AL AIN", "AJMAN", "ABUDHABI", "DUBAI", "FUJERIAH", "RAS AL KHAIMAH"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-		addborder(name: address , label :"Address 1 *")
+		self.city.delegate = self
+		self.pickerCity.delegate = self
+		pickerCity.isHidden = true
+		addborder(name: address , label :"Address *")
 		addborder(name: city, label: "Town /City *")
-		addborder(name: address2,label: "Address 2 *")
+		addborder(name: address2,label: "Address 1 *")
 		addborder(name: zip,label: "ZIP *")
 		addborder(name: phone,label: "Phone *")
 		hideKeyboard()
         // Do any additional setup after loading the view.
     }
-    
+	
+	func numberOfComponents(in pickerView: UIPickerView) -> Int {
+		return 1
+	}
+	
+	// returns the # of rows in each component..
+	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+		
+		return cities.count
+		//		return cities.count
+	}
+	
+	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+		
+		return cities[row]
+	}
+	
+	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+
+		self.city.text = cities[row]
+		pickerCity.isHidden = true;
+	}
+	
+	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+		pickerCity.tag = 1
+		pickerCity.reloadAllComponents()
+		pickerCity.isHidden = false
+		return false
+	}
+	
     @IBAction func done(_ sender: Any) {
         var paramsAll : [String:Any] = self.params
-        let addressError = checkTextfield(textfield: address, textfieldError: self.addressError)
-          let address2Error = checkTextfield(textfield: address2, textfieldError: self.address2Error)
-          let cityError = checkTextfield(textfield: city, textfieldError: self.cityError)
-          let zipError = checkTextfield(textfield: zip, textfieldError: self.zipError)
-          let phoneError = checkTextfield(textfield: phone, textfieldError: self.phoneError)
-        
-        if addressError == "" && address2Error == "" && cityError == "" && zipError == "" && phoneError == "" {
-            paramsAll["billing_address_line_1"] = address.text
+//        let addressError = checkTextfield(textfield: address, textfieldError: self.addressError)
+//          let address2Error = checkTextfield(textfield: address2, textfieldError: self.address2Error)
+//          let cityError = checkTextfield(textfield: city, textfieldError: self.cityError)
+//          let zipError = checkTextfield(textfield: zip, textfieldError: self.zipError)
+//          let phoneError = checkTextfield(textfield: phone, textfieldError: self.phoneError)
+		
+        if self.address.text != "" && self.address2.text != "" && self.city.text != "" && self.zip.text != "" && self.phone.text != "" {
             paramsAll["billing_address_line_2"] = address2.text
+            paramsAll["billing_address_line_1"] = address.text
             paramsAll["billing_city"] = city.text
             paramsAll["billing_zip_code"] = zip.text
             paramsAll["billing_phone"] = phone.text
@@ -71,7 +104,7 @@ class BillingViewController: UIViewController {
                            
                             let register = LoginModel(dictionarys: result)
                             print("\(String(describing: register.code)) \(String(describing: register.message))")
-                            self.performSegue(withIdentifier: "register", sender: self)
+//                            self.performSegue(withIdentifier: "register", sender: self)
 							
 							UserDefaults.standard.set(paramsAll["first_name"], forKey: "first_name")
 							UserDefaults.standard.set(paramsAll["last_name"], forKey: "last_name")
@@ -84,6 +117,26 @@ class BillingViewController: UIViewController {
 							UserDefaults.standard.set(paramsAll["billing_city"], forKey: "billing_city")
 							UserDefaults.standard.set(paramsAll["billing_zip_code"], forKey: "billing_zip_code")
 							UserDefaults.standard.set(paramsAll["billing_phone"], forKey: "billing_phone")
+							
+							var checkIfOrderPresent = true
+							for controller in self.navigationController!.viewControllers as Array {
+								if controller.isKind(of: OrderViewController.self) {
+									self.navigationController!.popToViewController(controller, animated: true)
+									checkIfOrderPresent = false
+									break
+								}
+							}
+							
+							
+							if checkIfOrderPresent {
+								for controller in self.navigationController!.viewControllers as Array {
+									if controller.isKind(of: HomeViewController.self) {
+										self.navigationController!.popToViewController(controller, animated: true)
+										break
+									}
+								}
+							}
+							
 							
 							
                         default:
@@ -112,6 +165,7 @@ class BillingViewController: UIViewController {
 
 	@IBAction func btnBackAction(_ sender: Any) {
 		self.navigationController?.popViewController(animated: true)
+		
 	}
 	
     /*

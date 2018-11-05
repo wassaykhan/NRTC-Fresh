@@ -24,6 +24,12 @@ class NewProductTableViewCell: UITableViewCell {
 	@IBOutlet weak var btnThirdProduct: UIButton!
 	@IBOutlet weak var btnFourthProduct: UIButton!
 	@IBOutlet weak var btnViewMore: UIButton!
+	@IBOutlet weak var btnFifth: UIButton!
+	@IBOutlet weak var btnSixth: UIButton!
+	@IBOutlet weak var lbFifthTitle: UILabel!
+	@IBOutlet weak var lbFifthPrice: UILabel!
+	@IBOutlet weak var lbSixthTitle: UILabel!
+	@IBOutlet weak var lbSixthPrice: UILabel!
 	
     override func awakeFromNib() {
         super.awakeFromNib()

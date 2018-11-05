@@ -38,9 +38,22 @@ class ProductViewController: UIViewController,MFMailComposeViewControllerDelegat
 	
 	var quantityLB:Int = 1
 	
+	func setAllTextToEmpty(){
+		self.lbTitle.text = ""
+		self.lbPrice.text = ""
+		self.lbQuantity.text = ""
+		self.lbDescription.text = ""
+		self.lbProductDetailHeading.text = ""
+		self.lbNotes.text = ""
+		self.lbProductColor.text = ""
+	}
+	
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		
+		self.setAllTextToEmpty()
+		
 		self.getProductDetail()
 		self.bgStockView.layer.cornerRadius = 10
 		self.bgStockView.clipsToBounds = true

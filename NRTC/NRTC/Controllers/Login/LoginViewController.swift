@@ -32,13 +32,14 @@ class LoginViewController: UIViewController {
   self.performSegue(withIdentifier: "register", sender: self)
     }
     @IBAction func login(_ sender: Any) {
-        let emailError : String = validation(textField: username, labelError: usernameError, funct: isValidEmail, validEmailorPass: kValidEmail)
-		let passError : String = self.password.text ?? ""//validation(textField: password, labelError: passwordError, funct: isValidPassword, validEmailorPass: kValidPass)
-        if emailError == ""
-        {
+//        let emailError : String = validation(textField: username, labelError: usernameError, funct: isValidEmail, validEmailorPass: kValidEmail)
+//		let passError : String = self.password.text ?? ""
+        if self.password.text != "" && self.username.text != "" {
             loginCall(username: username.text!, password: password.text!)
           
-        }
+		}else{
+			alerts(title: "Required", message: "Please fill all the fields")
+		}
         
     }
     
@@ -71,7 +72,28 @@ class LoginViewController: UIViewController {
 							UserDefaults.standard.set(self.loginmodel?.billingZipCode, forKey: "billing_zip_code")
 							UserDefaults.standard.set(self.loginmodel?.billingPhone, forKey: "billing_phone")
 							
-                            self.performSegue(withIdentifier: "loginButton", sender: self)
+							var checkIfOrderPresent = true
+							for controller in self.navigationController!.viewControllers as Array {
+								if controller.isKind(of: OrderViewController.self) {
+									self.navigationController!.popToViewController(controller, animated: true)
+									checkIfOrderPresent = false
+									break
+								}
+							}
+							
+							
+							if checkIfOrderPresent {
+								for controller in self.navigationController!.viewControllers as Array {
+									if controller.isKind(of: HomeViewController.self) {
+										self.navigationController!.popToViewController(controller, animated: true)
+										break
+									}
+								}
+							}
+							
+							
+							
+//                            self.performSegue(withIdentifier: "loginButton", sender: self)
                         default:
                             self.alerts(title: kError, message:kSwr )
                         }

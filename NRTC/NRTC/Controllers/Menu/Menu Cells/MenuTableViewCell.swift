@@ -12,6 +12,8 @@ class MenuTableViewCell: UITableViewCell {
 
 	@IBOutlet weak var imgMenuItem: UIImageView!
 	@IBOutlet weak var lbMenuItem: UILabel!
+	@IBOutlet weak var webImage: UIWebView!
+	@IBOutlet weak var lbMenu: UILabel!
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

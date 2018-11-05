@@ -40,11 +40,11 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 		if (self.arrProduct?.count)! > 0 {
 //			self.lbSubTotal.text = "$" + String(self.calculateTotalAmount(products: self.arrProduct!))
 			
-			var subTotal = self.calculateTotalAmount(products: self.arrProduct!)
+			let total = self.calculateTotalAmount(products: self.arrProduct!)
 			
-			let tax = subTotal * 0.05
+			let subTotal = (total/105) * 100
 			
-			subTotal = subTotal - tax
+			let tax = total - subTotal
 			
 			self.saveTotal = self.calculateTotalAmount(products: self.arrProduct!)
 			self.saveTax = tax
@@ -118,11 +118,11 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 			
 			//for Unit Price
 			let quarterPrice = self.arrProduct![indexPath.row].oldPrice! as NSString
-			let kgPrice = quarterPrice.intValue * 4
-			cellNewProduct.lbUnitPrice.text = "Price: AED " + String(kgPrice) + "/KG"
+			let kgPrice = quarterPrice.floatValue * 4
+			cellNewProduct.lbUnitPrice.text = "Unit Price: AED " + String(format: "%.2f", kgPrice) + "/KG"
 			//for Total Price
 			let totalP = quarterPrice.floatValue * Float(self.currQuantity!)
-			cellNewProduct.lbPrice.text = "Total: AED " + String(totalP)
+			cellNewProduct.lbPrice.text = "Total: AED " + String(format: "%.2f", totalP)
 			
 			
 			
@@ -134,7 +134,7 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 			cellNewProduct.lbUnitPrice.text = "Price: AED " + (self.arrProduct?[indexPath.row].oldPrice)! + "/Pack"
 			//For Total
 			let totalP = quantity.floatValue * price.floatValue
-			cellNewProduct.lbPrice.text = "Total: AED " + String(totalP)
+			cellNewProduct.lbPrice.text = "Total: AED " + String(format: "%.2f", totalP)
 			
 		}
 		print("hoja")
@@ -287,11 +287,11 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 //		self.lbTotal.text = String(self.calculateTotalAmount(products: self.arrProduct!))
 //		}
 		
-		var subTotal = self.calculateTotalAmount(products: self.arrProduct!)
+		let total = self.calculateTotalAmount(products: self.arrProduct!)
 		
-		let tax = subTotal * 0.05
+		let subTotal = (total/105) * 100
 		
-		subTotal = subTotal - tax
+		let tax = total - subTotal
 		
 		self.saveTotal = self.calculateTotalAmount(products: self.arrProduct!)
 		self.saveTax = tax
@@ -304,7 +304,15 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 	}
 	
     
-
+	@IBAction func btnContinueShoppingAction(_ sender: Any) {
+		for controller in self.navigationController!.viewControllers as Array {
+			if controller.isKind(of: HomeViewController.self) {
+				self.navigationController!.popToViewController(controller, animated: true)
+				break
+			}
+		}
+	}
+	
 	@IBAction func btnBackAction(_ sender: Any) {
 		self.navigationController?.popViewController(animated: true)
 	}
