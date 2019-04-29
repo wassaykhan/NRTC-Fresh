@@ -51,12 +51,33 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
 		if indexPath.row == 0 || (indexPath.row % 2 == 0){
-			let cellFullImage:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "fullImageCellIdentifier", for: indexPath)
-			return cellFullImage
+			
+			if indexPath.row == 0 {
+				let cellFullImage:BannerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "fullImageCellIdentifier", for: indexPath) as! BannerTableViewCell
+//				cellFullImage.imgBanner.sd_setImage(with: URL(string: "https://nrtcfresh.com/assets/mobileapp/1.png"), placeholderImage: UIImage(named: ""))
+				cellFullImage.imgBanner.sd_setImage(with: URL(string: "https://nrtcfresh.com/assets/mobileapp/1.png"), placeholderImage: UIImage(named: ""), options: .refreshCached, completed: nil)
+				cellFullImage.selectionStyle = UITableViewCell.SelectionStyle.none
+				return cellFullImage
+			}else if indexPath.row == 2 {
+				let cellFullImage:BannerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "fullImageCellIdentifier", for: indexPath) as! BannerTableViewCell
+//				cellFullImage.imgBanner.sd_setImage(with: URL(string: "https://nrtcfresh.com/assets/mobileapp/2.png"), placeholderImage: UIImage(named: ""))
+				cellFullImage.imgBanner.sd_setImage(with: URL(string: "https://nrtcfresh.com/assets/mobileapp/2.png"), placeholderImage: UIImage(named: ""), options: .refreshCached, completed: nil)
+				cellFullImage.selectionStyle = UITableViewCell.SelectionStyle.none
+				return cellFullImage
+			}else {
+				let cellFullImage:BannerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "fullImageCellIdentifier", for: indexPath) as! BannerTableViewCell
+//				cellFullImage.imgBanner.sd_setImage(with: URL(string: "https://nrtcfresh.com/assets/mobileapp/3.png"), placeholderImage: UIImage(named: ""))
+				cellFullImage.imgBanner.sd_setImage(with: URL(string: "https://nrtcfresh.com/assets/mobileapp/3.png"), placeholderImage: UIImage(named: ""), options: .refreshCached, completed: nil)
+				cellFullImage.selectionStyle = UITableViewCell.SelectionStyle.none
+				return cellFullImage
+			}
+			
+			
 		}
 		//Recommended Products
 		if indexPath.row == 3 {
 			let cellNewProduct:NewProductTableViewCell = tableView.dequeueReusableCell(withIdentifier: "newProductCellIdentifier", for: indexPath) as! NewProductTableViewCell
+			cellNewProduct.selectionStyle = UITableViewCell.SelectionStyle.none
 			cellNewProduct.lbProductType.text = "Recommended Products"
 			cellNewProduct.btnViewMore.tag = 21
 			if (self.recommendedProduct.count >= 6){
@@ -67,28 +88,143 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 				let recommendedProd5:CategoryProduct = self.recommendedProduct[4]
 				let recommendedProd6:CategoryProduct = self.recommendedProduct[5]
 				cellNewProduct.lbFirstTitle.text = recommendedProd1.title
-				cellNewProduct.lbFisrtPrice.text = getPrice(prod: recommendedProd1)
+//				cellNewProduct.lbFisrtPrice.text = getPrice(prod: recommendedProd1)
 				cellNewProduct.btnfirstProduct.sd_setBackgroundImage(with: URL(string:recommendedProd1.image!), for: .normal)
+				let ifDiscount1 = recommendedProd1.discountPercentage! as NSString
+				if ifDiscount1.floatValue > 0.0 {
+					cellNewProduct.viewDiscount1.isHidden = false
+					cellNewProduct.lbDiscount1.text = recommendedProd1.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount1.isHidden = true
+				}
+				
+				let ifPrice1 = recommendedProd1.price! as NSString
+				if ifPrice1.floatValue > 0.0 {
+					cellNewProduct.lbFisrtPrice.text = getPriceNew(prod: recommendedProd1)
+					cellNewProduct.lbOldPrice1.isHidden = false
+					cellNewProduct.viewRemoveOldPrice1.isHidden = false
+					cellNewProduct.lbOldPrice1.text = self.getPriceOld(prod: recommendedProd1)
+				}else{
+					cellNewProduct.lbFisrtPrice.text = getPriceOld(prod: recommendedProd1)
+					cellNewProduct.lbOldPrice1.isHidden = true
+					cellNewProduct.viewRemoveOldPrice1.isHidden = true
+				}
+				
 				cellNewProduct.btnfirstProduct.tag = Int(recommendedProd1.id!)!
 				cellNewProduct.lbSecondTitle.text = recommendedProd2.title
-				cellNewProduct.lbSecondPrice.text = getPrice(prod: recommendedProd2)
+				//cellNewProduct.lbSecondPrice.text = getPrice(prod: recommendedProd2)
 				cellNewProduct.btnSecondProduct.sd_setBackgroundImage(with: URL(string:recommendedProd2.image!), for: .normal)
+				let ifDiscount2 = recommendedProd2.discountPercentage! as NSString
+				if ifDiscount2.floatValue > 0.0 {
+					cellNewProduct.viewDiscount2.isHidden = false
+					cellNewProduct.lbDiscount2.text = recommendedProd2.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount2.isHidden = true
+				}
+				let ifPrice2 = recommendedProd2.price! as NSString
+				if ifPrice2.floatValue > 0.0 {
+					cellNewProduct.lbSecondPrice.text = getPriceNew(prod: recommendedProd2)
+					cellNewProduct.lbOldPrice2.isHidden = false
+					cellNewProduct.viewRemoveOldPrice2.isHidden = false
+					cellNewProduct.lbOldPrice2.text = self.getPriceOld(prod: recommendedProd2)
+				}else{
+					cellNewProduct.lbSecondPrice.text = getPriceOld(prod: recommendedProd2)
+					cellNewProduct.lbOldPrice2.isHidden = true
+					cellNewProduct.viewRemoveOldPrice2.isHidden = true
+				}
+				
 				cellNewProduct.btnSecondProduct.tag = Int(recommendedProd2.id!)!
 				cellNewProduct.lbThirdTitle.text = recommendedProd3.title
-				cellNewProduct.lbThirdPrice.text = getPrice(prod: recommendedProd3)
+//				cellNewProduct.lbThirdPrice.text = getPrice(prod: recommendedProd3)
 				cellNewProduct.btnThirdProduct.sd_setBackgroundImage(with: URL(string:recommendedProd3.image!), for: .normal)
+				let ifDiscount3 = recommendedProd3.discountPercentage! as NSString
+				if ifDiscount3.floatValue > 0.0 {
+					cellNewProduct.lbDiscount3.text = recommendedProd3.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount3.isHidden = true
+				}
+				
+				let ifPrice3 = recommendedProd3.price! as NSString
+				if ifPrice3.floatValue > 0.0 {
+					cellNewProduct.lbThirdPrice.text = getPriceNew(prod: recommendedProd3)
+					cellNewProduct.lbOldPrice3.isHidden = false
+					cellNewProduct.viewRemoveOldPrice3.isHidden = false
+					cellNewProduct.lbOldPrice3.text = self.getPriceOld(prod: recommendedProd3)
+				}else{
+					cellNewProduct.lbThirdPrice.text = getPriceOld(prod: recommendedProd3)
+					cellNewProduct.lbOldPrice3.isHidden = true
+					cellNewProduct.viewRemoveOldPrice3.isHidden = true
+				}
+
 				cellNewProduct.btnThirdProduct.tag = Int(recommendedProd3.id!)!
 				cellNewProduct.lbFourthTitle.text = recommendedProd4.title
-				cellNewProduct.lbFourthPrice.text = getPrice(prod: recommendedProd4)
+//				cellNewProduct.lbFourthPrice.text = getPrice(prod: recommendedProd4)
 				cellNewProduct.btnFourthProduct.sd_setBackgroundImage(with: URL(string:recommendedProd4.image!), for: .normal)
+				let ifDiscount4 = recommendedProd4.discountPercentage! as NSString
+				if ifDiscount4.floatValue > 0.0 {
+					cellNewProduct.lbDiscount4.text = recommendedProd4.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount4.isHidden = true
+				}
+
+				let ifPrice4 = recommendedProd4.price! as NSString
+				if ifPrice4.floatValue > 0.0 {
+					cellNewProduct.lbFourthPrice.text = getPriceNew(prod: recommendedProd4)
+					cellNewProduct.lbOldPrice4.isHidden = false
+					cellNewProduct.viewRemoveOldPrice4.isHidden = false
+					cellNewProduct.lbOldPrice4.text = self.getPriceOld(prod: recommendedProd4)
+				}else{
+					cellNewProduct.lbFourthPrice.text = getPriceOld(prod: recommendedProd4)
+					cellNewProduct.lbOldPrice4.isHidden = true
+					cellNewProduct.viewRemoveOldPrice4.isHidden = true
+				}
+				
 				cellNewProduct.btnFourthProduct.tag = Int(recommendedProd4.id!)!
 				cellNewProduct.lbFifthTitle.text = recommendedProd5.title
-				cellNewProduct.lbFifthPrice.text = getPrice(prod: recommendedProd5)
+//				cellNewProduct.lbFifthPrice.text = getPrice(prod: recommendedProd5)
 				cellNewProduct.btnFifth.sd_setBackgroundImage(with: URL(string:recommendedProd5.image!), for: .normal)
+				let ifDiscount5 = recommendedProd5.discountPercentage! as NSString
+				if ifDiscount5.floatValue > 0.0 {
+					cellNewProduct.lbDiscount5.text =  recommendedProd5.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount5.isHidden = true
+				}
+
+				let ifPrice5 = recommendedProd5.price! as NSString
+				if ifPrice5.floatValue > 0.0 {
+					cellNewProduct.lbFifthPrice.text = getPriceNew(prod: recommendedProd5)
+					cellNewProduct.lbOldPrice5.isHidden = false
+					cellNewProduct.viewRemoveOldPrice5.isHidden = false
+					cellNewProduct.lbOldPrice5.text = self.getPriceOld(prod: recommendedProd5)
+				}else{
+					cellNewProduct.lbFifthPrice.text = getPriceOld(prod: recommendedProd5)
+					cellNewProduct.lbOldPrice5.isHidden = true
+					cellNewProduct.viewRemoveOldPrice5.isHidden = true
+				}
+				
 				cellNewProduct.btnFifth.tag = Int(recommendedProd5.id!)!
 				cellNewProduct.lbSixthTitle.text = recommendedProd6.title
-				cellNewProduct.lbSixthPrice.text = getPrice(prod: recommendedProd6)
+//				cellNewProduct.lbSixthPrice.text = getPrice(prod: recommendedProd6)
 				cellNewProduct.btnSixth.sd_setBackgroundImage(with: URL(string:recommendedProd6.image!), for: .normal)
+				let ifDiscount6 = recommendedProd6.discountPercentage! as NSString
+				if ifDiscount6.floatValue > 0.0 {
+					cellNewProduct.lbDiscount6.text = recommendedProd6.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount6.isHidden = true
+				}
+
+				let ifPrice6 = recommendedProd6.price! as NSString
+				if ifPrice6.floatValue > 0.0 {
+					cellNewProduct.lbSixthPrice.text = getPriceNew(prod: recommendedProd6)
+					cellNewProduct.lbOldPrice6.isHidden = false
+					cellNewProduct.viewRemoveOldPrice6.isHidden = false
+					cellNewProduct.lbOldPrice6.text = self.getPriceOld(prod: recommendedProd6)
+				}else{
+					cellNewProduct.lbSixthPrice.text = getPriceOld(prod: recommendedProd6)
+					cellNewProduct.lbOldPrice6.isHidden = true
+					cellNewProduct.viewRemoveOldPrice6.isHidden = true
+				}
+				
 				cellNewProduct.btnSixth.tag = Int(recommendedProd6.id!)!
 			}
 			
@@ -99,6 +235,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 		}
 		if indexPath.row == 5 {
 			let cellNewProduct:NewProductTableViewCell = tableView.dequeueReusableCell(withIdentifier: "newProductCellIdentifier", for: indexPath) as! NewProductTableViewCell
+			cellNewProduct.selectionStyle = UITableViewCell.SelectionStyle.none
 			cellNewProduct.lbProductType.text = "In Season"
 			cellNewProduct.btnViewMore.tag = 22
 			
@@ -110,28 +247,142 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 				let bestSellingProd5:CategoryProduct = self.bestSellingProduct[4]
 				let bestSellingProd6:CategoryProduct = self.bestSellingProduct[5]
 				cellNewProduct.lbFirstTitle.text = bestSellingProd1.title!
-				cellNewProduct.lbFisrtPrice.text = getPrice(prod: bestSellingProd1)
+//				cellNewProduct.lbFisrtPrice.text = getPrice(prod: bestSellingProd1)
 				cellNewProduct.btnfirstProduct.sd_setBackgroundImage(with: URL(string:bestSellingProd1.image!), for: .normal)
+				let ifDiscount1 = bestSellingProd1.discountPercentage! as NSString
+				if ifDiscount1.floatValue > 0.0 {
+					cellNewProduct.lbDiscount1.text = bestSellingProd1.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount1.isHidden = true
+				}
+				
+				let ifPrice1 = bestSellingProd1.price! as NSString
+				if ifPrice1.floatValue > 0.0 {
+					cellNewProduct.lbFisrtPrice.text = getPriceNew(prod: bestSellingProd1)
+					cellNewProduct.lbOldPrice1.isHidden = false
+					cellNewProduct.viewRemoveOldPrice1.isHidden = false
+					cellNewProduct.lbOldPrice1.text = self.getPriceOld(prod: bestSellingProd1)
+				}else{
+					cellNewProduct.lbFisrtPrice.text = getPriceOld(prod: bestSellingProd1)
+					cellNewProduct.lbOldPrice1.isHidden = true
+					cellNewProduct.viewRemoveOldPrice1.isHidden = true
+				}
+				
 				cellNewProduct.btnfirstProduct.tag = Int(bestSellingProd1.id!)!
 				cellNewProduct.lbSecondTitle.text = bestSellingProd2.title!
-				cellNewProduct.lbSecondPrice.text = getPrice(prod: bestSellingProd2)
+//				cellNewProduct.lbSecondPrice.text = getPrice(prod: bestSellingProd2)
 				cellNewProduct.btnSecondProduct.sd_setBackgroundImage(with: URL(string:bestSellingProd2.image!), for: .normal)
+				let ifDiscount2 = bestSellingProd2.discountPercentage! as NSString
+				if ifDiscount2.floatValue > 0.0 {
+					cellNewProduct.lbDiscount2.text = bestSellingProd2.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount2.isHidden = true
+				}
+				
+				let ifPrice2 = bestSellingProd2.price! as NSString
+				if ifPrice2.floatValue > 0.0 {
+					cellNewProduct.lbSecondPrice.text = getPriceNew(prod: bestSellingProd2)
+					cellNewProduct.lbOldPrice2.isHidden = false
+					cellNewProduct.viewRemoveOldPrice2.isHidden = false
+					cellNewProduct.lbOldPrice2.text = self.getPriceOld(prod: bestSellingProd2)
+				}else{
+					cellNewProduct.lbSecondPrice.text = getPriceOld(prod: bestSellingProd2)
+					cellNewProduct.lbOldPrice2.isHidden = true
+					cellNewProduct.viewRemoveOldPrice2.isHidden = true
+				}
+				
 				cellNewProduct.btnSecondProduct.tag = Int(bestSellingProd2.id!)!
 				cellNewProduct.lbThirdTitle.text =  bestSellingProd3.title!
-				cellNewProduct.lbThirdPrice.text = getPrice(prod: bestSellingProd3)
+//				cellNewProduct.lbThirdPrice.text = getPrice(prod: bestSellingProd3)
 				cellNewProduct.btnThirdProduct.sd_setBackgroundImage(with: URL(string:bestSellingProd3.image!), for: .normal)
+				let ifDiscount3 = bestSellingProd3.discountPercentage! as NSString
+				if ifDiscount3.floatValue > 0.0 {
+					cellNewProduct.lbDiscount3.text = bestSellingProd3.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount3.isHidden = true
+				}
+				
+				let ifPrice3 = bestSellingProd3.price! as NSString
+				if ifPrice3.floatValue > 0.0 {
+					cellNewProduct.lbThirdPrice.text = getPriceNew(prod: bestSellingProd3)
+					cellNewProduct.lbOldPrice3.isHidden = false
+					cellNewProduct.viewRemoveOldPrice3.isHidden = false
+					cellNewProduct.lbOldPrice3.text = self.getPriceOld(prod: bestSellingProd3)
+				}else{
+					cellNewProduct.lbThirdPrice.text = getPriceOld(prod: bestSellingProd3)
+					cellNewProduct.lbOldPrice3.isHidden = true
+					cellNewProduct.viewRemoveOldPrice3.isHidden = true
+				}
+				
 				cellNewProduct.btnThirdProduct.tag = Int(bestSellingProd3.id!)!
 				cellNewProduct.lbFourthTitle.text = bestSellingProd4.title!
-				cellNewProduct.lbFourthPrice.text = getPrice(prod: bestSellingProd4)
+//				cellNewProduct.lbFourthPrice.text = getPrice(prod: bestSellingProd4)
 				cellNewProduct.btnFourthProduct.sd_setBackgroundImage(with: URL(string:bestSellingProd4.image!), for: .normal)
+				let ifDiscount4 = bestSellingProd4.discountPercentage! as NSString
+				if ifDiscount4.floatValue > 0.0 {
+					cellNewProduct.lbDiscount4.text = bestSellingProd4.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount4.isHidden = true
+				}
+				
+				let ifPrice4 = bestSellingProd4.price! as NSString
+				if ifPrice4.floatValue > 0.0 {
+					cellNewProduct.lbFourthPrice.text = getPriceNew(prod: bestSellingProd4)
+					cellNewProduct.lbOldPrice4.isHidden = false
+					cellNewProduct.viewRemoveOldPrice4.isHidden = false
+					cellNewProduct.lbOldPrice4.text = self.getPriceOld(prod: bestSellingProd4)
+				}else{
+					cellNewProduct.lbFourthPrice.text = getPriceOld(prod: bestSellingProd4)
+					cellNewProduct.lbOldPrice4.isHidden = true
+					cellNewProduct.viewRemoveOldPrice4.isHidden = true
+				}
+				
 				cellNewProduct.btnFourthProduct.tag = Int(bestSellingProd4.id!)!
 				cellNewProduct.lbFifthTitle.text = bestSellingProd5.title
-				cellNewProduct.lbFifthPrice.text = getPrice(prod: bestSellingProd5)
+//				cellNewProduct.lbFifthPrice.text = getPrice(prod: bestSellingProd5)
 				cellNewProduct.btnFifth.sd_setBackgroundImage(with: URL(string:bestSellingProd5.image!), for: .normal)
+				let ifDiscount5 = bestSellingProd5.discountPercentage! as NSString
+				if ifDiscount5.floatValue > 0.0 {
+					cellNewProduct.lbDiscount5.text = bestSellingProd5.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount2.isHidden = true
+				}
+				
+				let ifPrice5 = bestSellingProd5.price! as NSString
+				if ifPrice5.floatValue > 0.0 {
+					cellNewProduct.lbFifthPrice.text = getPriceNew(prod: bestSellingProd5)
+					cellNewProduct.lbOldPrice5.isHidden = false
+					cellNewProduct.viewRemoveOldPrice5.isHidden = false
+					cellNewProduct.lbOldPrice5.text = self.getPriceOld(prod: bestSellingProd5)
+				}else{
+					cellNewProduct.lbFifthPrice.text = getPriceOld(prod: bestSellingProd5)
+					cellNewProduct.lbOldPrice5.isHidden = true
+					cellNewProduct.viewRemoveOldPrice5.isHidden = true
+				}
+				
 				cellNewProduct.btnFifth.tag = Int(bestSellingProd5.id!)!
 				cellNewProduct.lbSixthTitle.text = bestSellingProd6.title
-				cellNewProduct.lbSixthPrice.text = getPrice(prod: bestSellingProd6)
+//				cellNewProduct.lbSixthPrice.text = getPrice(prod: bestSellingProd6)
 				cellNewProduct.btnSixth.sd_setBackgroundImage(with: URL(string:bestSellingProd6.image!), for: .normal)
+				let ifDiscount6 = bestSellingProd6.discountPercentage! as NSString
+				if ifDiscount6.floatValue > 0.0 {
+					cellNewProduct.lbDiscount6.text = bestSellingProd6.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount6.isHidden = true
+				}
+				
+				let ifPrice6 = bestSellingProd6.price! as NSString
+				if ifPrice6.floatValue > 0.0 {
+					cellNewProduct.lbSixthPrice.text = getPriceNew(prod: bestSellingProd6)
+					cellNewProduct.lbOldPrice6.isHidden = false
+					cellNewProduct.viewRemoveOldPrice6.isHidden = false
+					cellNewProduct.lbOldPrice6.text = self.getPriceOld(prod: bestSellingProd6)
+				}else{
+					cellNewProduct.lbSixthPrice.text = getPriceOld(prod: bestSellingProd6)
+					cellNewProduct.lbOldPrice6.isHidden = true
+					cellNewProduct.viewRemoveOldPrice6.isHidden = true
+				}
+				
 				cellNewProduct.btnSixth.tag = Int(bestSellingProd6.id!)!
 			}
 			
@@ -140,6 +391,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 		}
 		if indexPath.row == 1 {
 			let cellNewProduct:NewProductTableViewCell = tableView.dequeueReusableCell(withIdentifier: "newProductCellIdentifier", for: indexPath) as! NewProductTableViewCell
+			cellNewProduct.selectionStyle = UITableViewCell.SelectionStyle.none
 			cellNewProduct.lbProductType.text = "New Arrivals"
 			cellNewProduct.btnViewMore.tag = 23
 			
@@ -151,28 +403,142 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 				let newProd5:CategoryProduct = self.newProduct[4]
 				let newProd6:CategoryProduct = self.newProduct[5]
 				cellNewProduct.lbFirstTitle.text = newProd1.title
-				cellNewProduct.lbFisrtPrice.text = getPrice(prod: newProd1)
+//				cellNewProduct.lbFisrtPrice.text = getPrice(prod: newProd1)
 				cellNewProduct.btnfirstProduct.sd_setBackgroundImage(with: URL(string:newProd1.image!), for: .normal)
+				let ifDiscount1 = newProd1.discountPercentage! as NSString
+				if ifDiscount1.floatValue > 0.0 {
+					cellNewProduct.lbDiscount1.text = newProd1.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount1.isHidden = true
+				}
+				
+				let ifPrice1 = newProd1.price! as NSString
+				if ifPrice1.floatValue > 0.0 {
+					cellNewProduct.lbFisrtPrice.text = getPriceNew(prod: newProd1)
+					cellNewProduct.lbOldPrice1.isHidden = false
+					cellNewProduct.viewRemoveOldPrice1.isHidden = false
+					cellNewProduct.lbOldPrice1.text = self.getPriceOld(prod: newProd1)
+				}else{
+					cellNewProduct.lbFisrtPrice.text = getPriceOld(prod: newProd1)
+					cellNewProduct.lbOldPrice1.isHidden = true
+					cellNewProduct.viewRemoveOldPrice1.isHidden = true
+				}
+				
 				cellNewProduct.btnfirstProduct.tag = Int(newProd1.id!)!
 				cellNewProduct.lbSecondTitle.text = newProd2.title
-				cellNewProduct.lbSecondPrice.text = getPrice(prod: newProd2)
+//				cellNewProduct.lbSecondPrice.text = getPrice(prod: newProd2)
 				cellNewProduct.btnSecondProduct.sd_setBackgroundImage(with: URL(string:newProd2.image!), for: .normal)
+				let ifDiscount2 = newProd2.discountPercentage! as NSString
+				if ifDiscount2.floatValue > 0.0 {
+					cellNewProduct.lbDiscount2.text = newProd2.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount2.isHidden = true
+				}
+				
+				let ifPrice2 = newProd2.price! as NSString
+				if ifPrice2.floatValue > 0.0 {
+					cellNewProduct.lbSecondPrice.text = getPriceNew(prod: newProd2)
+					cellNewProduct.lbOldPrice2.isHidden = false
+					cellNewProduct.viewRemoveOldPrice2.isHidden = false
+					cellNewProduct.lbOldPrice2.text = self.getPriceOld(prod: newProd2)
+				}else{
+					cellNewProduct.lbSecondPrice.text = getPriceOld(prod: newProd2)
+					cellNewProduct.lbOldPrice2.isHidden = true
+					cellNewProduct.viewRemoveOldPrice2.isHidden = true
+				}
+				
 				cellNewProduct.btnSecondProduct.tag = Int(newProd2.id!)!
 				cellNewProduct.lbThirdTitle.text = newProd3.title
-				cellNewProduct.lbThirdPrice.text = getPrice(prod: newProd3)
+//				cellNewProduct.lbThirdPrice.text = getPrice(prod: newProd3)
 				cellNewProduct.btnThirdProduct.sd_setBackgroundImage(with: URL(string:newProd3.image!), for: .normal)
+				let ifDiscount3 = newProd3.discountPercentage! as NSString
+				if ifDiscount3.floatValue > 0.0 {
+					cellNewProduct.lbDiscount3.text = newProd3.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount3.isHidden = true
+				}
+				
+				let ifPrice3 = newProd3.price! as NSString
+				if ifPrice3.floatValue > 0.0 {
+					cellNewProduct.lbThirdPrice.text = getPriceNew(prod: newProd3)
+					cellNewProduct.lbOldPrice3.isHidden = false
+					cellNewProduct.viewRemoveOldPrice3.isHidden = false
+					cellNewProduct.lbOldPrice3.text = self.getPriceOld(prod: newProd3)
+				}else{
+					cellNewProduct.lbThirdPrice.text = getPriceOld(prod: newProd3)
+					cellNewProduct.lbOldPrice3.isHidden = true
+					cellNewProduct.viewRemoveOldPrice3.isHidden = true
+				}
+				
 				cellNewProduct.btnThirdProduct.tag = Int(newProd3.id!)!
 				cellNewProduct.lbFourthTitle.text = newProd4.title
-				cellNewProduct.lbFourthPrice.text = getPrice(prod: newProd4)
+//				cellNewProduct.lbFourthPrice.text = getPrice(prod: newProd4)
 				cellNewProduct.btnFourthProduct.sd_setBackgroundImage(with: URL(string:newProd4.image!), for: .normal)
+				let ifDiscount4 = newProd4.discountPercentage! as NSString
+				if ifDiscount4.floatValue > 0.0 {
+					cellNewProduct.lbDiscount4.text = newProd4.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount4.isHidden = true
+				}
+				
+				let ifPrice4 = newProd4.price! as NSString
+				if ifPrice4.floatValue > 0.0 {
+					cellNewProduct.lbFourthPrice.text = getPriceNew(prod: newProd4)
+					cellNewProduct.lbOldPrice4.isHidden = false
+					cellNewProduct.viewRemoveOldPrice4.isHidden = false
+					cellNewProduct.lbOldPrice4.text = self.getPriceOld(prod: newProd4)
+				}else{
+					cellNewProduct.lbFourthPrice.text = getPriceOld(prod: newProd4)
+					cellNewProduct.lbOldPrice4.isHidden = true
+					cellNewProduct.viewRemoveOldPrice4.isHidden = true
+				}
+				
 				cellNewProduct.btnFourthProduct.tag = Int(newProd4.id!)!
 				cellNewProduct.lbFifthTitle.text = newProd5.title
-				cellNewProduct.lbFifthPrice.text = getPrice(prod: newProd5)
+//				cellNewProduct.lbFifthPrice.text = getPrice(prod: newProd5)
 				cellNewProduct.btnFifth.sd_setBackgroundImage(with: URL(string:newProd5.image!), for: .normal)
+				let ifDiscount5 = newProd5.discountPercentage! as NSString
+				if ifDiscount5.floatValue > 0.0 {
+					cellNewProduct.lbDiscount5.text = newProd5.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount5.isHidden = true
+				}
+				
+				let ifPrice5 = newProd5.price! as NSString
+				if ifPrice5.floatValue > 0.0 {
+					cellNewProduct.lbFifthPrice.text = getPriceNew(prod: newProd5)
+					cellNewProduct.lbOldPrice5.isHidden = false
+					cellNewProduct.viewRemoveOldPrice5.isHidden = false
+					cellNewProduct.lbOldPrice5.text = self.getPriceOld(prod: newProd5)
+				}else{
+					cellNewProduct.lbFifthPrice.text = getPriceOld(prod: newProd5)
+					cellNewProduct.lbOldPrice5.isHidden = true
+					cellNewProduct.viewRemoveOldPrice5.isHidden = true
+				}
+				
 				cellNewProduct.btnFifth.tag = Int(newProd5.id!)!
 				cellNewProduct.lbSixthTitle.text = newProd6.title
-				cellNewProduct.lbSixthPrice.text = getPrice(prod: newProd6)
+//				cellNewProduct.lbSixthPrice.text = getPrice(prod: newProd6)
 				cellNewProduct.btnSixth.sd_setBackgroundImage(with: URL(string:newProd6.image!), for: .normal)
+				let ifDiscount6 = newProd6.discountPercentage! as NSString
+				if ifDiscount6.floatValue > 0.0 {
+					cellNewProduct.lbDiscount6.text = newProd6.discountPercentage! + "% OFF"
+				}else{
+					cellNewProduct.viewDiscount6.isHidden = true
+				}
+				
+				let ifPrice6 = newProd6.price! as NSString
+				if ifPrice6.floatValue > 0.0 {
+					cellNewProduct.lbSixthPrice.text = getPriceNew(prod: newProd6)
+					cellNewProduct.lbOldPrice6.isHidden = false
+					cellNewProduct.viewRemoveOldPrice6.isHidden = false
+					cellNewProduct.lbOldPrice6.text = self.getPriceOld(prod: newProd6)
+				}else{
+					cellNewProduct.lbSixthPrice.text = getPriceOld(prod: newProd6)
+					cellNewProduct.lbOldPrice6.isHidden = true
+					cellNewProduct.viewRemoveOldPrice6.isHidden = true
+				}
+				
 				cellNewProduct.btnSixth.tag = Int(newProd6.id!)!
 			}
 			
@@ -246,7 +612,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 					
 					SVProgressHUD.dismiss()
 					if	response.result.value == nil {
-						
+						self.btnReload.isHidden = false
 						self.alerts(title: "Alert", message: "Response time out")
 						return
 					}
@@ -317,6 +683,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 			destinationVC?.categoryType = 2
 		case "categoryJuicesIdentifier":
 			destinationVC?.categoryType = 29
+		case "categoryPreBoxIdentifier":
+			destinationVC?.categoryType = 39
 		default:
 			destinationVC?.categoryType = 1
 		}
@@ -440,6 +808,12 @@ extension UIViewController {
 	
 	func getPrice(prod:CategoryProduct) -> String {
 		
+		let ifPrice = prod.price! as NSString
+		if ifPrice.floatValue > 0.0 {
+			prod.oldPrice = prod.price
+		}
+		
+		
 		if prod.packaging == "KG" || prod.packaging == "kg"{
 			//for Unit Price
 			let quarterPrice = prod.oldPrice! as NSString
@@ -454,6 +828,59 @@ extension UIViewController {
 		
 		
 	}
+	
+	func getPriceOld(prod:CategoryProduct) -> String {
+		
+		let ifPrice = prod.price! as NSString
+		if ifPrice.floatValue > 0.0 {
+			if prod.packaging == "KG" || prod.packaging == "kg"{
+				//for Unit Price
+				let quarterPrice = prod.oldPrice! as NSString
+				let kgPrice = quarterPrice.floatValue * 4
+				
+				return "AED" + String(format: "%.2f", kgPrice) //+ "/KG"
+			}else if prod.packaging == "Precut" || prod.packaging == "precut"{
+				return "AED" + prod.oldPrice!// + "/Pack"
+			}else{
+				return "AED" + prod.oldPrice! //+ "/" + prod.packaging!
+			}
+		}else{
+			if prod.packaging == "KG" || prod.packaging == "kg"{
+				//for Unit Price
+				let quarterPrice = prod.oldPrice! as NSString
+				let kgPrice = quarterPrice.floatValue * 4
+				
+				return "AED" + String(format: "%.2f", kgPrice) + "/KG"
+			}else if prod.packaging == "Precut" || prod.packaging == "precut"{
+				return "AED" + prod.oldPrice! + "/Pack"
+			}else{
+				return "AED" + prod.oldPrice! + "/" + prod.packaging!
+			}
+		}
+		
+		
+		
+		
+		
+	}
+	
+	func getPriceNew(prod:CategoryProduct) -> String {
+		
+		if prod.packaging == "KG" || prod.packaging == "kg"{
+			//for Unit Price
+			let quarterPrice = prod.price! as NSString
+			let kgPrice = quarterPrice.floatValue * 4
+			
+			return "AED" + String(format: "%.2f", kgPrice) + "/KG"
+		}else if prod.packaging == "Precut" || prod.packaging == "precut"{
+			return "AED" + prod.price! + "/Pack"
+		}else{
+			return "AED" + prod.price! + "/" + prod.packaging!
+		}
+		
+		
+	}
+	
 	
 }
 

@@ -24,6 +24,7 @@ class CategoryProduct: NSObject {
 	var weight:String?
 	var productVisibility:String?
 	var productCategory:String?
+	var discountPercentage:String?
 
 	init(dictionary : NSDictionary){
 		self.id = dictionary["id"] as? String
@@ -40,6 +41,8 @@ class CategoryProduct: NSObject {
 		self.weight = dictionary["weight"] as? String
 		self.productVisibility = dictionary["product_visibility"] as? String
 		self.productCategory = dictionary["product_category"] as? String
+		//Discount_percent
+		self.discountPercentage = dictionary["Discount_percent"] as? String
 	}
 	
 }

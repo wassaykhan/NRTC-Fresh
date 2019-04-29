@@ -23,7 +23,7 @@ class ShippingViewController: UIViewController,UITextFieldDelegate,UIPickerViewD
 	@IBOutlet weak var txtShippingAddress1: UITextField!
 	@IBOutlet weak var txtShippingAddress2: UITextField!
 	@IBOutlet weak var txtShippingCity: UITextField!
-	@IBOutlet weak var txtShippingPostalCode: UITextField!
+	@IBOutlet weak var txtSpecialMessageBox: UITextField!
 	@IBOutlet weak var txtShippingPhoneNumber: UITextField!
 	@IBOutlet weak var txtShippingDate: UITextField!
 	@IBOutlet weak var viewShippingDetail: UIView!
@@ -31,25 +31,36 @@ class ShippingViewController: UIViewController,UITextFieldDelegate,UIPickerViewD
 //	@IBOutlet var pickerBizCat: UIPickerView! = UIPickerView()
 	@IBOutlet weak var pickerCity: UIPickerView!
 	@IBOutlet weak var txtTime: UITextField!
+	@IBOutlet weak var txtDeliveryDate: UITextField!
 	
+	var myPickerView : UIPickerView!
 	
 	var timeSelected:Date?
 	
 	var arrProduct:Array<Product>?
 	var pickerF : UIDatePicker?
 	var preferredDate:String?
-	var cities = ["AL AIN", "AJMAN", "ABUDHABI", "DUBAI", "FUJERIAH", "RAS AL KHAIMAH"]
-	var times = ["09 AM - 12 PM", "1 PM - 4 PM", "5 PM - 8 PM"]
+	var timeFinal:String?
+	var cities:Array<String> = []
+	var times:Array<String> = []
+	var timeApi:Array<String> = []
+	var dateOfDelivery:Array<String> = []
+	var arrCities:Array<String> = []
+	var arrArea:Array<String> = []
+	var arrDateOfDelivery:Array<Any> = []
+	var arrTime:Array<String> = []
+	var arrDate:Array<String> = []
+	
 	
 	func setDefault() {
 		let credentials = getDefaults()
 		self.txtShippingFirstName.text = credentials["first_name"] as? String
 		self.txtShippingLastName.text = credentials["last_name"] as? String
 		self.txtShippingAddress.text = credentials["billing_address_line_1"] as? String
-		self.txtShippingAddress1.text = credentials["billing_address_line_1"] as? String
-		self.txtShippingAddress2.text = credentials["billing_address_line_2"] as? String
+		self.txtShippingAddress1.text = credentials["billing_address_line_2"] as? String
+//		self.txtShippingAddress2.text = credentials["billing_address_line_2"] as? String
 		self.txtShippingCity.text = "DUBAI"
-		self.txtShippingPostalCode.text = credentials["billing_zip_code"] as? String
+//		self.txtShippingPostalCode.text = credentials["billing_zip_code"] as? String
 		self.txtShippingPhoneNumber.text = credentials["billing_phone"] as? String
 	}
 	
@@ -59,55 +70,130 @@ class ShippingViewController: UIViewController,UITextFieldDelegate,UIPickerViewD
 		self.hideKeyboard()
 		self.txtShippingCity.delegate = self
 		self.pickerCity.delegate = self
+		self.txtShippingAddress1.delegate = self
+		self.txtDeliveryDate.delegate = self
 		pickerCity.isHidden = true;
 		txtShippingCity.placeholder = "Shipping City"
 		self.txtTime.delegate = self
 		self.setDefault()
-		
+		self.getCities()
+		self.getArea()
+		self.getDateAndDelivery()
 		
     }
 	
-	func donedatePicker() {
-		print("sahi hai")
+	func pickUp(_ textField : UITextField){
+		
+		// UIPickerView
+		self.myPickerView = UIPickerView(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
+		self.myPickerView.delegate = self
+		self.myPickerView.dataSource = self
+		self.myPickerView.backgroundColor = UIColor.white
+		textField.inputView = self.myPickerView
+		
+		// ToolBar
+		let toolBar = UIToolbar()
+		toolBar.barStyle = .default
+		toolBar.isTranslucent = true
+		toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+		toolBar.sizeToFit()
+		
+		// Adding Button ToolBar
+		let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donePicker))
+		let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+		let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPicker))
+		toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+		toolBar.isUserInteractionEnabled = true
+		textField.inputAccessoryView = toolBar
+		
+	}
+	
+	
+	@objc func donePicker (sender:UIBarButtonItem)
+	{
+		// Put something here
+		print("hi")
+	}
+	
+	@objc func cancelPicker (sender:UIBarButtonItem)
+	{
+		// Put something here
+		print("hi")
 	}
 	
 	@IBAction func btnBackAction(_ sender: Any) {
 		self.navigationController?.popViewController(animated: true)
 	}
 	
-//	func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int{
-//		return 1
-//	}
-	
 	// returns the # of rows in each component..
 	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
 		if pickerView.tag == 2 {
 			return times.count
-		}else{
-			return cities.count
+		}else if pickerView.tag == 3 {
+			return arrArea.count
+		}else if pickerView.tag == 4 {
+			return dateOfDelivery.count
+		} else{
+			return arrCities.count
 		}
-//		return cities.count
 	}
 	
 	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 		
 		if pickerView.tag == 2 {
 			return times[row]
+		}else if pickerView.tag == 3 {
+			return arrArea[row]
+		}else if pickerView.tag == 4 {
+			return dateOfDelivery[row]
 		}else{
-			return cities[row]
+			return arrCities[row]
 		}
-		
-//		return cities[row]
 	}
 	
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
 		
 		if pickerView.tag == 2 {
-			self.txtTime.text = times[row]
-			pickerCity.isHidden = true;
+			if times.count > 0 {
+				self.txtTime.text = times[row]
+				self.timeFinal = self.timeApi[row]
+				pickerCity.isHidden = true;
+			}
+			
+		}else if pickerView.tag == 3 {
+			if arrArea.count > 0 {
+				self.txtShippingAddress1.text = arrArea[row]
+				pickerCity.isHidden = true;
+			}
+			
+		}else if pickerView.tag == 4 {
+			if dateOfDelivery.count > 0 {
+				self.txtDeliveryDate.text = dateOfDelivery[row]
+				//set time
+				self.times = []
+				self.timeApi = []
+				for dates in arrDateOfDelivery as NSArray{
+					let dict = dates as! NSDictionary
+					let selectedDate:String = dict["date"] as! String
+					if selectedDate == self.txtDeliveryDate.text{
+						for time in dict["slots"] as! NSArray{
+							let dictTime = time as! NSDictionary
+							self.times.append(dictTime["display"] as! String)
+							self.timeApi.append(dictTime["time_slot"] as! String)
+						}
+					}
+				}
+				
+				pickerCity.isHidden = true;
+			}
+			
 		}else{
-			self.txtShippingCity.text = cities[row]
-			pickerCity.isHidden = true;
+			
+			if arrCities.count > 0 {
+				self.txtShippingCity.text = arrCities[row]
+				pickerCity.isHidden = true;
+			}
+			
 		}
 		
 		
@@ -122,30 +208,32 @@ class ShippingViewController: UIViewController,UITextFieldDelegate,UIPickerViewD
 		self.pickerF?.removeFromSuperview()
 	}
 	
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		self.pickUp(self.txtShippingCity)
+	}
 	
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 		
 		if textField == self.txtShippingCity {
+			self.pickUp(self.txtShippingCity)
+			/*
 			pickerCity.tag = 1
 			pickerCity.reloadAllComponents()
 			pickerCity.isHidden = false
+			*/
 			return false
 		}else if textField == self.txtTime {
+			
+			pickerCity.tag = 2
+			pickerCity.reloadAllComponents()
+			pickerCity.isHidden = false
+			return false
+			/*
 			let currDate = Date()
-			
-//			let currentDate = Date()
-			
 			let calendarCurrent = Calendar(identifier: .gregorian)
-			
 			let dateComponentsCurrent = calendarCurrent.dateComponents([.day ,.hour, .minute], from: currDate)
-			
-			
 			let calendar = Calendar(identifier: .gregorian)
-//			currDate = calendar.date
 			let dateComponents = calendar.dateComponents([.day ,.hour, .minute], from: timeSelected!)
-			
-			
-			
 			
 			if dateComponentsCurrent.day! == dateComponents.day!  {
 				
@@ -172,24 +260,27 @@ class ShippingViewController: UIViewController,UITextFieldDelegate,UIPickerViewD
 				pickerCity.isHidden = false
 				return false
 			}
+		*/
 			
+		}else if textField == self.txtShippingAddress1{
+			pickerCity.tag = 3
+			pickerCity.reloadAllComponents()
+			pickerCity.isHidden = false
+			return false
+		}else if textField == self.txtDeliveryDate {
+			pickerCity.tag = 4
+			pickerCity.reloadAllComponents()
+			pickerCity.isHidden = false
+			return false
 		}else{
 			return false
 		}
 		
 	}
 	
-	func textFieldDidBeginEditing(_ textField: UITextField) {
-//		if textField == self.txtShippingDate {
-//			self.datePicker()
-//		}
-	}
-	
 	@objc func doneClicked(sender: UIButton) {
 		
 		self.view.willRemoveSubview(self.pickerF!)
-//		self.btnShippinpDate.titleLabel?.text = formatDateForDisplay(date: sender.date)
-//		print(self.btnShippinpDate.titleLabel?.text as Any)
 	}
 	
 	
@@ -262,6 +353,155 @@ class ShippingViewController: UIViewController,UITextFieldDelegate,UIPickerViewD
 	}
 	
 	
+	func getDateAndDelivery() {
+		if Reachability.isConnectedToInternet(){
+			SVProgressHUD.show(withStatus: "Loading Request")
+			Alamofire.request(KBaseUrl + KGetDateAndDelivery,method:.get,parameters: nil, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+				
+				switch(response.result) {
+				case .success(_):
+					SVProgressHUD.dismiss()
+					if let result = response.result.value as? NSDictionary {
+						switch(result["code"] as? String)
+						{
+						case "404":
+							self.alerts(title: kError, message: "Error")
+						case "200":
+							
+							self.arrDateOfDelivery = []
+							self.dateOfDelivery = []
+							for dateOfDelivery in result["data"] as! NSArray{
+								print(dateOfDelivery)
+								self.arrDateOfDelivery.append(dateOfDelivery)
+								
+								let dict = dateOfDelivery as! NSDictionary
+								
+								self.dateOfDelivery.append(dict["date"] as! String)
+//								let city = cities as! NSDictionary
+//								self.arrCities.append(city["city_name"] as! String)
+							}
+							
+							
+						default:
+							self.alerts(title: kError, message:kSwr )
+						}
+						//
+					}
+					else{
+						SVProgressHUD.dismiss()
+						let arrays = response.result.value as! [String]
+						self.alerts(title: kError, message: arrays[0])
+					}
+					
+				case .failure(_):
+					SVProgressHUD.dismiss()
+					print("Failure : \(String(describing: response.result.error))")
+					
+				}
+			}
+		}
+		else
+		{
+			self.alerts(title: kInternet, message: kCheckInternet)
+		}
+	}
+	
+	
+	
+	func getCities() {
+		if Reachability.isConnectedToInternet(){
+			SVProgressHUD.show(withStatus: "Loading Request")
+			Alamofire.request(KBaseUrl + KGetCities,method:.get,parameters: nil, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+				
+				switch(response.result) {
+				case .success(_):
+					SVProgressHUD.dismiss()
+					if let result = response.result.value as? NSDictionary {
+						switch(result["code"] as? String)
+						{
+						case "404":
+							self.alerts(title: kError, message: "Error")
+						case "200":
+							
+							self.arrCities = []
+							for cities in result["data"] as! NSArray{
+								print(cities)
+								let city = cities as! NSDictionary
+								self.arrCities.append(city["city_name"] as! String)
+							}
+							
+							
+						default:
+							self.alerts(title: kError, message:kSwr )
+						}
+						//
+					}
+					else{
+						SVProgressHUD.dismiss()
+						let arrays = response.result.value as! [String]
+						self.alerts(title: kError, message: arrays[0])
+					}
+					
+				case .failure(_):
+					SVProgressHUD.dismiss()
+					print("Failure : \(String(describing: response.result.error))")
+					
+				}
+			}
+		}
+		else
+		{
+			self.alerts(title: kInternet, message: kCheckInternet)
+		}
+	}
+	
+	func getArea() {
+		if Reachability.isConnectedToInternet(){
+			SVProgressHUD.show(withStatus: "Loading Request")
+			Alamofire.request(KBaseUrl + KGetArea,method:.get,parameters: nil, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+				
+				switch(response.result) {
+				case .success(_):
+					SVProgressHUD.dismiss()
+					if let result = response.result.value as? NSDictionary {
+						switch(result["code"] as? String)
+						{
+						case "404":
+							self.alerts(title: kError, message: "Error")
+						case "200":
+							
+							self.arrArea = []
+							for areas in result["data"] as! NSArray{
+								print(areas)
+								let area = areas as! NSDictionary
+								self.arrArea.append(area["name"] as! String)
+							}
+							
+						default:
+							self.alerts(title: kError, message:kSwr )
+						}
+						//
+					}
+					else{
+						SVProgressHUD.dismiss()
+						let arrays = response.result.value as! [String]
+						self.alerts(title: kError, message: arrays[0])
+					}
+					
+				case .failure(_):
+					SVProgressHUD.dismiss()
+					print("Failure : \(String(describing: response.result.error))")
+					
+				}
+			}
+		}
+		else
+		{
+			self.alerts(title: kInternet, message: kCheckInternet)
+		}
+	}
+	
+	
 	
 	fileprivate func formatDateForDisplay(date: Date) -> String {
 		let formatter = DateFormatter()
@@ -282,7 +522,7 @@ class ShippingViewController: UIViewController,UITextFieldDelegate,UIPickerViewD
 			for products:Product in arrProduct! {
 				
 				let quantity:NSString = products.productQuantity! as NSString
-				let priceProd:NSString = products.price! as NSString
+				let priceProd:NSString = products.oldPrice! as NSString
 				let sumOfProd = quantity.floatValue * priceProd.floatValue
 				
 				let dictionary1: [String: String] = ["product_id":products.productId!,"quantity":products.productQuantity!,"prod_price":products.oldPrice!,"prod_name":products.title!,"prod_sum_price":String(format: "%.2f", sumOfProd)]
@@ -294,6 +534,7 @@ class ShippingViewController: UIViewController,UITextFieldDelegate,UIPickerViewD
 			let urlString = KBaseUrl + KOrderCheckout
 			
 			//Change Delivery Time format
+			/*
 			var timeStr = ""
 			
 			if self.txtTime.text == "09 AM - 12 PM"{
@@ -303,9 +544,10 @@ class ShippingViewController: UIViewController,UITextFieldDelegate,UIPickerViewD
 			}else if self.txtTime.text == "5 PM - 8 PM"{
 				timeStr = "05:00-08:00"
 			}
+*/
 			
 			
-			let parameters:[String:AnyObject] = ["first_name":credentials["first_name"] as AnyObject,"last_name":credentials["last_name"] as AnyObject,"email":credentials["email"] as AnyObject, "billing_address":credentials["billing_address_line_1"] as AnyObject,"billing_address_line_1":credentials["billing_address_line_2"] as AnyObject,"billing_address_line_2":credentials["billing_address_line_2"] as AnyObject,"billing_city":credentials["billing_city"] as AnyObject,"billing_zip_code":credentials["billing_zip_code"] as AnyObject,"billing_phone":credentials["billing_phone"] as AnyObject,"password_register":credentials["billing_phone"] as AnyObject,"re_password_register":"" as AnyObject,"shipping_first_name":self.txtShippingFirstName.text as AnyObject,"shipping_last_name":self.txtShippingLastName.text as AnyObject,"shipping_address":self.txtShippingAddress.text as AnyObject,"shipping_address_line_1":self.txtShippingAddress1.text as AnyObject,"shipping_city":self.txtShippingCity.text as AnyObject,"shipping_zip_code":self.txtShippingPostalCode.text as AnyObject,"shipping_phone":self.txtShippingPhoneNumber.text as AnyObject,"preferred_date_of_delivery":self.btnShippinpDate.titleLabel?.text as AnyObject,"preferred_delivery_time":timeStr as AnyObject,
+			let parameters:[String:AnyObject] = ["first_name":credentials["first_name"] as AnyObject,"last_name":credentials["last_name"] as AnyObject,"email":credentials["email"] as AnyObject,"gender":credentials["gender"] as AnyObject, "billing_address":credentials["billing_address_line_1"] as AnyObject,"billing_address_line_1":credentials["billing_address_line_2"] as AnyObject,"billing_address_line_2":credentials["billing_address_line_2"] as AnyObject,"billing_city":credentials["billing_city"] as AnyObject,"billing_phone":credentials["billing_phone"] as AnyObject,"password_register":credentials["billing_phone"] as AnyObject,"re_password_register":"" as AnyObject,"shipping_first_name":self.txtShippingFirstName.text as AnyObject,"shipping_last_name":self.txtShippingLastName.text as AnyObject,"shipping_address":self.txtShippingAddress.text as AnyObject,"shipping_address_line_1":self.txtShippingAddress1.text as AnyObject,"shipping_city":self.txtShippingCity.text as AnyObject,"special_message":self.txtSpecialMessageBox.text as AnyObject,"shipping_phone":self.txtShippingPhoneNumber.text as AnyObject,"preferred_date_of_delivery":self.txtDeliveryDate.text as AnyObject,"preferred_delivery_time":self.timeFinal as AnyObject,
 												 "product_items": finalProd as AnyObject,
 												 
 												 "payment_type":"cod" as AnyObject,"sub_total":credentials["sub_total"] as AnyObject,"value_added_tax":credentials["value_added_tax"] as AnyObject,"grand_total":credentials["grand_total"] as AnyObject,
@@ -337,7 +579,7 @@ class ShippingViewController: UIViewController,UITextFieldDelegate,UIPickerViewD
 								let prefs = UserDefaults.standard
 								prefs.removeObject(forKey:"Products")
 								
-								let alert = UIAlertController(title: "Order Placed", message: "Thanks for shopping at NRTC Fresh", preferredStyle: UIAlertController.Style.alert)
+								let alert = UIAlertController(title: "Order Confirmation", message: "Thank you for your order at NRTC Fresh", preferredStyle: UIAlertController.Style.alert)
 								let defaultAction = UIAlertAction(title: "OK", style: .default, handler: self.goToHome)
 								alert.addAction(defaultAction)
 								self.present(alert, animated: true, completion: nil)

@@ -130,7 +130,10 @@ class MyOrderViewController: UIViewController,UITableViewDelegate,UITableViewDat
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //		return 130
-		return (CGFloat(93 + (100*self.allOrders[indexPath.row].productArr.count)))
+		print("heloo")
+		print(self.allOrders[indexPath.row].productArr.count)
+		print("End heloo")
+		return CGFloat(93 + (100*self.allOrders[indexPath.row].productArr.count) - (2*self.allOrders[indexPath.row].productArr.count))
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -158,6 +161,7 @@ class MyOrderViewController: UIViewController,UITableViewDelegate,UITableViewDat
 		cellOrder.lbStatus.text  = "Status: " + (self.allOrders[indexPath.row].orderStatus ?? "UNKNOWN")
 		cellOrder.lbDeliveredOn.text = "Delivery Date: " + (self.allOrders[indexPath.row].preferredDateOfDelivery ?? "None")
 		cellOrder.lbDeliveryTime.text = "Delivery Time: " + (self.allOrders[indexPath.row].deliveryTime ?? "N/A")
+		cellOrder.lbCod.text = self.allOrders[indexPath.row].paymentType
 		
 		var itemText = ""
 		
@@ -189,6 +193,13 @@ class MyOrderViewController: UIViewController,UITableViewDelegate,UITableViewDat
 			print(n)
 			var prodPrice = ""
 			var prodQuantity = ""
+			
+			let ifPrice = self.allOrders[indexPath.row].productArr[n].price! as NSString
+			if ifPrice.floatValue > 0.0 {
+				self.allOrders[indexPath.row].productArr[n].oldPrice = self.allOrders[indexPath.row].productArr[n].price
+			}
+
+			
 			if self.allOrders[indexPath.row].productArr[n].packaging == "KG" || self.allOrders[indexPath.row].productArr[n].packaging == "kg"{
 				//for Unit Price
 				let quarterPrice = self.allOrders[indexPath.row].productArr[n].oldPrice! as NSString
@@ -198,10 +209,31 @@ class MyOrderViewController: UIViewController,UITableViewDelegate,UITableViewDat
 				let quantityfinal = quantityProd.floatValue * 0.25
 
 				prodPrice = "Unit Price: AED " + String(format: "%.2f", kgPrice) + "/" + self.allOrders[indexPath.row].productArr[n].packaging!
-				prodQuantity = "Quantity: " + String(quantityfinal) + " " + self.allOrders[indexPath.row].productArr[n].packaging!
+				if quantityfinal > 1 {
+						prodQuantity = "Quantity: " + String(quantityfinal) + " " + self.allOrders[indexPath.row].productArr[n].packaging! + "s"
+				}else{
+					prodQuantity = "Quantity: " + String(quantityfinal) + " " + self.allOrders[indexPath.row].productArr[n].packaging!
+				}
+				
 			}else{
 				prodPrice = "Unit Price: AED " + self.allOrders[indexPath.row].productArr[n].oldPrice! + "/" + self.allOrders[indexPath.row].productArr[n].packaging!
-				prodQuantity = "Quantity: " + self.allOrders[indexPath.row].productArr[n].productOrderQuantity! + self.allOrders[indexPath.row].productArr[n].packaging!
+				
+				let quantityProd = self.allOrders[indexPath.row].productArr[n].productOrderQuantity! as NSString
+				if quantityProd.intValue > 1 {
+					
+					if self.allOrders[indexPath.row].productArr[n].packaging! == "Box" {
+						prodQuantity = "Quantity: " + self.allOrders[indexPath.row].productArr[n].productOrderQuantity! + " " + self.allOrders[indexPath.row].productArr[n].packaging! + "es"
+					}else{
+						prodQuantity = "Quantity: " + self.allOrders[indexPath.row].productArr[n].productOrderQuantity! + " " + self.allOrders[indexPath.row].productArr[n].packaging! + "s"
+					}
+					
+					
+				}else{
+					prodQuantity = "Quantity: " + self.allOrders[indexPath.row].productArr[n].productOrderQuantity!   + " " + self.allOrders[indexPath.row].productArr[n].packaging!
+				}
+				
+				
+				
 			}
 			
 			if n == 0 {
@@ -277,14 +309,7 @@ class MyOrderViewController: UIViewController,UITableViewDelegate,UITableViewDat
 				lbQuantity.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
 				lbQuantity.font = UIFont.systemFont(ofSize: 10)
 				nextView.addSubview(lbQuantity)
-				
-//				//Product Price and Quantity
-//				let lbPriceQuantity = UILabel(frame: CGRect(x: imgItems.frame.origin.x + 70, y: lbTitle.frame.origin.y + 15, width: 300, height: 20))
-////				lbPriceQuantity.text = self.allOrders[indexPath.row].productArr[n].oldPrice! + " x " + self.allOrders[indexPath.row].productArr[n].productOrderQuantity!
-//				lbPriceQuantity.text = prodPrice
-//				lbPriceQuantity.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
-//				lbPriceQuantity.font = UIFont.systemFont(ofSize: 10)
-//				nextView.addSubview(lbPriceQuantity)
+
 				//Product Total
 				let lbTotal = UILabel(frame: CGRect(x: imgItems.frame.origin.x + 70, y: lbQuantity.frame.origin.y + 15, width: 300, height: 20))
 				let price = self.allOrders[indexPath.row].productArr[n].oldPrice! as NSString

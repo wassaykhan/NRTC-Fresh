@@ -66,10 +66,11 @@ class LoginViewController: UIViewController {
 //							UserDefaults.standard.set(self.password, forKey: "re_confrim_pass")
 							UserDefaults.standard.set(self.loginmodel?.email, forKey: "email")
 							UserDefaults.standard.set(self.loginmodel?.userID, forKey: "user_id")
+							UserDefaults.standard.set(self.loginmodel?.gender, forKey: "gender")
 							UserDefaults.standard.set(self.loginmodel?.billingAddressLine1, forKey: "billing_address_line_1")
 							UserDefaults.standard.set(self.loginmodel?.billingAddressLine2, forKey: "billing_address_line_2")
 							UserDefaults.standard.set(self.loginmodel?.billingCity, forKey: "billing_city")
-							UserDefaults.standard.set(self.loginmodel?.billingZipCode, forKey: "billing_zip_code")
+							
 							UserDefaults.standard.set(self.loginmodel?.billingPhone, forKey: "billing_phone")
 							
 							var checkIfOrderPresent = true

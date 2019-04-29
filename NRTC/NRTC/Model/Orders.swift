@@ -18,6 +18,8 @@ class Orders: NSObject {
 	var grandTotal:String?
 	var deliveryTime:String?
 	var productArr: Array<Product> = []
+	var paymentType:String?
+	
 	
 	init(orderDictinary : NSDictionary) {
 		userID = orderDictinary["id"] as? String
@@ -26,6 +28,7 @@ class Orders: NSObject {
 		orderStatus = orderDictinary["order_status"] as? String
 		grandTotal = orderDictinary["grand_total"] as? String
 		deliveryTime = orderDictinary["preferred_delivery_time"] as? String
+		paymentType = orderDictinary["payment_type"] as? String
 		//Getting all the items from Order
 		self.productArr = []
 		for dict in orderDictinary["items"] as! NSArray{

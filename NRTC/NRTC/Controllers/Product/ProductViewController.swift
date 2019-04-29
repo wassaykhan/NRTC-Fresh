@@ -28,6 +28,11 @@ class ProductViewController: UIViewController,MFMailComposeViewControllerDelegat
 	@IBOutlet weak var lbProductColor: UILabel!
 	@IBOutlet weak var lbNotes: UILabel!
 	@IBOutlet weak var lbColorL: UILabel!
+	@IBOutlet weak var viewDiscount: UIView!
+	@IBOutlet weak var lbDiscount: UILabel!
+	@IBOutlet weak var lbOldPrice: UILabel!
+	@IBOutlet weak var viewRemoveOldPrice: UIView!
+	
 	
 //	var productID:Int?
 	
@@ -46,6 +51,8 @@ class ProductViewController: UIViewController,MFMailComposeViewControllerDelegat
 		self.lbProductDetailHeading.text = ""
 		self.lbNotes.text = ""
 		self.lbProductColor.text = ""
+		self.lbDiscount.text = ""
+		self.lbOldPrice.text = ""
 	}
 	
 	
@@ -101,6 +108,9 @@ class ProductViewController: UIViewController,MFMailComposeViewControllerDelegat
 		}
 	}
 	
+	@IBAction func btnContactUsAction(_ sender: Any) {
+		self.callUs()
+	}
 	
 	@objc func didTap() {
 		let fullScreenController = slideShowView.presentFullScreenController(from: self)
@@ -215,7 +225,47 @@ class ProductViewController: UIViewController,MFMailComposeViewControllerDelegat
 	
 						}
 						*/
-						self.lbTitle.text = (self.product?.title)! + " (" + (self.product?.origin)! + ")"
+						
+						if self.product?.origin == "" {
+							self.lbTitle.text = (self.product?.title)!
+						}else{
+							self.lbTitle.text = (self.product?.title)! + " (" + (self.product?.origin)! + ")"
+						}
+						
+						
+						let ifPrice = self.product!.price! as NSString
+						if ifPrice.floatValue > 0.0 {
+//							self.lbOldPrice.text = "AED" + (self.product?.oldPrice)!
+							
+							
+							if self.product?.packaging == "KG" || self.product?.packaging == "kg"{
+								//for Unit Price
+								let quarterPrice = self.product!.oldPrice! as NSString
+								let kgPrice = quarterPrice.floatValue * 4
+								
+								self.lbOldPrice.text = "AED" + String(format: "%.2f", kgPrice) //+ "/KG"
+							}else if self.product!.packaging == "Precut" || self.product!.packaging == "precut"{
+								self.lbOldPrice.text = "AED" + self.product!.oldPrice!// + "/Pack"
+							}else{
+								self.lbOldPrice.text = "AED" + self.product!.oldPrice! //+ "/" + prod.packaging!
+							}
+							
+							self.product?.oldPrice = self.product?.price
+							
+						}
+						
+						
+						
+						
+						let ifDiscount = self.product!.discountPercent! as NSString
+						if ifDiscount.floatValue > 0.0 {
+							self.viewDiscount.isHidden = false
+							self.lbDiscount.text = self.product!.discountPercent! + "% OFF"
+						}else{
+							self.viewDiscount.isHidden = true
+						}
+						
+						
 //						let newPrice:Float = 0
 						if self.product?.packaging == "KG" || self.product?.packaging == "kg"{
 							let price = self.product!.oldPrice! as NSString

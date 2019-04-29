@@ -24,19 +24,30 @@ class BillingViewController: UIViewController,UITextFieldDelegate,UIPickerViewDe
     @IBOutlet weak var zipError: UILabel!
     @IBOutlet weak var phoneError: UILabel!
 	@IBOutlet weak var pickerCity: UIPickerView!
+	
+	var arrCities:Array<String> = []
+	var arrArea:Array<String> = []
+	
+	
+	
 	var cities = ["AL AIN", "AJMAN", "ABUDHABI", "DUBAI", "FUJERIAH", "RAS AL KHAIMAH"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.city.delegate = self
+		self.address2.delegate = self
 		self.pickerCity.delegate = self
 		pickerCity.isHidden = true
-		addborder(name: address , label :"Address *")
-		addborder(name: city, label: "Town /City *")
-		addborder(name: address2,label: "Address 1 *")
-		addborder(name: zip,label: "ZIP *")
-		addborder(name: phone,label: "Phone *")
+		addborder(name: address , label :"Complete Address (Required)")
+		addborder(name: city, label: "Select Your Emirate (Required)")
+		addborder(name: address2,label: "Select Your Area (Required)")
+		addborder(name: zip,label: "Select Zip Code (Required)")
+		addborder(name: phone,label: "Phone Number (Required)")
 		hideKeyboard()
+		
+		self.getArea()
+		self.getCities()
+		
         // Do any additional setup after loading the view.
     }
 	
@@ -46,38 +57,56 @@ class BillingViewController: UIViewController,UITextFieldDelegate,UIPickerViewDe
 	
 	// returns the # of rows in each component..
 	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+		if pickerView.tag == 1 {
+			return arrCities.count
+		}else{
+			return arrArea.count
+		}
 		
-		return cities.count
-		//		return cities.count
 	}
 	
 	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+		if pickerView.tag == 1 {
+			return arrCities[row]
+		}else{
+			return arrArea[row]
+		}
 		
-		return cities[row]
 	}
 	
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-
-		self.city.text = cities[row]
-		pickerCity.isHidden = true;
+		
+		if pickerView.tag == 1 {
+			self.city.text = arrCities[row]
+			pickerCity.isHidden = true;
+		}else{
+			self.address2.text = arrArea[row]
+			pickerCity.isHidden = true;
+		}
+		
+		
 	}
 	
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-		pickerCity.tag = 1
-		pickerCity.reloadAllComponents()
-		pickerCity.isHidden = false
-		return false
+		
+		if textField == self.city {
+			pickerCity.tag = 1
+			pickerCity.reloadAllComponents()
+			pickerCity.isHidden = false
+			return false
+		}else{
+			pickerCity.tag = 2
+			pickerCity.reloadAllComponents()
+			pickerCity.isHidden = false
+			return false
+		}
+		
+		
 	}
 	
     @IBAction func done(_ sender: Any) {
         var paramsAll : [String:Any] = self.params
-//        let addressError = checkTextfield(textfield: address, textfieldError: self.addressError)
-//          let address2Error = checkTextfield(textfield: address2, textfieldError: self.address2Error)
-//          let cityError = checkTextfield(textfield: city, textfieldError: self.cityError)
-//          let zipError = checkTextfield(textfield: zip, textfieldError: self.zipError)
-//          let phoneError = checkTextfield(textfield: phone, textfieldError: self.phoneError)
-		
-        if self.address.text != "" && self.address2.text != "" && self.city.text != "" && self.zip.text != "" && self.phone.text != "" {
+        if self.address.text != "" && self.address2.text != "" && self.city.text != "" && self.phone.text != "" {
             paramsAll["billing_address_line_2"] = address2.text
             paramsAll["billing_address_line_1"] = address.text
             paramsAll["billing_city"] = city.text
@@ -86,6 +115,103 @@ class BillingViewController: UIViewController,UITextFieldDelegate,UIPickerViewDe
             registerCall(paramsAll: paramsAll)
         }
     }
+	
+	
+	func getCities() {
+		if Reachability.isConnectedToInternet(){
+			SVProgressHUD.show(withStatus: "Loading Request")
+			Alamofire.request(KBaseUrl + KGetCities,method:.get,parameters: nil, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+				
+				switch(response.result) {
+				case .success(_):
+					SVProgressHUD.dismiss()
+					if let result = response.result.value as? NSDictionary {
+						switch(result["code"] as? String)
+						{
+						case "404":
+							self.alerts(title: kError, message: "Error")
+						case "200":
+							
+							self.arrCities = []
+							for cities in result["data"] as! NSArray{
+								print(cities)
+								let city = cities as! NSDictionary
+								self.arrCities.append(city["city_name"] as! String)
+							}
+							
+							
+						default:
+							self.alerts(title: kError, message:kSwr )
+						}
+						//
+					}
+					else{
+						SVProgressHUD.dismiss()
+						let arrays = response.result.value as! [String]
+						self.alerts(title: kError, message: arrays[0])
+					}
+					
+				case .failure(_):
+					SVProgressHUD.dismiss()
+					print("Failure : \(String(describing: response.result.error))")
+					
+				}
+			}
+		}
+		else
+		{
+			self.alerts(title: kInternet, message: kCheckInternet)
+		}
+	}
+	
+	func getArea() {
+		if Reachability.isConnectedToInternet(){
+			SVProgressHUD.show(withStatus: "Loading Request")
+			Alamofire.request(KBaseUrl + KGetArea,method:.get,parameters: nil, encoding: JSONEncoding.default).responseJSON { (response) -> Void in
+				
+				switch(response.result) {
+				case .success(_):
+					SVProgressHUD.dismiss()
+					if let result = response.result.value as? NSDictionary {
+						switch(result["code"] as? String)
+						{
+						case "404":
+							self.alerts(title: kError, message: "Error")
+						case "200":
+							
+							self.arrArea = []
+							for areas in result["data"] as! NSArray{
+								print(areas)
+								let area = areas as! NSDictionary
+								self.arrArea.append(area["name"] as! String)
+							}
+							
+						default:
+							self.alerts(title: kError, message:kSwr )
+						}
+						//
+					}
+					else{
+						SVProgressHUD.dismiss()
+						let arrays = response.result.value as! [String]
+						self.alerts(title: kError, message: arrays[0])
+					}
+					
+				case .failure(_):
+					SVProgressHUD.dismiss()
+					print("Failure : \(String(describing: response.result.error))")
+					
+				}
+			}
+		}
+		else
+		{
+			self.alerts(title: kInternet, message: kCheckInternet)
+		}
+	}
+	
+	
+	
     func registerCall(paramsAll : [String:Any])
     {
         if Reachability.isConnectedToInternet(){
@@ -111,11 +237,11 @@ class BillingViewController: UIViewController,UITextFieldDelegate,UIPickerViewDe
 							UserDefaults.standard.set(paramsAll["password"], forKey: "password")
 							UserDefaults.standard.set(paramsAll["re_confrim_pass"], forKey: "re_confrim_pass")
 							UserDefaults.standard.set(paramsAll["email"], forKey: "email")
+							UserDefaults.standard.set(paramsAll["gender"], forKey: "gender")
 							UserDefaults.standard.set(register.userID, forKey: "user_id")
 							UserDefaults.standard.set(paramsAll["billing_address_line_1"], forKey: "billing_address_line_1")
 							UserDefaults.standard.set(paramsAll["billing_address_line_2"], forKey: "billing_address_line_2")
 							UserDefaults.standard.set(paramsAll["billing_city"], forKey: "billing_city")
-							UserDefaults.standard.set(paramsAll["billing_zip_code"], forKey: "billing_zip_code")
 							UserDefaults.standard.set(paramsAll["billing_phone"], forKey: "billing_phone")
 							
 							var checkIfOrderPresent = true
@@ -183,7 +309,7 @@ class BillingViewController: UIViewController,UITextFieldDelegate,UIPickerViewDe
 extension UIViewController {
 	func getDefaults() -> NSDictionary{
 		print("Setting Defaults")
-		let credentials:NSDictionary = ["first_name": UserDefaults.standard.string(forKey: "first_name")!, "last_name": UserDefaults.standard.string(forKey: "last_name")!,"user_id": UserDefaults.standard.integer(forKey: "user_id"),"email": UserDefaults.standard.string(forKey: "email")!,"billing_address_line_1": UserDefaults.standard.string(forKey: "billing_address_line_1")!,"billing_address_line_2": UserDefaults.standard.string(forKey: "billing_address_line_2")!,"billing_city": UserDefaults.standard.string(forKey: "billing_city")!,"billing_zip_code": UserDefaults.standard.string(forKey: "billing_zip_code")!,"billing_phone": UserDefaults.standard.string(forKey: "billing_phone")!,"sub_total": UserDefaults.standard.string(forKey: "sub_total")!,"grand_total": UserDefaults.standard.string(forKey: "grand_total")!,"value_added_tax": UserDefaults.standard.string(forKey: "value_added_tax")!]
+		let credentials:NSDictionary = ["first_name": UserDefaults.standard.string(forKey: "first_name")!, "last_name": UserDefaults.standard.string(forKey: "last_name")!,"user_id": UserDefaults.standard.integer(forKey: "user_id"),"email": UserDefaults.standard.string(forKey: "email")!,"gender": UserDefaults.standard.string(forKey: "gender")!,"billing_address_line_1": UserDefaults.standard.string(forKey: "billing_address_line_1")!,"billing_address_line_2": UserDefaults.standard.string(forKey: "billing_address_line_2")!,"billing_city": UserDefaults.standard.string(forKey: "billing_city")!,"billing_phone": UserDefaults.standard.string(forKey: "billing_phone")!,"sub_total": UserDefaults.standard.string(forKey: "sub_total")!,"grand_total": UserDefaults.standard.string(forKey: "grand_total")!,"value_added_tax": UserDefaults.standard.string(forKey: "value_added_tax")!]
 		return credentials
 	}
 }

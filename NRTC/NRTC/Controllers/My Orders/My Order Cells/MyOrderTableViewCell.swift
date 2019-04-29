@@ -21,6 +21,7 @@ class MyOrderTableViewCell: UITableViewCell {
 	@IBOutlet weak var lbTotal: UILabel!
 	@IBOutlet weak var lbItems: UILabel!
 	@IBOutlet weak var viewBackground: UIView!
+	@IBOutlet weak var lbCod: UILabel!
 	
 	override func awakeFromNib() {
         super.awakeFromNib()

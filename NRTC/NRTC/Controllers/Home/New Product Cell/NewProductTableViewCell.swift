@@ -30,6 +30,33 @@ class NewProductTableViewCell: UITableViewCell {
 	@IBOutlet weak var lbFifthPrice: UILabel!
 	@IBOutlet weak var lbSixthTitle: UILabel!
 	@IBOutlet weak var lbSixthPrice: UILabel!
+	//Discount
+	@IBOutlet weak var viewDiscount1: UIView!
+	@IBOutlet weak var lbDiscount1: UILabel!
+	@IBOutlet weak var viewDiscount2: UIView!
+	@IBOutlet weak var lbDiscount2: UILabel!
+	@IBOutlet weak var viewDiscount3: UIView!
+	@IBOutlet weak var lbDiscount3: UILabel!
+	@IBOutlet weak var viewDiscount4: UIView!
+	@IBOutlet weak var lbDiscount4: UILabel!
+	@IBOutlet weak var viewDiscount5: UIView!
+	@IBOutlet weak var lbDiscount5: UILabel!
+	@IBOutlet weak var viewDiscount6: UIView!
+	@IBOutlet weak var lbDiscount6: UILabel!
+	//Old Value
+	@IBOutlet weak var lbOldPrice1: UILabel!
+	@IBOutlet weak var viewRemoveOldPrice1: UIView!
+	@IBOutlet weak var lbOldPrice2: UILabel!
+	@IBOutlet weak var viewRemoveOldPrice2: UIView!
+	@IBOutlet weak var lbOldPrice3: UILabel!
+	@IBOutlet weak var viewRemoveOldPrice3: UIView!
+	@IBOutlet weak var lbOldPrice4: UILabel!
+	@IBOutlet weak var viewRemoveOldPrice4: UIView!
+	@IBOutlet weak var lbOldPrice5: UILabel!
+	@IBOutlet weak var viewRemoveOldPrice5: UIView!
+	@IBOutlet weak var lbOldPrice6: UILabel!
+	@IBOutlet weak var viewRemoveOldPrice6: UIView!
+	
 	
     override func awakeFromNib() {
         super.awakeFromNib()

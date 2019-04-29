@@ -69,7 +69,33 @@ class SearchViewController: UIViewController,UICollectionViewDelegate,UICollecti
 		//categoryCellIdentifier
 		let cellCategory:CategoryCollectionViewCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCellIdentifier", for: indexPath) as! CategoryCollectionViewCell
 		cellCategory.lbTitle.text =  self.arrCategoryProduct[indexPath.row].title!
-		cellCategory.lbPrice.text = getPrice(prod: (self.arrCategoryProduct[indexPath.row]))
+//		cellCategory.lbPrice.text = getPrice(prod: (self.arrCategoryProduct[indexPath.row]))
+		
+		let ifPrice = self.arrCategoryProduct[indexPath.row].price! as NSString
+		if ifPrice.floatValue > 0.0 {
+			
+			
+			cellCategory.lbOldPrice.isHidden = false
+			cellCategory.viewRemove.isHidden = false
+			cellCategory.lbPrice.text = getPriceNew(prod: (self.arrCategoryProduct[indexPath.row]))
+			cellCategory.lbOldPrice.text = getPriceOld(prod: (self.arrCategoryProduct[indexPath.row]))
+		}else{
+			cellCategory.lbOldPrice.isHidden = true
+			cellCategory.viewRemove.isHidden = true
+			//			cellCategory.lbPrice.text = "AED" + self.arrCategoryProduct[indexPath.row].oldPrice!
+			cellCategory.lbPrice.text = getPriceOld(prod: (self.arrCategoryProduct[indexPath.row]))
+		}
+		
+		let ifDiscount = self.arrCategoryProduct[indexPath.row].discountPercentage! as NSString
+		if ifDiscount.floatValue > 0.0 {
+			cellCategory.lbDiscount.isHidden = false
+			cellCategory.viewDiscount.isHidden = false
+			cellCategory.lbDiscount.text = self.arrCategoryProduct[indexPath.row].discountPercentage! + "% OFF"
+		}else{
+			cellCategory.lbDiscount.isHidden = true
+			cellCategory.viewDiscount.isHidden = true
+		}
+		
 		cellCategory.imgProduct.sd_setImage(with: URL(string: self.arrCategoryProduct[indexPath.row].image!), placeholderImage: UIImage(named: ""))
 		//newProductCellIdentifier
 		return cellCategory
@@ -77,10 +103,17 @@ class SearchViewController: UIViewController,UICollectionViewDelegate,UICollecti
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		//		if UIScreen.main.nativeBounds.height == 1136{
-		//			return CGSize(width: UIScreen.main.bounds.width/2 - 20, height: 216)
-		//		}
-		return CGSize(width: UIScreen.main.bounds.width/2 - 20, height: UIScreen.main.bounds.height/3 + 20)
+		//iphone X XS
+		if UIScreen.main.nativeBounds.height == 2436 {
+			return CGSize(width: UIScreen.main.bounds.width/2 - 20, height: UIScreen.main.bounds.height/3.5 + 20 + 40)
+		}//2688 iphone XS_Max
+		if UIScreen.main.nativeBounds.height == 2688 {
+			return CGSize(width: UIScreen.main.bounds.width/2 - 20, height: UIScreen.main.bounds.height/3.5 + 20 + 40)
+		}//1792 iphone XR
+		if UIScreen.main.nativeBounds.height == 1792 {
+			return CGSize(width: UIScreen.main.bounds.width/2 - 20, height: UIScreen.main.bounds.height/3.8 + 30 + 40)
+		}
+		return CGSize(width: UIScreen.main.bounds.width/2 - 20, height: UIScreen.main.bounds.height/3 + 60)
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -20,6 +20,7 @@ class LoginModel : NSObject {
 	var billingCity:String?
 	var billingCountry:String?
 	var billingPhone:String?
+	var gender:String?
 	
 	init(dictionarys : NSDictionary) {
 		if let status = dictionarys["status"] as? Bool{
@@ -32,6 +33,7 @@ class LoginModel : NSObject {
 		firstName = dictionarys["first_name"] as? String
 		lastName = dictionarys["last_name"] as? String
 		email = dictionarys["email"] as? String
+		gender = dictionarys["gender"] as? String
 		
 	}
     
@@ -49,6 +51,7 @@ class LoginModel : NSObject {
         firstName = dictionary["first_name"] as? String
         lastName = dictionary["last_name"] as? String
         email = dictionary["email"] as? String
+		gender = dictionary["gender"] as? String
         address = dictionary["addresses"] as? NSDictionary
 		address = address!["billing_address"] as? NSDictionary
 		billingAddressLine1 = address!["billing_address_line_1"] as? String

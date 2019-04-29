@@ -13,6 +13,10 @@ class CategoryCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var imgProduct: UIImageView!
 	@IBOutlet weak var lbTitle: UILabel!
 	@IBOutlet weak var lbPrice: UILabel!
+	@IBOutlet weak var lbOldPrice: UILabel!
+	@IBOutlet weak var viewRemove: UIView!
+	@IBOutlet weak var lbDiscount: UILabel!
+	@IBOutlet weak var viewDiscount: UIView!
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		self.categoryView.layer.cornerRadius = 10

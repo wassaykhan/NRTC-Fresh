@@ -87,6 +87,11 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 		var total:Float = 0
 		for item:Product in products{
 			
+			let ifPrice = item.price! as NSString
+			if ifPrice.floatValue > 0.0 {
+				item.oldPrice = item.price
+			}
+			
 			let price:NSString = item.oldPrice! as NSString
 			let quantity:NSString = item.productQuantity! as NSString
 			total +=  price.floatValue * quantity.floatValue
@@ -117,6 +122,7 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 			cellNewProduct.lbQuantity.text = String(weight)
 			
 			//for Unit Price
+			
 			let quarterPrice = self.arrProduct![indexPath.row].oldPrice! as NSString
 			let kgPrice = quarterPrice.floatValue * 4
 			cellNewProduct.lbUnitPrice.text = "Unit Price: AED " + String(format: "%.2f", kgPrice) + "/KG"
@@ -131,7 +137,15 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 			let price = self.arrProduct![indexPath.row].oldPrice! as NSString
 			let quantity:NSString = self.arrProduct![indexPath.row].productQuantity! as NSString
 			//for Unit Price
-			cellNewProduct.lbUnitPrice.text = "Price: AED " + (self.arrProduct?[indexPath.row].oldPrice)! + "/Pack"
+			//new change
+			
+			if self.arrProduct?[indexPath.row].packaging == "Precut" || self.arrProduct?[indexPath.row].packaging == "precut"{
+				cellNewProduct.lbUnitPrice.text = "Price: AED " + (self.arrProduct?[indexPath.row].oldPrice)! + "/Pack"
+			}else{
+				cellNewProduct.lbUnitPrice.text = "Price: AED " + (self.arrProduct?[indexPath.row].oldPrice)! + "/" + (self.arrProduct?[indexPath.row].packaging)!
+			}
+			
+			
 			//For Total
 			let totalP = quantity.floatValue * price.floatValue
 			cellNewProduct.lbPrice.text = "Total: AED " + String(format: "%.2f", totalP)
@@ -222,11 +236,7 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 				self.updateCart()
 				
 			}
-			
-			
-			
-			
-			
+		
 		}
 		
 		
@@ -333,7 +343,7 @@ class OrderViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 		let quantity = self.calculateTotalAmount(products: self.arrProduct!)
 //		let value = quantity.intValue
 		if quantity < 80 {
-			self.alerts(title: "Sorry", message: "The minimum ammount to fullfil your order is AED 80. Please add more item/s to Cart")
+			self.alerts(title: "Sorry", message: "The minimum amount to fullfil your order is AED 80. Please add more items to Cart")
 			return
 		}
 		

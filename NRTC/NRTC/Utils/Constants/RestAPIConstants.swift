@@ -9,7 +9,11 @@
 import Foundation
 
 // Base Url
-let KBaseUrl:String = "https://dev17.onlinetestingserver.com/nrtc_new/"
+//let KBaseUrl:String = "https://dev17.onlinetestingserver.com/nrtc_new/"
+
+// Production URL
+
+let KBaseUrl:String = "https://www.nrtcfresh.com/"
 
 //All Product
 let KAllProduct:String = "/Api/Products/all/en"
@@ -42,3 +46,11 @@ let KOrderCheckout:String = "/Api/User/checkoutuser"
 //Get Orders
 let KGetOrders:String = "/Api/Order/orders/"
 
+//Get Cities
+let KGetCities:String = "/Api/User/getcities"
+
+//Get Area
+let KGetArea:String = "/Api/User/getareas"
+
+//Get Date and Delivery time slots
+let KGetDateAndDelivery:String = "/Api/Checkout/deliverydateTimeslot"

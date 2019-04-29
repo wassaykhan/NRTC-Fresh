@@ -30,6 +30,7 @@ class Product: NSObject, NSCoding {
 	var origin:String?
 	var notes:String?
 	var productColor:String?
+	var discountPercent:String?
 	
 	//For Orders
 	var productOrderQuantity:String?
@@ -58,6 +59,8 @@ class Product: NSObject, NSCoding {
 		self.origin = dictionary["origin"] as? String
 		self.notes = dictionary["notes"] as? String
 		
+		self.discountPercent = dictionary["Discount_percent"] as? String
+		
 		//additional for Order Items
 		self.productOrderQuantity = dictionary["quantity"] as? String
 		self.sumPrice = dictionary["sum_price"] as? Int
@@ -82,6 +85,7 @@ class Product: NSObject, NSCoding {
 		aCoder.encode(self.productCategory, forKey: "productCategory")
 		aCoder.encode(self.productQuantity,forKey: "productQuantity")
 		aCoder.encode(self.packaging,forKey: "packaging")
+		aCoder.encode(self.discountPercent,forKey: "Discount_percent")
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -102,6 +106,7 @@ class Product: NSObject, NSCoding {
 		self.productCategory = aDecoder.decodeObject(forKey: "productCategory") as? String
 		self.productQuantity = aDecoder.decodeObject(forKey: "productQuantity") as? String
 		self.packaging = aDecoder.decodeObject(forKey: "packaging") as? String
+		self.discountPercent = aDecoder.decodeObject(forKey: "Discount_percent") as? String
 	}
 	
 	
